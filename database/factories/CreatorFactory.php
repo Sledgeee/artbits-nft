@@ -17,7 +17,9 @@ class CreatorFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'bio' => fake()->realText(),
+            'banner_image' => fake()->imageUrl(1920, 640),
+            'user_id' => fake()->unique()->numberBetween(1, 10)
         ];
     }
 }

@@ -17,8 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();
-            $table->string('avatar_image', 64)->nullable();
-            $table->foreignId('wallet_id')->constrained('wallets');
+            $table->string('avatar_image', 128)->nullable();
             $table->timestamps();
         });
     }

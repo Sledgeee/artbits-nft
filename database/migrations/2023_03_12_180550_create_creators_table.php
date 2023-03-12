@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('creators', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 28);
-            $table->string('bio', 256);
-            $table->string('banner_image', 64);
+            $table->string('bio', 256)->nullable();
+            $table->string('banner_image', 128)->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
