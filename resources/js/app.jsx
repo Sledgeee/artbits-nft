@@ -4,11 +4,8 @@ import { createInertiaApp } from "@inertiajs/react";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { createRoot } from "react-dom/client";
 
-const appName =
-    window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
-
 createInertiaApp({
-    title: (title) => `${title} - ${appName}`,
+    title: (title) => `${title} - ArtBits`,
     resolve: (name) =>
         resolvePageComponent(
             `./Pages/${name}.jsx`,
