@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->string('avatar_image', 64)->nullable();
+            $table->foreignId('wallet_id')->constrained('wallets');
             $table->timestamps();
         });
     }
