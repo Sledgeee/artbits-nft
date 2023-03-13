@@ -12,7 +12,11 @@ class CollectionController extends Controller
      */
     public function index()
     {
-        //
+        $collections = Collection::with('creator')->limit(3)->get();
+        foreach ($collections as $collection) {
+            $collection->nftItemsLimited;
+        }
+        return $collections;
     }
 
     /**

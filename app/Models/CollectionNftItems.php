@@ -24,16 +24,16 @@ class CollectionNftItems extends Model
     /**
      * Get the NFT item by the collection item
      */
-    public function nftItem(): HasOne
+    public function nftItem(): BelongsTo
     {
-        return $this->hasOne(NftItem::class);
+        return $this->belongsTo(NftItem::class);
     }
 
     /**
      * Get the collection by the collection item
      */
-    public function collection(): HasOne
+    public function collection(): BelongsTo
     {
-        return $this->hasOne(Collection::class);
+        return $this->belongsTo(Collection::class);
     }
 } 

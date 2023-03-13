@@ -17,7 +17,8 @@ class CollectionFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->unique()->userName(),
+            'creator_id' => fake()->unique()->numberBetween(1, 10)
         ];
     }
 }

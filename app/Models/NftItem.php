@@ -49,4 +49,9 @@ class NftItem extends Model
     {
         return $this->hasMany(NftItemTag::class);
     }
+
+    public function collectionNftItems(): HasMany
+    {
+        return $this->hasMany(CollectionNftItems::class);
+    }
 }

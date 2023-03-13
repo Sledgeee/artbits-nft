@@ -10,9 +10,9 @@ class NftItemController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(int $cat_id)
     {
-        //
+        return NftItem::where('category_id', $cat_id)->get();
     }
 
     /**
