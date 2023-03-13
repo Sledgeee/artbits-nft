@@ -5,7 +5,7 @@ import TextInput from "@/Components/TextInput";
 import { Transition } from "@headlessui/react";
 import { useForm, usePage } from "@inertiajs/react";
 
-export default function UpdateProfileInformation({ status, className }) {
+export default function UpdateProfileInformation({  className }) {
     const user = usePage().props.auth.user;
 
     const { data, setData, patch, errors, processing, recentlySuccessful } =
@@ -16,7 +16,7 @@ export default function UpdateProfileInformation({ status, className }) {
 
     const submit = (e) => {
         e.preventDefault();
-
+        console.log(data)
         patch(route("profile.update"));
     };
 
@@ -46,7 +46,7 @@ export default function UpdateProfileInformation({ status, className }) {
                         autoComplete="username"
                     />
 
-                    <InputError className="mt-2" message={errors.name} />
+                    <InputError className="mt-2" message={errors.username} />
                 </div>
 
                 <div>
