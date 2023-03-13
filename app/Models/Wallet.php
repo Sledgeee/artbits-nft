@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Wallet extends Model
 {
@@ -29,8 +28,8 @@ class Wallet extends Model
     /**
      * Get the wallet provider
      */
-    public function walletProvider(): HasOne
+    public function walletProvider(): BelongsTo
     {
-        return $this->hasOne(WalletProvider::class);
+        return $this->belongsTo(WalletProvider::class);
     }
 }

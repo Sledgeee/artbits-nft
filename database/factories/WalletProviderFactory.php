@@ -17,7 +17,9 @@ class WalletProviderFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->unique()->userName(),
+            'image' => fake()->imageUrl(),
+            'link' => fake()->url()
         ];
     }
 }

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('auctions', function (Blueprint $table) {
             $table->id();
-            $table->integer('duration');
+            $table->timestamp('end_at');
             $table->foreignId('nft_item_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

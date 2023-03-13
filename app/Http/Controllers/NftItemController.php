@@ -4,15 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Models\NftItem;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class NftItemController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the nft.
      */
-    public function index(int $cat_id)
+    public function nfts()
     {
-        return NftItem::where('category_id', $cat_id)->get();
+        return Inertia::render('Nft/Index', [
+            'nfts' => NftItem::paginate(9)
+        ]);
+    }
+
+    /**
+     * Display a listing of the nft by category.
+     */
+    public function nftsByCategory(int $category_id)
+    {
+        return Inertia::render('Nft/ByCategory', [
+            'nfts' => NftItem::where('category_id', $category_id)->paginate(9)
+        ]);
     }
 
     /**

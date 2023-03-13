@@ -12,11 +12,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-//        \App\Models\User::factory(10)->create();
-//        \App\Models\Creator::factory(10)->create();
-//        \App\Models\Category::factory(10)->create();
-//        \App\Models\NftItem::factory(100)->create();
-//        \App\Models\Collection::factory(10)->create();
-//        \App\Models\CollectionNftItems::factory(150)->create();
+        // First 4 tables to seed.
+        //\App\Models\User::factory(10)->create();
+        //\App\Models\Creator::factory(10)->create();
+        //\App\Models\Category::factory(10)->create();
+        //\App\Models\NftItem::factory(100)->create();
+
+        // Keep it commented until seed first 4 tables.
+        //\App\Models\Collection::factory(10)->create();
+        //\App\Models\CollectionNftItems::factory(150)->create();
+        //\App\Models\WalletProvider::factory(3)->create();
+        //\App\Models\Wallet::factory(10)->create();
+        //\App\Models\Auction::factory(1)->create();
+        //\App\Models\AuctionBet::factory(5)->create();
     }
 }

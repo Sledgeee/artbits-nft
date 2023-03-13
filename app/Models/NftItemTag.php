@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class NftItemTag extends Model
 {
@@ -21,8 +20,8 @@ class NftItemTag extends Model
         'nft_item_id'
     ];
 
-    public function nftItem(): HasOne
+    public function nftItem(): BelongsTo
     {
-        return $this->hasOne(NftItem::class);
+        return $this->belongsTo(NftItem::class);
     }
 }

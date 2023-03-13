@@ -17,7 +17,9 @@ class AuctionBetFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'value' => fake()->randomDigit(),
+            'auction_id' => 1,
+            'user_id' => fake()->unique()->numberBetween(1, 10)
         ];
     }
 }

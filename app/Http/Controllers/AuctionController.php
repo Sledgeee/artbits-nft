@@ -12,7 +12,9 @@ class AuctionController extends Controller
      */
     public function index()
     {
-        //
+        $data = Auction::with(['auctionBets', 'auctionBets.user'])->get();
+
+        return $data;
     }
 
     /**
@@ -34,9 +36,17 @@ class AuctionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Auction $auction)
+    public function show($id)
     {
-        //
+        $data = Auction::where('id', $id)->with([
+            'auctionBets', 'auctionBets.user', 'biggestAuctionBet', 'biggestAuctionBet.user'
+        ])->first();
+
+        if (!$data) {
+            return Response('Not found', 404);
+        }
+
+        return $data;
     }
 
     /**

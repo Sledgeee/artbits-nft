@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('nft_items', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 64)->unique();
+            $table->string('name', 64);
             $table->string('description', 1024);
             $table->string('image', 128);
             $table->string('header_image', 128);
