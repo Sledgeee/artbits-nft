@@ -1,7 +1,9 @@
+import { ChangeEventHandler } from "react";
+
 interface Props {
     name: string;
     value: string;
-    handleChange: React.ChangeEventHandler<HTMLInputElement>;
+    handleChange: ChangeEventHandler<HTMLInputElement>;
 }
 
 export default function Checkbox({ name, value, handleChange }: Props) {
