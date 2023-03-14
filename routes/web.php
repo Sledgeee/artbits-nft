@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuctionController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\NftItemController;
 use Illuminate\Foundation\Application;
@@ -18,12 +19,8 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    // return Inertia::render('Welcome', [
-    //     'laravelVersion' => Application::VERSION,
-    //     'phpVersion' => PHP_VERSION,
-    // ]);
-    return 'ok';
+Route::controller(HomeController::class)->group(function () {
+    Route::get('/', 'index');
 });
 
 Route::controller(AuctionController::class)->group(function () {

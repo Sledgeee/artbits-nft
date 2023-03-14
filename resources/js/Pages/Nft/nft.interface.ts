@@ -1,9 +1,4 @@
-export interface Nft {
-    id: number;
-    name: string;
-    description: string;
-    image: string;
-}
+import {INftType} from "@/types/nft.type";
 
 export interface PageLink {
     url: string | null;
@@ -13,7 +8,7 @@ export interface PageLink {
 
 export interface NftResponse {
     current_page: number;
-    data: Nft[];
+    data: INftType[];
     first_page_url: string;
     from: number;
     last_page: number;
@@ -28,5 +23,6 @@ export interface NftResponse {
 }
 
 export interface NftProps {
+    auth:any,
     nfts: NftResponse;
 }

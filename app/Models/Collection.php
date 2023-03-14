@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Collection extends Model
 {
@@ -33,6 +34,6 @@ class Collection extends Model
 
     public function nftItemsLimited(): HasMany
     {
-        return $this->hasMany(CollectionNftItems::class)->limit(3);
+        return $this->hasMany(CollectionNftItems::class)->with('nftItem')->limit(3);
     }
 }
