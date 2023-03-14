@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\AuctionController;
+use App\Http\Controllers\CreatorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\NftItemController;
+use App\Http\Controllers\RankingController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,10 +30,15 @@ Route::controller(AuctionController::class)->group(function () {
     Route::get('/auction/{id}', 'show');
 });
 
+Route::controller(CreatorController::class)->group(function () {
+    Route::get('/rankings', 'index');
+    Route::get('/creator/{username}', 'creator');
+});
+
 Route::controller(NftItemController::class)->group(function () {
     Route::get('/nft', 'nfts');
-    Route::get('/nft/{username}/{name}');
-    Route::get('/nft/category/{category_id}', 'nftsByCategory');
+    Route::get('/nft/{username}/{itemId}', 'currentNft');
+    Route::get('/category/{category_id}', 'nftsByCategory');
 });
 
 Route::get('/dashboard', function () {

@@ -14,12 +14,12 @@ const AppFooter: FC = () => {
                         <AiFillShop className="mr-1 mt-1" />
                         <Text b>ArtBits - NFT Marketplace</Text>
                     </Row>
-                    <Text>
-                        NFT marketplace UI created with Anima for Figma.
+                    <Text color='#787f85'>
+                        NFT marketplace.
                     </Text>
                     <Spacer y={1} />
                     <Text small>Join our community</Text>
-                    <Row className="gap-x-2">
+                    <Row className="gap-x-2 text-gray-500">
                         <BsDiscord />
                         <BsYoutube />
                         <BsInstagram />
@@ -30,22 +30,22 @@ const AppFooter: FC = () => {
                     <Text h4 b>
                         Explore
                     </Text>
-                    <Text h6>Marketplace</Text>
-                    <Text h6>Rankings</Text>
-                    <Text h6>Connect a wallet</Text>
+                    <Text h6 color='#787f85'>Marketplace</Text>
+                    <Text h6 color='#787f85'>Rankings</Text>
+                    <Text h6 color='#787f85'>Connect a wallet</Text>
                 </Box>
                 <Box>
                     <Text h4 b>
                         Join our weekly digest
                     </Text>
-                    <Text h6>
+                    <Text h6 color='#787f85'>
                         Get exclusive promotions & updates straight to your
                         inbox.
                     </Text>
                     <Row>
-                        <Input 
-                        type="email" 
-                        placeholder="Enter your email" 
+                        <Input
+                        type="email"
+                        placeholder="Enter your email"
                         css={{width:'100%'}}
                         />
                         <Button className="ml-2" shadow color="secondary" auto>

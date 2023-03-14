@@ -13,17 +13,21 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $creators = User::withSum('transactionsFrom', 'value')->with('creator')->orderBy('transactions_from_sum_value', 'DESC')->limit(9)->get();
+        $creators = User::withSum('transactionsFrom', 'value')
+            ->with('creator')
+            ->orderBy('transactions_from_sum_value', 'DESC')
+            ->limit(9)
+            ->get();
         $collections = Collection::with('creator')->limit(3)->get();
         foreach ($collections as $collection) {
             $collection->nftItemsLimited;
         }
+        $nfts = NftItem::with('creator', 'creator.user')->take(4)->get();
         return Inertia::render('Home', [
             'categories' => Category::all(),
             'creators' => $creators,
             'collections' => $collections,
-            'trendingNftList' => NftItem::take(3)->get()
-
+            'trendingNftList' => $nfts
         ]);
     }
 }

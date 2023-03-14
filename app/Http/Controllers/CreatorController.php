@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Creator;
+use App\Models\NftItem;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CreatorController extends Controller
 {
@@ -12,54 +15,36 @@ class CreatorController extends Controller
      */
     public function index()
     {
-        //
+        $creators = User::withSum('transactionsFrom', 'value')
+            ->withCount('transactionsFrom')
+            ->orderBy('transactions_from_sum_value', 'DESC')
+            ->limit(50)
+            ->get();
+
+        return Inertia::render('Creators/Rankings', [
+            'topCreators' => $creators
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function creator(string $username)
     {
-        //
+        $user = User::where('username', $username)
+            ->with('wallet', 'wallet.walletProvider')
+            ->first();
+
+        if (!$user)
+            return Response('Not found', 404);
+
+        $creator = $user->creator;
+        $creatorItems = NftItem::with('creator', 'creator.user')
+            ->where('creator_id', $creator->id)
+            ->get();
+
+        return Inertia::render('Creators/Index', [
+            'creator' => $creator,
+            'user' => $user,
+            'creatorItems' => $creatorItems
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Creator $creator)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Creator $creator)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Creator $creator)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Creator $creator)
-    {
-        //
-    }
 }

@@ -4,7 +4,6 @@ import {Layout} from "@/Components/Layout";
 import {Category} from "@/types/category.type";
 import {UserWithCreator} from "@/types/creator.type";
 import {Collection} from "@/types/collection.type";
-import {User} from "@/types/user.type";
 import {Nft} from "@/types/nft.type";
 import HeroSection from "@/Components/hero/HeroSection";
 import FaqSection from "@/Components/faq/FaqSection";
@@ -12,10 +11,10 @@ import CategoryList from "@/Components/category/CategoryList";
 import CollectionList from "@/Components/collections/CollectionList";
 import SubsCard from "@/Components/subscription/SubsCard";
 import CreatorList from "@/Components/creators/CreatorList";
-import TrendingNftList from "@/Components/discoveredNfts/TrendingNftList";
+import DefaultNftList from "@/Components/nft/DefaultNftList";
+import {BaseProps} from "@/types/base.type";
 
-interface IHomePageProps {
-    auth: { user: User };
+interface IHomePageProps extends BaseProps{
     categories: Category[];
     creators: UserWithCreator[];
     collections: Collection[];
@@ -39,7 +38,13 @@ const Home: FC<
                 <HeroSection/>
                 <CategoryList categories={categories}/>
                 <CollectionList collections={collections}/>
-                <TrendingNftList trendingNftList={trendingNftList}/>
+                <DefaultNftList
+                    trendingNftList={trendingNftList}
+                    title={'Discover More Nfts'}
+                    desc={'Explore New Trending Nfts'}
+                    buttonHref={'/nft'}
+                    buttonName={'See all'}
+                />
                 <CreatorList creators={creators}/>
                 <FaqSection/>
                 <SubsCard/>

@@ -62,7 +62,7 @@ const AppHeader: FC<IAppHeaderProps> = ({user}) => {
                     <Navbar.Link
                         key={value.href}
                         isActive={checkActive(value.href)}
-                        as='div'
+                        as='li'
                     >
                         <Link
                             href={value.href}
@@ -85,24 +85,15 @@ const AppHeader: FC<IAppHeaderProps> = ({user}) => {
                 <Navbar.Item>
                     {!user ? (
                         <>
-                            <Spacer x={-1.5}/>
-                            <Button
-                                light
-                                color="primary"
-                                auto
-                                onPress={() => navigate(route("login"))}
-                            >
-                                Login
-                            </Button>
-                            <Spacer x={0.1}/>
+                            <Spacer x={-0.5}/>
                             <Button
                                 auto
                                 bordered
                                 shadow
                                 color="gradient"
-                                onPress={() => navigate(route("register"))}
+                                onPress={() => navigate(route("login"))}
                             >
-                                Register
+                                Login
                             </Button>
                         </>
                     ) : (
@@ -124,7 +115,6 @@ const AppHeader: FC<IAppHeaderProps> = ({user}) => {
                                 <Dropdown.Menu
                                     aria-label="User menu actions"
                                     color="primary"
-                                    onAction={(actionKey) => console.log({actionKey})}
                                 >
                                     <Dropdown.Item key="profile" css={{height: "$18"}}>
                                         <Text b color="inherit" css={{d: "flex"}}>
@@ -135,7 +125,9 @@ const AppHeader: FC<IAppHeaderProps> = ({user}) => {
                                         </Text>
                                     </Dropdown.Item>
                                     <Dropdown.Item key="settings" withDivider>
-                                        My Settings
+                                        <Link href={route("dashboard")}>
+                                            Dashboard
+                                        </Link>
                                     </Dropdown.Item>
                                     <Dropdown.Item
                                         withDivider

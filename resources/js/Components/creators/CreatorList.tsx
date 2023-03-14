@@ -3,6 +3,7 @@ import {GoRocket} from "react-icons/go";
 import CreatorCard from "@/Components/creators/CreatorCard";
 import {FC} from "react";
 import { UserWithCreator} from "@/types/creator.type";
+import {router} from "@inertiajs/react";
 
 interface ICreatorListProps {
     creators: UserWithCreator[]
@@ -18,7 +19,10 @@ const CreatorList: FC<ICreatorListProps> = ({creators}) => {
                         className='absolute ml-auto mt-2 z-0'
                         bordered
                         color="secondary"
-                        auto>
+                        auto
+                        onPress={()=>router.replace('/rankings')}
+                    >
+
                         <GoRocket className='mr-2'/>
                         View Rankings
                     </Button>

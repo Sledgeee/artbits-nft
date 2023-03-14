@@ -1,5 +1,5 @@
 import {Nft} from "@/types/nft.type";
-import {User} from "@/types/user.type";
+import {BaseProps} from "@/types/base.type";
 
 export interface PageLink {
     url: string | null;
@@ -23,7 +23,6 @@ export interface NftResponse {
     total: number;
 }
 
-export interface NftProps {
-    auth: { user: User },
+export interface NftProps extends BaseProps {
     nfts: NftResponse;
 }

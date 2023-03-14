@@ -13,3 +13,7 @@ export interface UserWithCreator extends User {
     transactions_from_sum_value: string
     creator: Creator
 }
+
+export interface RankingCreators extends UserWithCreator {
+    transactions_from_count: number
+}

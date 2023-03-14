@@ -1,15 +1,14 @@
 import {Head} from "@inertiajs/react";
 import {NftProps} from "./nft.interface";
 import Layout from "@/Components/Layout";
-import TrendingNftList from "@/Components/discoveredNfts/TrendingNftList";
-import NftList from "@/Components/nft/NftList";
+import NftListWithPagination from "@/Components/nft/NftListWithPagination";
 
 const Index = (props: NftProps) => {
     return (
         <>
-            <Head title="Nft"/>
+            <Head title="Marketplace"/>
             <Layout auth={props.auth}>
-                <NftList data={props}/>
+                <NftListWithPagination data={props}/>
             </Layout>
         </>
     );

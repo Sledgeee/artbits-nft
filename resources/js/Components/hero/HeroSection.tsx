@@ -2,6 +2,7 @@ import {FC} from 'react'
 import {Button, Grid, Text} from "@nextui-org/react";
 import Box from "@/Components/Box";
 import HeroCard from "@/Components/hero/HeroCard";
+import {router} from "@inertiajs/react";
 
 const HeroSection: FC = () => {
 
@@ -16,6 +17,7 @@ const HeroSection: FC = () => {
                         shadow
                         color="gradient"
                         className='z-0'
+                        onPress={() => router.replace('/nft')}
                     >Get Started</Button>
                     <Box className='mt-6 flex justify-between mr-4'>
                         <Box>

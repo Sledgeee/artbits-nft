@@ -12,9 +12,7 @@ class AuctionController extends Controller
      */
     public function index()
     {
-        $data = Auction::with(['auctionBets', 'auctionBets.user'])->get();
-
-        return $data;
+        return Auction::with(['auctionBets', 'auctionBets.user'])->get();
     }
 
     /**

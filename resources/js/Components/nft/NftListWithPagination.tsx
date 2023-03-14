@@ -1,6 +1,6 @@
 import {Grid, Pagination, Spacer, Text} from '@nextui-org/react'
 import {FC} from "react";
-import {NftProps} from "@/Pages/Nft/nft.interface";
+import {NftProps} from "@/Pages/Nfts/nft.interface";
 import NftCard from "@/Components/nft/NftCard";
 import {router} from "@inertiajs/react";
 
@@ -8,8 +8,8 @@ interface NftListProps {
     data: NftProps
 }
 
-const NftList: FC<NftListProps> = ({data}) => {
-    const navigate = (page: number) => router.replace(`nft?page=${page}`)
+const NftListWithPagination: FC<NftListProps> = ({data}) => {
+    const navigate = (page: number) => router.replace(`${location.pathname}?page=${page}`)
 
     return <div className="container mx-auto">
         <Spacer y={1}/>
@@ -18,9 +18,9 @@ const NftList: FC<NftListProps> = ({data}) => {
                 Discover More NFTs
             </Text>
         </div>
-        <Grid.Container gap={2} justify='center'>
+        <Grid.Container gap={2}>
             {data.nfts.data.map((item, index) =>
-                <Grid xs={12} sm={4} key={index}>
+                <Grid xs={11} sm={3} md={3} key={index}>
                     <NftCard data={item}/>
                 </Grid>
             )}
@@ -41,4 +41,4 @@ const NftList: FC<NftListProps> = ({data}) => {
 
 
 }
-export default NftList
+export default NftListWithPagination

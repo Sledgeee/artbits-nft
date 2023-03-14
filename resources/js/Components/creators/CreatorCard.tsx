@@ -1,6 +1,7 @@
 import {FC} from 'react'
 import {Badge, Card, User} from "@nextui-org/react";
-import { UserWithCreator} from "@/types/creator.type";
+import {UserWithCreator} from "@/types/creator.type";
+import {router} from "@inertiajs/react";
 
 interface ICreatorCardProps {
     creator: UserWithCreator,
@@ -12,7 +13,8 @@ const CreatorCard: FC<ICreatorCardProps> = ({creator, id}) => {
         isHoverable
         isPressable
         variant="shadow"
-        css={{borderWidth:'0px'}}
+        css={{borderWidth: '0px'}}
+        onPress={() => router.replace(`/creator/${creator.username}`)}
     >
         <Card.Body>
             <Badge
