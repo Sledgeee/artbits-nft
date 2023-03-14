@@ -1,4 +1,4 @@
-export interface IFaqCardType {
+export interface FaqCardData {
     title: string,
     desc: string,
     img: string,

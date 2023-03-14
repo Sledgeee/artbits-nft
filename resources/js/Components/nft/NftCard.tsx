@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { Card, Col, Grid, Row, Text, User } from "@nextui-org/react";
-import { INftType } from "@/types/nft.type";
+import { Nft } from "@/types/nft.type";
 import Box from "@/Components/Box";
 
 interface NftCardProps {
-    data: INftType;
+    data: Nft;
 }
 
 const NftCard: FC<NftCardProps> = ({ data }) => {

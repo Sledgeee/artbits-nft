@@ -1,9 +1,9 @@
 import {FC} from 'react'
 import {Card, Row, Text} from "@nextui-org/react";
-import {ICategory} from "@/types/category.type";
+import {Category} from "@/types/category.type";
 
 interface ICategoryCard {
-    category: ICategory
+    category: Category
 }
 
 const CategoryCard: FC<ICategoryCard> = ({category}) => {

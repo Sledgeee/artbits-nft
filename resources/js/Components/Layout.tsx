@@ -3,6 +3,7 @@ import {createTheme, getDocumentTheme, NextUIProvider} from "@nextui-org/react";
 import AppHeader from "@/Components/app/AppHeader";
 import AppFooter from "@/Components/app/AppFooter";
 import Box from "@/Components/Box";
+import {User} from "@/types/user.type";
 
 const lightTheme = createTheme({
     type: 'light'
@@ -14,7 +15,7 @@ const darkTheme = createTheme({
 })
 type Props = {
     children: JSX.Element | JSX.Element[]
-    auth: { user: any }
+    auth: { user: User }
 
 }
 
@@ -37,8 +38,8 @@ export const Layout: FC<Props> = ({children, auth}) => {
 
     return (
         <NextUIProvider theme={isDark ? darkTheme : lightTheme}>
-            <Box css={{maxW: '100%'}}>
-                <AppHeader auth={auth}/>
+            <Box>
+                <AppHeader user={auth.user}/>
                 {children}
                 <AppFooter/>
             </Box>

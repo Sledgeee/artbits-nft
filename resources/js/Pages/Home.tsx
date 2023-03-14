@@ -1,11 +1,11 @@
 import {FC} from "react";
 import {Head} from "@inertiajs/react";
 import {Layout} from "@/Components/Layout";
-import {ICategory} from "@/types/category.type";
+import {Category} from "@/types/category.type";
 import {UserWithCreator} from "@/types/creator.type";
-import {ICollection} from "@/types/collection.type";
-import {IUserType} from "@/types/user.type";
-import {INftType} from "@/types/nft.type";
+import {Collection} from "@/types/collection.type";
+import {User} from "@/types/user.type";
+import {Nft} from "@/types/nft.type";
 import HeroSection from "@/Components/hero/HeroSection";
 import FaqSection from "@/Components/faq/FaqSection";
 import CategoryList from "@/Components/category/CategoryList";
@@ -15,11 +15,11 @@ import CreatorList from "@/Components/creators/CreatorList";
 import TrendingNftList from "@/Components/discoveredNfts/TrendingNftList";
 
 interface IHomePageProps {
-    auth: { user: IUserType };
-    categories: ICategory[];
+    auth: { user: User };
+    categories: Category[];
     creators: UserWithCreator[];
-    collections: ICollection[];
-    trendingNftList: INftType[];
+    collections: Collection[];
+    trendingNftList: Nft[];
 }
 
 const Home: FC<

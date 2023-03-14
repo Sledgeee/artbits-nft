@@ -1,10 +1,10 @@
 import {FC} from 'react'
 import {Grid, Text} from "@nextui-org/react";
 import CategoryCard from "./CategoryCard";
-import {ICategory} from "@/types/category.type";
+import {Category} from "@/types/category.type";
 
 interface ICategoryListProps {
-    categories: ICategory[]
+    categories: Category[]
 }
 
 const CategoryList: FC<ICategoryListProps> = ({categories}) => {

@@ -1,9 +1,9 @@
 import {FC} from 'react'
 import {Card, Row, Text} from "@nextui-org/react";
-import {IFaqCardType} from "@/types/faq.type";
+import {FaqCardData} from "@/types/faq.type";
 
 interface IFaqCardProps {
-    data: IFaqCardType
+    data: FaqCardData
 }
 
 const FaqCard: FC<IFaqCardProps> = ({data}) => {

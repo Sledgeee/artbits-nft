@@ -1,11 +1,11 @@
 import { FC } from "react";
 import { Button, Grid, Text } from "@nextui-org/react";
-import { INftType } from "@/types/nft.type";
+import { Nft } from "@/types/nft.type";
 import NftCard from "@/Components/nft/NftCard";
 import { BsEye } from "react-icons/bs";
 
 interface TrendingNftListProps {
-    trendingNftList: INftType[];
+    trendingNftList: Nft[];
 }
 
 const TrendingNftList: FC<TrendingNftListProps> = ({ trendingNftList }) => {

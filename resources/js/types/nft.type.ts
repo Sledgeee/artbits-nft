@@ -1,8 +1,8 @@
 export interface NftItemsLimited {
-    nft_item: INftType
+    nft_item: Nft
 }
 
-export interface INftType {
+export interface Nft {
     name: string,
     describtion: string,
     image: string,

@@ -26,9 +26,9 @@ const FaqSection: FC = () => {
                 <Text h2>How it works</Text>
                 <Text h4>Find out how to get started</Text>
             </div>
-            <Grid.Container gap={1} justify="center">
+            <Grid.Container gap={2} justify="center">
                 {faqData.map((value, index) =>
-                    <Grid xs={6} md={3} key={index}>
+                    <Grid xs={6} sm={4} key={index}>
                         <FaqCard data={value}/>
                     </Grid>
                 )}

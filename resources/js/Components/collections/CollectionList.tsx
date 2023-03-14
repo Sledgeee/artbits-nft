@@ -1,10 +1,10 @@
 import {FC} from 'react'
 import {Grid, Text} from "@nextui-org/react";
-import {ICollection} from "@/types/collection.type";
+import {Collection} from "@/types/collection.type";
 import CollectionCard from "@/Components/collections/CollectionCard";
 
 interface CollectionListProps {
-    collections: ICollection[]
+    collections: Collection[]
 }
 
 const CollectionList: FC<

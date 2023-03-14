@@ -33,6 +33,6 @@ class CollectionNftItems extends Model
      */
     public function collection(): BelongsTo
     {
-        return $this->belongsTo(Collection::class)->with();
+        return $this->belongsTo(Collection::class);
     }
 }

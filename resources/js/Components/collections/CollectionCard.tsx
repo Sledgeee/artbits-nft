@@ -1,10 +1,10 @@
 import {FC} from 'react'
-import {ICollection} from "@/types/collection.type";
+import {Collection} from "@/types/collection.type";
 import {Button, Card, Grid, Spacer, User} from "@nextui-org/react";
 import Box from "@/Components/Box";
 
 interface ICollectionCardProps {
-    collection: ICollection
+    collection: Collection
 }
 
 const CollectionCard: FC<

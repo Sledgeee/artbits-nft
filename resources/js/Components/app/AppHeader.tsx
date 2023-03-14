@@ -1,19 +1,21 @@
-import { FC } from "react";
+import {FC} from "react";
 import {
+    Avatar,
     Button,
-    changeTheme,
+    changeTheme, Dropdown,
     Navbar,
     Spacer,
     Switch,
     Text,
     useTheme,
 } from "@nextui-org/react";
-import { SiCoinmarketcap } from "react-icons/si";
-import { BsMoonFill, BsSunFill } from "react-icons/bs";
-import { Link, router } from "@inertiajs/react";
+import {SiCoinmarketcap} from "react-icons/si";
+import {BsMoonFill, BsSunFill} from "react-icons/bs";
+import {Link, router} from "@inertiajs/react";
+import {User} from "@/types/user.type";
 
 interface IAppHeaderProps {
-    auth: any;
+    user: User
 }
 
 export const routes = [
@@ -33,9 +35,8 @@ export const routes = [
 
 const navigate = (href: string) => router.replace(href);
 
-const AppHeader: FC<IAppHeaderProps> = ({ auth }) => {
-    const { isDark } = useTheme();
-
+const AppHeader: FC<IAppHeaderProps> = ({user}) => {
+    const {isDark} = useTheme();
     const handleChange = () => {
         const nextTheme = isDark ? "light" : "dark";
         window.localStorage.setItem("data-theme", nextTheme);
@@ -46,7 +47,7 @@ const AppHeader: FC<IAppHeaderProps> = ({ auth }) => {
     return (
         <Navbar isBordered variant="sticky">
             <Navbar.Brand>
-                <SiCoinmarketcap className="mr-2 text-3xl sm:text-md" />
+                <SiCoinmarketcap className="mr-2 text-3xl sm:text-md"/>
                 <Text b color='primary' hideIn="xs">
                     <Link href="/">ArtBits</Link>
                 </Text>
@@ -61,9 +62,14 @@ const AppHeader: FC<IAppHeaderProps> = ({ auth }) => {
                     <Navbar.Link
                         key={value.href}
                         isActive={checkActive(value.href)}
-                        href={value.href}
+                        as='div'
                     >
-                        {value.name}
+                        <Link
+                            href={value.href}
+
+                        >
+                            {value.name}
+                        </Link>
                     </Navbar.Link>
                 ))}
             </Navbar.Content>
@@ -72,14 +78,14 @@ const AppHeader: FC<IAppHeaderProps> = ({ auth }) => {
                     <Switch
                         checked={isDark}
                         onChange={handleChange}
-                        iconOn={<BsSunFill />}
-                        iconOff={<BsMoonFill />}
+                        iconOn={<BsSunFill/>}
+                        iconOff={<BsMoonFill/>}
                     />
                 </Navbar.Item>
                 <Navbar.Item>
-                    {!auth.user ? (
+                    {!user ? (
                         <>
-                            <Spacer x={-1.5} />
+                            <Spacer x={-1.5}/>
                             <Button
                                 light
                                 color="primary"
@@ -88,7 +94,7 @@ const AppHeader: FC<IAppHeaderProps> = ({ auth }) => {
                             >
                                 Login
                             </Button>
-                            <Spacer x={0.1} />
+                            <Spacer x={0.1}/>
                             <Button
                                 auto
                                 bordered
@@ -100,18 +106,66 @@ const AppHeader: FC<IAppHeaderProps> = ({ auth }) => {
                             </Button>
                         </>
                     ) : (
-                        <Button
-                            shadow
-                            bordered
-                            color="gradient"
-                            auto
-                            onPress={() => navigate(route("dashboard"))}
-                        >
-                            Dashboard
-                        </Button>
+                        <>
+
+                            <Spacer x={-0.5}/>
+                            <Dropdown placement="bottom-right">
+                                <Navbar.Item>
+                                    <Dropdown.Trigger>
+                                        <Avatar
+                                            bordered
+                                            as="button"
+                                            color="primary"
+                                            size="md"
+                                            src={user.avatar_image}
+                                        />
+                                    </Dropdown.Trigger>
+                                </Navbar.Item>
+                                <Dropdown.Menu
+                                    aria-label="User menu actions"
+                                    color="primary"
+                                    onAction={(actionKey) => console.log({actionKey})}
+                                >
+                                    <Dropdown.Item key="profile" css={{height: "$18"}}>
+                                        <Text b color="inherit" css={{d: "flex"}}>
+                                            Signed in as
+                                        </Text>
+                                        <Text b color="inherit" css={{d: "flex"}}>
+                                            {user.email}
+                                        </Text>
+                                    </Dropdown.Item>
+                                    <Dropdown.Item key="settings" withDivider>
+                                        My Settings
+                                    </Dropdown.Item>
+                                    <Dropdown.Item
+                                        withDivider
+                                        color="error"
+                                    >
+                                        <Link
+                                            href={route("logout")}
+                                            method="post"
+                                        >Log Out
+                                        </Link>
+
+                                    </Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </>
                     )}
                 </Navbar.Item>
             </Navbar.Content>
+            <Navbar.Collapse>
+                {routes.map((item, index) => (
+                    <Navbar.CollapseItem key={index}>
+                        <Link
+                            color="inherit"
+                            href={item.href}
+                        >
+                            {item.name}
+                        </Link>
+                    </Navbar.CollapseItem>
+                ))}
+            </Navbar.Collapse>
         </Navbar>
     );
 };
