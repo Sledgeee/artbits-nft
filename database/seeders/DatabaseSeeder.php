@@ -12,18 +12,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // First 4 tables to seed.
-        //\App\Models\User::factory(10)->create();
-        //\App\Models\Creator::factory(10)->create();
-        //\App\Models\Category::factory(10)->create();
-        //\App\Models\NftItem::factory(100)->create();
-
-        // Keep it commented until seed first 4 tables.
-        //\App\Models\Collection::factory(10)->create();
-        //\App\Models\CollectionNftItems::factory(150)->create();
+        //\App\Models\User::factory(500)->create();
+        //\App\Models\Creator::factory(200)->create();
+        //\App\Models\Category::factory(8)->create();
+        //\App\Models\NftItem::factory(10000)->create();
+        //\App\Models\NFtItemTag::factory(30000)->create();
+        //\App\Models\Collection::factory(100)->create();
+        //\App\Models\CollectionNftItems::factory(3000)->create();
         //\App\Models\WalletProvider::factory(3)->create();
-        //\App\Models\Wallet::factory(10)->create();
-        //\App\Models\Auction::factory(1)->create();
-        //\App\Models\AuctionBet::factory(5)->create();
+        //\App\Models\Wallet::factory(500)->create();
+        //\App\Models\Auction::factory(2789)->create();
+        //\App\Models\AuctionBet::factory(13024)->create();
+        //\App\Models\Transaction::factory(36546)->create();
     }
 }

@@ -18,7 +18,7 @@ class CollectionFactory extends Factory
     {
         return [
             'name' => fake()->unique()->userName(),
-            'creator_id' => fake()->unique()->numberBetween(1, 10)
+            'creator_id' => fake()->unique()->numberBetween(1, 200)
         ];
     }
 }

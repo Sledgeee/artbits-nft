@@ -18,7 +18,7 @@ class WalletFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => fake()->numberBetween(1, 10),
+            'user_id' => fake()->unique()->numberBetween(1, 500),
             'wallet_provider_id' => fake()->numberBetween(1, 3),
             'address' => Str::random(24)
         ];

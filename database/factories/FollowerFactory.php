@@ -17,7 +17,8 @@ class FollowerFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'from_user_id' => fake()->numberBetween(1, 249),
+            'to_user_id' => fake()->numberBetween(250, 500)
         ];
     }
 }

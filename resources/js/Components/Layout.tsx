@@ -1,49 +1,51 @@
-import {FC, useEffect, useState} from 'react'
-import {createTheme, getDocumentTheme, NextUIProvider} from "@nextui-org/react";
-import AppHeader from "@/Components/app/AppHeader";
 import AppFooter from "@/Components/app/AppFooter";
+import AppHeader from "@/Components/app/AppHeader";
 import Box from "@/Components/Box";
-import {User} from "@/types/user.type";
+import { User } from "@/types/user.type";
+import {
+    createTheme,
+    getDocumentTheme,
+    NextUIProvider,
+} from "@nextui-org/react";
+import { FC, useEffect, useState } from "react";
 
 const lightTheme = createTheme({
-    type: 'light'
-})
-
+    type: "light",
+});
 
 const darkTheme = createTheme({
-    type: 'dark'
-})
+    type: "dark",
+});
 type Props = {
-    children: JSX.Element | JSX.Element[]
-    auth: { user: User }
+    children: JSX.Element | JSX.Element[];
+    auth: { user: User };
+};
 
-}
-
-export const Layout: FC<Props> = ({children, auth}) => {
-    const [isDark, setIsDark] = useState(false)
+export const Layout: FC<Props> = ({ children, auth }) => {
+    const [isDark, setIsDark] = useState(false);
 
     useEffect(() => {
-        const theme = window.localStorage.getItem('data-theme')
-        setIsDark(theme === 'dark')
+        const theme = window.localStorage.getItem("data-theme");
+        setIsDark(theme === "dark");
         const observer = new MutationObserver(() => {
-            const newTheme = getDocumentTheme(document?.documentElement)
-            setIsDark(newTheme === 'dark')
-        })
+            const newTheme = getDocumentTheme(document?.documentElement);
+            setIsDark(newTheme === "dark");
+        });
         observer.observe(document?.documentElement, {
             attributes: true,
-            attributeFilter: ['data-theme', 'style']
-        })
-        return () => observer.disconnect()
-    }, [])
+            attributeFilter: ["data-theme", "style"],
+        });
+        return () => observer.disconnect();
+    }, []);
 
     return (
         <NextUIProvider theme={isDark ? darkTheme : lightTheme}>
             <Box>
-                <AppHeader user={auth.user}/>
+                <AppHeader user={auth.user} />
                 {children}
-                <AppFooter/>
+                <AppFooter />
             </Box>
         </NextUIProvider>
-    )
-}
-export default Layout
+    );
+};
+export default Layout;

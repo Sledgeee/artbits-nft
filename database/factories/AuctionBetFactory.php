@@ -18,8 +18,8 @@ class AuctionBetFactory extends Factory
     {
         return [
             'value' => fake()->randomDigit(),
-            'auction_id' => 1,
-            'user_id' => fake()->unique()->numberBetween(1, 10)
+            'auction_id' => fake()->numberBetween(1, 2789),
+            'user_id' => fake()->numberBetween(1, 500)
         ];
     }
 }

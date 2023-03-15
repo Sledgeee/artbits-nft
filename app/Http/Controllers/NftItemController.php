@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Collection;
-use App\Models\CollectionNftItems;
 use App\Models\NftItem;
 use Inertia\Inertia;
 
@@ -52,13 +51,13 @@ class NftItemController extends Controller
         ]);
     }
 
-    public function currentNft(string $username, int $itemId)
+    public function currentNft(string $username, string $name)
     {
         $data = NftItem::with('creator', 'creator.user', 'nftItemTags')
-            ->where('id', $itemId)
             ->whereHas('creator.user', function ($query) use ($username) {
                 $query->where('username', $username);
             })
+            ->where('name', $name)
             ->first();
 
         if (!$data)
@@ -74,5 +73,4 @@ class NftItemController extends Controller
             'nfts' => $nfts
         ]);
     }
-
 }

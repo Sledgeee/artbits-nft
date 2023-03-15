@@ -19,8 +19,8 @@ class AuctionFactory extends Factory
     public function definition(): array
     {
         return [
-            'end_at' => new DateTime('01.06.2023'),
-            'nft_item_id' => 1
+            'end_at' => fake()->dateTimeBetween('-30 days', '+30 days'),
+            'nft_item_id' => fake()->unique()->numberBetween(1, 10000)
         ];
     }
 }

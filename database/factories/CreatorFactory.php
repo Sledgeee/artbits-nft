@@ -19,7 +19,7 @@ class CreatorFactory extends Factory
         return [
             'bio' => fake()->realText(),
             'banner_image' => fake()->imageUrl(1920, 640),
-            'user_id' => fake()->unique()->numberBetween(1, 10)
+            'user_id' => fake()->unique()->numberBetween(1, 500)
         ];
     }
 }

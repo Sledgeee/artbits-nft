@@ -17,8 +17,8 @@ class CollectionNftItemsFactory extends Factory
     public function definition(): array
     {
         return [
-            'nft_item_id' => fake()->numberBetween(1, 100),
-            'collection_id' => fake()->numberBetween(1, 10)
+            'nft_item_id' => fake()->numberBetween(1, 10000),
+            'collection_id' => fake()->numberBetween(1, 100)
         ];
     }
 }

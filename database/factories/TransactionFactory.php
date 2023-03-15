@@ -17,7 +17,10 @@ class TransactionFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'value' => fake()->randomDigit(),
+            'from_user_id' => fake()->numberBetween(1, 249),
+            'to_user_id' => fake()->numberBetween(250, 500),
+            'nft_item_id' => fake()->numberBetween(1, 10000)
         ];
     }
 }

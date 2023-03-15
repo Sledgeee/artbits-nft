@@ -17,7 +17,8 @@ class NftItemTagFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->userName(),
+            'nft_item_id' => fake()->numberBetween(1, 10000)
         ];
     }
 }
