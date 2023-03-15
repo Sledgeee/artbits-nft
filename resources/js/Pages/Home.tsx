@@ -4,7 +4,7 @@ import {Layout} from "@/Components/Layout";
 import {Category} from "@/types/category.type";
 import {UserWithCreator} from "@/types/creator.type";
 import {Collection} from "@/types/collection.type";
-import {Nft} from "@/types/nft.type";
+import {Nft, NftItemsLimited} from "@/types/nft.type";
 import HeroSection from "@/Components/hero/HeroSection";
 import FaqSection from "@/Components/faq/FaqSection";
 import CategoryList from "@/Components/category/CategoryList";

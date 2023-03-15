@@ -43,6 +43,11 @@ class NftItem extends Model
         return $this->hasOne(Category::class);
     }
 
+    public function collection(): HasOne
+    {
+        return $this->hasOne(CollectionNftItems::class);
+    }
+
     /**
      * Get the item tags
      */

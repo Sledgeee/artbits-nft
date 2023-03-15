@@ -42,14 +42,17 @@ const AppHeader: FC<IAppHeaderProps> = ({user}) => {
         window.localStorage.setItem("data-theme", nextTheme);
         changeTheme(nextTheme);
     };
-    const checkActive = (href: string) => location.pathname === href;
+    const checkActive = (href: string) => location.pathname === href
 
     return (
         <Navbar isBordered variant="sticky">
-            <Navbar.Brand>
+            <Navbar.Brand
+                className='cursor-pointer'
+                onClick={() => navigate('/')}
+            >
                 <SiCoinmarketcap className="mr-2 text-3xl sm:text-md"/>
-                <Text b color='primary' hideIn="xs">
-                    <Link href="/">ArtBits</Link>
+                <Text b hideIn="xs">
+                    ArtBits
                 </Text>
             </Navbar.Brand>
             <Navbar.Content
@@ -62,14 +65,9 @@ const AppHeader: FC<IAppHeaderProps> = ({user}) => {
                     <Navbar.Link
                         key={value.href}
                         isActive={checkActive(value.href)}
-                        as='li'
+                        onClick={() => navigate(value.href)}
                     >
-                        <Link
-                            href={value.href}
-
-                        >
-                            {value.name}
-                        </Link>
+                        {value.name}
                     </Navbar.Link>
                 ))}
             </Navbar.Content>

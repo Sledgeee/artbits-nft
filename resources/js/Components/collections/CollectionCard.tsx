@@ -2,6 +2,7 @@ import {FC} from 'react'
 import {Collection} from "@/types/collection.type";
 import {Button, Card, Grid, Spacer, User} from "@nextui-org/react";
 import Box from "@/Components/Box";
+import {router} from "@inertiajs/react";
 
 interface ICollectionCardProps {
     collection: Collection
@@ -10,9 +11,15 @@ interface ICollectionCardProps {
 const CollectionCard: FC<
     ICollectionCardProps
 > = ({collection}) => {
-    return <Card css={{borderWidth:'0px'}} isPressable>
+
+    return <Card
+        css={{borderWidth: '0px'}}
+        isPressable
+        onPress={() =>
+            router.replace(`/collection/${collection.id}`)
+        }>
         <Box className='p-1'>
-            <Card css={{borderWidth:'0px'}}>
+            <Card css={{borderWidth: '0px'}}>
                 <Card.Image
                     src={collection.nft_items_limited[0].nft_item.image}
                     objectFit="cover"
@@ -29,7 +36,7 @@ const CollectionCard: FC<
                 >
                     {collection.nft_items_limited.map((value, index) =>
                         <Grid xs key={index}>
-                            <Card css={{borderWidth:'0px'}}>
+                            <Card css={{borderWidth: '0px'}}>
                                 <Card.Image
                                     src={value.nft_item.image}
                                     objectFit="cover"

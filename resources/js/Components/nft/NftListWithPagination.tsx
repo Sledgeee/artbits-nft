@@ -1,27 +1,50 @@
-import {Grid, Pagination, Spacer, Text} from '@nextui-org/react'
+import {Button, Grid, Pagination, Spacer, Text} from '@nextui-org/react'
 import {FC} from "react";
-import {NftProps} from "@/Pages/Nfts/nft.interface";
+import {NftResponse} from "@/Pages/Nfts/nft.interface";
 import NftCard from "@/Components/nft/NftCard";
 import {router} from "@inertiajs/react";
+import {BsEye} from "react-icons/bs";
 
 interface NftListProps {
-    data: NftProps
+    paginationItems: NftResponse,
+    title?: string,
+    buttonHref?: string,
+    buttonName?: string,
+
 }
 
-const NftListWithPagination: FC<NftListProps> = ({data}) => {
+const NftListWithPagination: FC<
+    NftListProps
+> = ({
+         paginationItems,
+         title,
+         buttonHref,
+         buttonName
+     }) => {
     const navigate = (page: number) => router.replace(`${location.pathname}?page=${page}`)
 
     return <div className="container mx-auto">
         <Spacer y={1}/>
         <div className="mx-2">
-            <Text h2>
-                Discover More NFTs
+            <Text h2 className='flex'>
+                {title || 'Discover More NFTs'}
+                {buttonHref && buttonName &&
+                    <Button
+                        className="absolute ml-auto mt-2 z-0"
+                        bordered
+                        color="secondary"
+                        auto
+                        onPress={() => router.replace(buttonHref)}>
+                        <BsEye className="mr-2"/>
+                        {buttonName}
+                    </Button>
+                }
             </Text>
         </div>
         <Grid.Container gap={2}>
-            {data.nfts.data.map((item, index) =>
+            {paginationItems.data.map((item, index) =>
                 <Grid xs={11} sm={3} md={3} key={index}>
-                    <NftCard data={item}/>
+                    <NftCard item={item}/>
                 </Grid>
             )}
         </Grid.Container>
@@ -32,8 +55,8 @@ const NftListWithPagination: FC<NftListProps> = ({data}) => {
                 color='gradient'
                 initialPage={1}
                 onChange={navigate}
-                page={data.nfts.current_page}
-                total={data.nfts.last_page}
+                page={paginationItems.current_page}
+                total={paginationItems.last_page}
             />
         </Grid.Container>
         <Spacer y={0.5}/>

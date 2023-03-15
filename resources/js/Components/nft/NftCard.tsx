@@ -1,16 +1,23 @@
 import {FC} from "react";
 import {Card, Col, Grid, Row, Spacer, Text, User} from "@nextui-org/react";
-import {Nft} from "@/types/nft.type";
+import {Nft, NftItemsLimited} from "@/types/nft.type";
 import Box from "@/Components/Box";
 import {router} from "@inertiajs/react";
 
 interface NftCardProps {
-    data: Nft;
+    item: Nft;
 }
 
-const NftCard: FC<NftCardProps> = ({data}) => {
+const NftCard: FC<
+    NftCardProps
+> = ({
+         item,
+     }) => {
+
+    const user = item?.creator?.user
     const navigate = () =>
-        router.replace(`/nft/${data.creator.user?.username}/${data.id}`)
+        router.replace(`/nft/${user?.username}/${item?.id}`)
+
     return (
         <Card
             isPressable
@@ -19,11 +26,11 @@ const NftCard: FC<NftCardProps> = ({data}) => {
         >
             <Card.Body css={{p: 0}}>
                 <Card.Image
-                    src={data.image}
+                    src={item?.image || ''}
                     objectFit="cover"
                     width="100%"
                     height="100%"
-                    alt={data.name}
+                    alt={item?.name}
                 />
             </Card.Body>
             <Card.Footer className='my-2'>
@@ -32,14 +39,14 @@ const NftCard: FC<NftCardProps> = ({data}) => {
                         <Grid.Container>
                             <Grid xs={12}>
                                 <Text h4 className="pl-3">
-                                    {data.name}
+                                    {item?.name}
                                 </Text>
                             </Grid>
                             <Grid xs={12}>
                                 <User
                                     size="xs"
-                                    name={data.creator.user?.username}
-                                    src={data.creator.user?.avatar_image}
+                                    name={user?.username}
+                                    src={user?.avatar_image}
                                 />
                             </Grid>
                         </Grid.Container>
@@ -49,7 +56,7 @@ const NftCard: FC<NftCardProps> = ({data}) => {
                             <Text h6 color="#858584">
                                 Price
                             </Text>
-                            <Text h5>{data.price} ETH</Text>
+                            <Text h5>{item?.price} ETH</Text>
                         </Box>
                     </Row>
                 </Row>

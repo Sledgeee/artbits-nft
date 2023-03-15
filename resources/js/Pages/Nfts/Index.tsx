@@ -1,14 +1,24 @@
 import {Head} from "@inertiajs/react";
-import {NftProps} from "./nft.interface";
 import Layout from "@/Components/Layout";
 import NftListWithPagination from "@/Components/nft/NftListWithPagination";
+import {BaseProps} from "@/types/base.type";
+import {NftResponse} from "@/Pages/Nfts/nft.interface";
+import {FC} from "react";
 
-const Index = (props: NftProps) => {
+interface NftPageProps extends BaseProps {
+    nfts: NftResponse
+}
+
+const Index: FC<
+    NftPageProps
+> = ({nfts, auth}) => {
     return (
         <>
             <Head title="Marketplace"/>
-            <Layout auth={props.auth}>
-                <NftListWithPagination data={props}/>
+            <Layout auth={auth}>
+                <NftListWithPagination
+                    paginationItems={nfts}
+                />
             </Layout>
         </>
     );

@@ -37,6 +37,7 @@ Route::controller(CreatorController::class)->group(function () {
 
 Route::controller(NftItemController::class)->group(function () {
     Route::get('/nft', 'nfts');
+    Route::get('/collection/{collection_id}', 'nftsByCollection');
     Route::get('/nft/{username}/{itemId}', 'currentNft');
     Route::get('/category/{category_id}', 'nftsByCategory');
 });

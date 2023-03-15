@@ -1,6 +1,6 @@
 import {FC} from "react";
 import {Button, Grid, Text} from "@nextui-org/react";
-import {Nft} from "@/types/nft.type";
+import {Nft, NftItemsLimited} from "@/types/nft.type";
 import NftCard from "@/Components/nft/NftCard";
 import {BsEye} from "react-icons/bs";
 import {router} from "@inertiajs/react";
@@ -22,6 +22,7 @@ const DefaultNftList: FC<
          buttonName,
          desc
      }) => {
+
     return (
         <>
             <div className="container mx-auto">
@@ -48,7 +49,7 @@ const DefaultNftList: FC<
                 <Grid.Container gap={2}>
                     {trendingNftList.map((value, index) => (
                         <Grid xs={6} sm={4} md={3} key={index}>
-                            <NftCard data={value}/>
+                            <NftCard item={value}/>
                         </Grid>
                     ))}
                 </Grid.Container>

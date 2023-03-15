@@ -1,7 +1,8 @@
 import {FC, useEffect, useState} from 'react'
-import {Nft} from "@/types/nft.type";
-import {Button, Card, Grid, Spacer, Text} from "@nextui-org/react";
-import Box from "@/Components/Box";
+import {Nft} from "@/types/nft.type"
+import {Button, Card, Grid, Spacer, Text} from "@nextui-org/react"
+import Box from "@/Components/Box"
+import confetti from 'canvas-confetti'
 
 interface NftPageCardProps {
     nft: Nft
@@ -18,10 +19,21 @@ const AuctionCard: FC = () => {
             1000)
         return () => clearInterval(interval)
     }, []);
+
+    const handleConfetti = () => confetti({
+        particleCount: 200,
+        startVelocity: 30,
+        spread: 360,
+        origin: {
+            x: Math.random(),
+            y: Math.random() - 0.2
+        }
+    });
+
     return <Card
         css={{
             mw: "340px",
-            height:'50%',
+            height: '50%',
             borderWidth: '0px'
         }}>
         <Card.Body>
@@ -48,7 +60,11 @@ const AuctionCard: FC = () => {
                 </Box>
             </Box>
             <Spacer y={0.5}/>
-            <Button shadow color='gradient'>
+            <Button
+                onPress={handleConfetti}
+                shadow
+                color='gradient'
+            >
                 Place Bid
             </Button>
         </Card.Body>
@@ -129,7 +145,10 @@ const NftPageCard: FC<
                         {nft.nft_item_tags?.map(value =>
                             <>
                                 <Spacer y={1}/>
-                                <CardTag text={value.name}/>
+                                <CardTag
+                                    key={value.name}
+                                    text={value.name}
+                                />
                             </>
                         )}
                     </>

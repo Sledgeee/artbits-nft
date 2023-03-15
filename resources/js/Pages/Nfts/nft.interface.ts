@@ -23,6 +23,3 @@ export interface NftResponse {
     total: number;
 }
 
-export interface NftProps extends BaseProps {
-    nfts: NftResponse;
-}
