@@ -45,11 +45,12 @@ const AppHeader: FC<IAppHeaderProps> = ({user}) => {
     const checkActive = (href: string) => location.pathname === href
 
     return (
-        <Navbar isBordered variant="sticky">
+        <Navbar variant="sticky">
             <Navbar.Brand
                 className='cursor-pointer'
                 onClick={() => navigate('/')}
             >
+                <Navbar.Toggle showIn="xs" className='mr-2'/>
                 <SiCoinmarketcap className="mr-2 text-3xl sm:text-md"/>
                 <Text b hideIn="xs">
                     ArtBits
@@ -146,7 +147,11 @@ const AppHeader: FC<IAppHeaderProps> = ({user}) => {
             </Navbar.Content>
             <Navbar.Collapse>
                 {routes.map((item, index) => (
-                    <Navbar.CollapseItem key={index}>
+                    <Navbar.CollapseItem
+                        key={index}
+                        activeColor="warning"
+                        isActive={checkActive(item.href)}
+                    >
                         <Link
                             color="inherit"
                             href={item.href}

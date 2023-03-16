@@ -24,5 +24,6 @@ class DatabaseSeeder extends Seeder
         //\App\Models\Auction::factory(2789)->create();
         //\App\Models\AuctionBet::factory(13024)->create();
         //\App\Models\Transaction::factory(36546)->create();
+        //\App\Models\Follower::factory(200)->create();
     }
 }

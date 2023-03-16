@@ -48,7 +48,7 @@ const DefaultNftList: FC<
                 </div>
                 <Grid.Container gap={2}>
                     {trendingNftList.map((value, index) => (
-                        <Grid xs={6} sm={4} md={3} key={index}>
+                        <Grid xs={12} sm={3} md={3} key={index}>
                             <NftCard item={value}/>
                         </Grid>
                     ))}

@@ -43,7 +43,7 @@ const NftListWithPagination: FC<
         </div>
         <Grid.Container gap={2}>
             {paginationItems.data.map((item, index) =>
-                <Grid xs={11} sm={3} md={3} key={index}>
+                <Grid xs={12} sm={3} md={3} key={index}>
                     <NftCard item={item}/>
                 </Grid>
             )}
