@@ -1,13 +1,13 @@
 import AppFooter from "@/Components/app/AppFooter";
 import AppHeader from "@/Components/app/AppHeader";
 import Box from "@/Components/Box";
-import { User } from "@/types/user.type";
+import {User} from "@/types/user.type";
 import {
     createTheme,
     getDocumentTheme,
     NextUIProvider,
 } from "@nextui-org/react";
-import { FC, useEffect, useState } from "react";
+import {FC, useEffect, useState} from "react";
 
 const lightTheme = createTheme({
     type: "light",
@@ -21,7 +21,7 @@ type Props = {
     auth: { user: User };
 };
 
-export const Layout: FC<Props> = ({ children, auth }) => {
+export const Layout: FC<Props> = ({children, auth}) => {
     const [isDark, setIsDark] = useState(false);
 
     useEffect(() => {
@@ -41,9 +41,11 @@ export const Layout: FC<Props> = ({ children, auth }) => {
     return (
         <NextUIProvider theme={isDark ? darkTheme : lightTheme}>
             <Box>
-                <AppHeader user={auth.user} />
-                {children}
-                <AppFooter />
+                <AppHeader user={auth.user}/>
+                <div className='max-w-7xl mx-auto'>
+                    {children}
+                </div>
+                <AppFooter/>
             </Box>
         </NextUIProvider>
     );

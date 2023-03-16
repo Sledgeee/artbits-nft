@@ -49,7 +49,7 @@ const RankingsTable: FC<
                 >
                     <Table.Cell>
                         <Text className='pl-2'>
-                            {value.id}
+                            {index + 1}
                         </Text>
                     </Table.Cell>
                     <Table.Cell>
@@ -58,10 +58,9 @@ const RankingsTable: FC<
                                 src={value.avatar_image ||
                                     '/images/icons/1.png'}
                                 name={value.username}
+                                description={value.email}
                                 css={{p: 0}}
-                            >
-                                {value.email}
-                            </User>
+                            />
                         </Link>
                     </Table.Cell>
                     <Table.Cell>
