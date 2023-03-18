@@ -2,7 +2,6 @@ import { UserWallet } from '@/types/wallet.type'
 
 export interface User extends Creator {
 	id: number
-	creator: Creator
 	wallet: UserWallet
 	username: string
 	email: string
@@ -10,10 +9,8 @@ export interface User extends Creator {
 }
 
 export interface Creator {
-	id: number
 	bio: string
 	banner_image?: string
-	user?: User
 }
 
 export interface UserWithCreator extends User {

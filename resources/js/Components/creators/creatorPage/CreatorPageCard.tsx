@@ -77,7 +77,7 @@ const CreatorPageCard: FC<CreatorPageCardProps> = ({ user }) => {
 								Bio
 							</Text>
 							<Text size='$md' css={{ maxW: '400px' }}>
-								{user.creator.bio}
+								{user.bio}
 							</Text>
 						</>
 						<Spacer y={0.5} />

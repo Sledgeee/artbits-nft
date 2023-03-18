@@ -23,7 +23,7 @@ const CurrentNft: FC<CurrentNftProps> = ({ auth, nft, nfts }) => {
 					trendingNftList={nfts}
 					title='More From This Artist'
 					buttonName='Go to artist page'
-					buttonHref={'/creator/' + nft.creator.user?.username}
+					buttonHref={'/creator/' + nft.user?.username}
 				/>
 			</Layout>
 		</>
