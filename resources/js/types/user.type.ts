@@ -6,6 +6,7 @@ export interface User extends Creator {
 	username: string
 	email: string
 	avatar_image: string
+	metamask_address: string
 }
 
 export interface Creator {

@@ -15,7 +15,7 @@ interface CreatorPageCardProps {
 }
 
 const CreatorButtons: FC<CreatorPageCardProps> = ({ user }) => {
-	const wallet = user?.wallet?.address || ''
+	const wallet = user?.metamask_address || ''
 	const shortText =
 		wallet.substring(0, 8) + '...' + wallet.substring(wallet.length - 5)
 	const [buttonText, setButtonText] = useState<string>(shortText)
