@@ -24,9 +24,9 @@ Route::controller(UserController::class)->group(function () {
 
 Route::controller(NftItemController::class)->group(function () {
 	Route::get('/nft', 'nfts');
-	Route::get('/collection/{collection_id}', 'nftsByCollection');
 	Route::get('/nft/{username}/{name}', 'currentNft');
 	Route::get('/category/{category_id}', 'nftsByCategory');
+	Route::get('/collection/{collection_id}', 'nftsByCollection');
 });
 
 Route::inertia('/meta', 'Meta');

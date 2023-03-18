@@ -12,8 +12,8 @@ const HeroSection: FC = () => {
 					<Box>
 						<Text h1>Discover digital art & Collect NFTs</Text>
 						<Text h4>
-							NFT marketplace UI created with Anima for Figma. Collect, buy and
-							sell art from more than 20k NFT artists.
+							NFT marketplace. Collect, buy and sell art from more than 20k NFT
+							artists.
 						</Text>
 						<Button
 							shadow
