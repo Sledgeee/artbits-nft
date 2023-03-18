@@ -24,7 +24,7 @@ const CurrentCollection: FC<CurrentCollectionProps> = ({
 					title={collection.name + ' collection'}
 					paginationItems={collectionItems}
 					buttonName='Go to artist page'
-					buttonHref={'/creator/' + collection.creator.user?.username}
+					buttonHref={'/creator/' + collection.user?.username}
 				/>
 			</Layout>
 		</>
