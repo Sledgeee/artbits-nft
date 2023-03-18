@@ -1,10 +1,10 @@
-import React, { FC } from 'react'
 import { Button, Checkbox, Input, Modal, Row, Text } from '@nextui-org/react'
+import React, { FC } from 'react'
 import { BsAt, BsLock } from 'react-icons/bs'
 
 const LoginModal: FC = () => {
 	const [visible, setVisible] = React.useState(false)
-    
+
 	const handler = () => setVisible(true)
 	const closeHandler = () => setVisible(false)
 

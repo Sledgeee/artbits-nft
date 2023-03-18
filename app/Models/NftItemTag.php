@@ -8,20 +8,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class NftItemTag extends Model
 {
-    use HasFactory;
+	use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'nft_item_id'
-    ];
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array<int, string>
+	 */
+	protected $fillable = [
+		'name',
+		'nft_item_id'
+	];
 
-    public function nftItem(): BelongsTo
-    {
-        return $this->belongsTo(NftItem::class);
-    }
+	public function nftItem(): BelongsTo
+	{
+		return $this->belongsTo(NftItem::class);
+	}
 }

@@ -1,19 +1,17 @@
-import {User} from "@/types/user.type";
-
+import { User } from '@/types/user.type'
 
 export interface Creator {
-    id: number,
-    bio: string,
-    banner_image?: string,
-    totalSales?: number,
-    user?: User
+	id: number
+	bio: string
+	banner_image?: string
+	user?: User
 }
 
 export interface UserWithCreator extends User {
-    transactions_from_sum_value: string
-    creator: Creator
+	transactions_from_sum_value: string
+	creator: Creator
 }
 
 export interface RankingCreators extends UserWithCreator {
-    transactions_from_count: number
+	transactions_from_count: number
 }

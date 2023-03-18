@@ -8,25 +8,25 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Follower extends Model
 {
-    use HasFactory;
+	use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'from_user_id',
-        'to_user_id',
-    ];
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array<int, string>
+	 */
+	protected $fillable = [
+		'from_user_id',
+		'to_user_id',
+	];
 
-    public function fromUser(): HasOne
-    {
-        return $this->hasOne(User::class, 'from_user_id');
-    }
+	public function fromUser(): HasOne
+	{
+		return $this->hasOne(User::class, 'from_user_id');
+	}
 
-    public function toUser(): HasOne
-    {
-        return $this->hasOne(User::class, 'to_user_id');
-    }
+	public function toUser(): HasOne
+	{
+		return $this->hasOne(User::class, 'to_user_id');
+	}
 }

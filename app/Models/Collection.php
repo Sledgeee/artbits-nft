@@ -6,34 +6,33 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Collection extends Model
 {
-    use HasFactory;
+	use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'creator_id'
-    ];
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array<int, string>
+	 */
+	protected $fillable = [
+		'name',
+		'user_id'
+	];
 
-    public function creator(): BelongsTo
-    {
-        return $this->belongsTo(Creator::class);
-    }
+	public function user(): BelongsTo
+	{
+		return $this->belongsTo(User::class);
+	}
 
-    public function nftItems(): HasMany
-    {
-        return $this->hasMany(CollectionNftItems::class);
-    }
+	public function nftItems(): HasMany
+	{
+		return $this->hasMany(CollectionNftItems::class);
+	}
 
-    public function nftItemsLimited(): HasMany
-    {
-        return $this->hasMany(CollectionNftItems::class)->with('nftItem')->limit(3);
-    }
+	public function nftItemsLimited(): HasMany
+	{
+		return $this->hasMany(CollectionNftItems::class)->with('nftItem')->limit(3);
+	}
 }

@@ -8,32 +8,32 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Transaction extends Model
 {
-    use HasFactory;
+	use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'value',
-        'from_user_id',
-        'to_user_id',
-        'nft_item_id'
-    ];
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array<int, string>
+	 */
+	protected $fillable = [
+		'value',
+		'from_user_id',
+		'to_user_id',
+		'nft_item_id'
+	];
 
-    public function fromUser(): HasOne
-    {
-        return $this->hasOne(User::class, 'from_user_id');
-    }
+	public function fromUser(): HasOne
+	{
+		return $this->hasOne(User::class, 'from_user_id');
+	}
 
-    public function toUser(): HasOne
-    {
-        return $this->hasOne(User::class, 'to_user_id');
-    }
+	public function toUser(): HasOne
+	{
+		return $this->hasOne(User::class, 'to_user_id');
+	}
 
-    public function nftItem(): HasOne
-    {
-        return $this->hasOne(NftItem::class);
-    }
+	public function nftItem(): HasOne
+	{
+		return $this->hasOne(NftItem::class);
+	}
 }

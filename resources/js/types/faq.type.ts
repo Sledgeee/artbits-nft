@@ -1,5 +1,5 @@
 export interface FaqCardData {
-    title: string,
-    desc: string,
-    img: string,
+	title: string
+	desc: string
+	img: string
 }

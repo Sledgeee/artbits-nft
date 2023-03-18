@@ -7,63 +7,63 @@ use Illuminate\Http\Request;
 
 class CollectionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $collections = Collection::with('creator')->limit(3)->get();
-        foreach ($collections as $collection) {
-            $collection->nftItemsLimited;
-        }
-        return $collections;
-    }
+	/**
+	 * Display a listing of the resource.
+	 */
+	public function index()
+	{
+		$collections = Collection::with('user')->limit(3)->get();
+		foreach ($collections as $collection) {
+			$collection->nftItemsLimited;
+		}
+		return $collections;
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+	/**
+	 * Show the form for creating a new resource.
+	 */
+	public function create()
+	{
+		//
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+	/**
+	 * Store a newly created resource in storage.
+	 */
+	public function store(Request $request)
+	{
+		//
+	}
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Collection $collection)
-    {
-        //
-    }
+	/**
+	 * Display the specified resource.
+	 */
+	public function show(Collection $collection)
+	{
+		//
+	}
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Collection $collection)
-    {
-        //
-    }
+	/**
+	 * Show the form for editing the specified resource.
+	 */
+	public function edit(Collection $collection)
+	{
+		//
+	}
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Collection $collection)
-    {
-        //
-    }
+	/**
+	 * Update the specified resource in storage.
+	 */
+	public function update(Request $request, Collection $collection)
+	{
+		//
+	}
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Collection $collection)
-    {
-        //
-    }
+	/**
+	 * Remove the specified resource from storage.
+	 */
+	public function destroy(Collection $collection)
+	{
+		//
+	}
 }
