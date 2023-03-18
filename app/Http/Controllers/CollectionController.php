@@ -3,67 +3,44 @@
 namespace App\Http\Controllers;
 
 use App\Models\Collection;
-use Illuminate\Http\Request;
+use App\Models\NftItem;
+use Inertia\Inertia;
 
 class CollectionController extends Controller
 {
-	/**
-	 * Display a listing of the resource.
-	 */
-	public function index()
-	{
-		$collections = Collection::with('user')->limit(3)->get();
-		foreach ($collections as $collection) {
-			$collection->nftItemsLimited;
-		}
-		return $collections;
-	}
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $collections = Collection::with('user')
+            ->paginate(6);
+        foreach ($collections as $collection) {
+            $collection->nftItemsLimited;
+        }
 
-	/**
-	 * Show the form for creating a new resource.
-	 */
-	public function create()
-	{
-		//
-	}
+        return Inertia::render('Collections/AllCollections', [
+            'collections' => $collections
+        ]);
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 */
-	public function store(Request $request)
-	{
-		//
-	}
+    public function nftsByCollection(int $collection_id)
+    {
+        $collection = Collection::where('id', $collection_id)->with('user')->first();
 
-	/**
-	 * Display the specified resource.
-	 */
-	public function show(Collection $collection)
-	{
-		//
-	}
+        if (!$collection)
+            return Response('Not found', 404);
 
-	/**
-	 * Show the form for editing the specified resource.
-	 */
-	public function edit(Collection $collection)
-	{
-		//
-	}
+        $collectionItems = NftItem::with('user')
+            ->whereHas('collection', function ($query) use ($collection_id) {
+                $query->where('collection_id', $collection_id);
+            })->paginate(16);
 
-	/**
-	 * Update the specified resource in storage.
-	 */
-	public function update(Request $request, Collection $collection)
-	{
-		//
-	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 */
-	public function destroy(Collection $collection)
-	{
-		//
-	}
+        return Inertia::render('Collections/CurrentCollection', [
+            'collection' => $collection,
+            'collectionItems' => $collectionItems,
+        ]);
+    }
+
 }

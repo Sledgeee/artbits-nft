@@ -1,14 +1,12 @@
-import { Nft } from '@/types/nft.type'
-
 export interface PageLink {
 	url: string | null
 	label: string
 	active: boolean
 }
 
-export interface NftResponse {
+export interface PaginationResponse<T> {
 	current_page: number
-	data: Nft[]
+	data: T[]
 	first_page_url: string
 	from: number
 	last_page: number

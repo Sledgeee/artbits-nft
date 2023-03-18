@@ -1,15 +1,16 @@
 import Layout from '@/Components/Layout'
 import NftListWithPagination from '@/Components/nft/NftListWithPagination'
-import { NftResponse } from '@/Pages/Nfts/nft.interface'
+import { PaginationResponse } from '@/Pages/Nfts/nft.interface'
 import { BaseProps } from '@/types/base.type'
 import { Head } from '@inertiajs/react'
 import { FC } from 'react'
+import { Nft } from '@/types/nft.type'
 
 interface NftPageProps extends BaseProps {
-	nfts: NftResponse
+	nfts: PaginationResponse<Nft>
 }
 
-const Index: FC<NftPageProps> = ({ nfts, auth }) => {
+const AllNfts: FC<NftPageProps> = ({ nfts, auth }) => {
 	return (
 		<>
 			<Head title='Marketplace' />
@@ -20,4 +21,4 @@ const Index: FC<NftPageProps> = ({ nfts, auth }) => {
 	)
 }
 
-export default Index
+export default AllNfts

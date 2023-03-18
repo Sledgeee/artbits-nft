@@ -1,6 +1,13 @@
 import Box from '@/Components/Box'
 import { User } from '@/types/user.type'
-import { Avatar, Button, Grid, Row, Spacer, Text } from '@nextui-org/react'
+import {
+	Avatar,
+	Button,
+	Grid,
+	Row,
+	Spacer,
+	Text
+} from '@nextui-org/react'
 import { FC, useState } from 'react'
 import {
 	BsClipboard,
@@ -14,11 +21,16 @@ interface CreatorPageCardProps {
 	user: User
 }
 
-const CreatorButtons: FC<CreatorPageCardProps> = ({ user }) => {
+const CreatorButtons: FC<CreatorPageCardProps> = ({
+	user
+}) => {
 	const wallet = user?.metamask_address || ''
 	const shortText =
-		wallet.substring(0, 8) + '...' + wallet.substring(wallet.length - 5)
-	const [buttonText, setButtonText] = useState<string>(shortText)
+		wallet.substring(0, 8) +
+		'...' +
+		wallet.substring(wallet.length - 5)
+	const [buttonText, setButtonText] =
+		useState<string>(shortText)
 	const copyToClipboard = () => {
 		navigator.clipboard.writeText(wallet)
 		setButtonText('Copied to clipboard!')
@@ -28,7 +40,11 @@ const CreatorButtons: FC<CreatorPageCardProps> = ({ user }) => {
 		<Box className='flex z-0 mx-auto md:mx-0'>
 			<Button> + Follow </Button>
 			<Spacer y={0.5} />
-			<Button bordered onPress={copyToClipboard} color='gradient'>
+			<Button
+				bordered
+				onPress={copyToClipboard}
+				color='gradient'
+			>
 				<BsClipboard className='mr-2' />
 				{buttonText}
 			</Button>
@@ -36,7 +52,9 @@ const CreatorButtons: FC<CreatorPageCardProps> = ({ user }) => {
 	)
 }
 
-const CreatorPageCard: FC<CreatorPageCardProps> = ({ user }) => {
+const CreatorPageCard: FC<CreatorPageCardProps> = ({
+	user
+}) => {
 	return (
 		<div className='container mx-auto'>
 			<Grid.Container gap={2}>

@@ -15,39 +15,41 @@ import { Head } from '@inertiajs/react'
 import { FC } from 'react'
 
 interface IHomePageProps extends BaseProps {
-	categories: Category[]
-	creators: UserWithCreator[]
-	collections: Collection[]
-	trendingNftList: Nft[]
+    categories: Category[]
+    creators: UserWithCreator[]
+    collections: Collection[]
+    trendingNftList: Nft[]
 }
 
-const Home: FC<IHomePageProps> = ({
-	categories,
-	auth,
-	creators,
-	collections,
-	trendingNftList
-}) => {
-	return (
-		<>
-			<Head title='Home' />
+const Home: FC<
+    IHomePageProps
+> = ({
+         categories,
+         auth,
+         creators,
+         collections,
+         trendingNftList
+     }) => {
+    return (
+        <>
+            <Head title='Home' />
 
-			<Layout auth={auth}>
-				<HeroSection />
-				<CategoryList categories={categories} />
-				<CollectionList collections={collections} />
-				<DefaultNftList
-					trendingNftList={trendingNftList}
-					title={'Discover More Nfts'}
-					desc={'Explore New Trending Nfts'}
-					buttonHref={'/nft'}
-					buttonName={'See all'}
-				/>
-				<CreatorList creators={creators} />
-				<FaqSection />
-				<SubsCard />
-			</Layout>
-		</>
-	)
+            <Layout auth={auth}>
+                <HeroSection />
+                <CategoryList categories={categories} />
+                <CollectionList collections={collections} />
+                <DefaultNftList
+                    trendingNftList={trendingNftList}
+                    title='Discover More Nfts'
+                    desc='Explore New Trending Nfts'
+                    buttonHref='/nft'
+                    buttonName='See all'
+                />
+                <CreatorList creators={creators} />
+                <FaqSection />
+                <SubsCard />
+            </Layout>
+        </>
+    )
 }
 export default Home

@@ -3,10 +3,10 @@ import NftListWithPagination from '@/Components/nft/NftListWithPagination'
 import { BaseProps } from '@/types/base.type'
 import { Head } from '@inertiajs/react'
 import { FC } from 'react'
-import { NftResponse } from './nft.interface'
+import { PaginationResponse } from './nft.interface'
 
 interface NftPageProps extends BaseProps {
-	nfts: NftResponse
+	nfts: PaginationResponse
 }
 
 const ByCategory: FC<NftPageProps> = ({ nfts, auth }) => {

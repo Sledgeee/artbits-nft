@@ -10,22 +10,26 @@ use Inertia\Inertia;
 
 class HomeController extends Controller
 {
-	public function index()
-	{
-		$users = User::withSum('transactionsFrom', 'value')
-			->orderBy('transactions_from_sum_value', 'DESC')
-			->limit(9)
-			->get();
-		$collections = Collection::with('user')->limit(3)->get();
-		foreach ($collections as $collection) {
-			$collection->nftItemsLimited;
-		}
-		$nfts = NftItem::with('user')->take(4)->get();
-		return Inertia::render('Home', [
-			'categories' => Category::all(),
-			'creators' => $users,
-			'collections' => $collections,
-			'trendingNftList' => $nfts
-		]);
-	}
+    public function index()
+    {
+        $users = User::withSum('transactionsFrom', 'value')
+            ->orderBy('transactions_from_sum_value', 'DESC')
+            ->limit(9)
+            ->get();
+        $collections = Collection::with('user')
+            ->limit(3)
+            ->get();
+        foreach ($collections as $collection) {
+            $collection->nftItemsLimited;
+        }
+        $nfts = NftItem::with('user')
+            ->take(4)
+            ->get();
+        return Inertia::render('Home', [
+            'categories' => Category::all(),
+            'creators' => $users,
+            'collections' => $collections,
+            'trendingNftList' => $nfts
+        ]);
+    }
 }

@@ -8,34 +8,35 @@ use Inertia\Inertia;
 
 class UserController extends Controller
 {
-	/**
-	 * Display a listing of the resource.
-	 */
-	public function index()
-	{
-		$creators = User::withSum('transactionsFrom', 'value')
-			->withCount('transactionsFrom')
-			->orderBy('transactions_from_sum_value', 'DESC')
-			->limit(50)
-			->get();
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $creators = User::withSum('transactionsFrom', 'value')
+            ->withCount('transactionsFrom')
+            ->orderBy('transactions_from_sum_value', 'DESC')
+            ->limit(50)
+            ->get();
 
-		return Inertia::render('Creators/Rankings', [
-			'topCreators' => $creators
-		]);
-	}
+        return Inertia::render('Creators/Rankings', [
+            'topCreators' => $creators
+        ]);
+    }
 
-	public function user(string $username)
-	{
-		$user = User::where('username', $username)->first();
+    public function user(string $username)
+    {
+        $user = User::where('username', $username)->first();
 
-		if (!$user)
-			return Response('Not found', 404);
+        if (!$user)
+            return Response('Not found', 404);
 
-		$userItems = NftItem::where('user_id', $user->id)->get();
+        $userItems = NftItem::where('user_id', $user->id)
+            ->get();
 
-		return Inertia::render('Creators/Index', [
-			'user' => $user,
-			'creatorItems' => $userItems
-		]);
-	}
+        return Inertia::render('Creators/Index', [
+            'user' => $user,
+            'creatorItems' => $userItems
+        ]);
+    }
 }

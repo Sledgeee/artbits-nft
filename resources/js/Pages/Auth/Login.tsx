@@ -1,23 +1,29 @@
-import Checkbox from '@/Components/Checkbox'
-import InputError from '@/Components/InputError'
-import InputLabel from '@/Components/InputLabel'
-import PrimaryButton from '@/Components/PrimaryButton'
-import TextInput from '@/Components/TextInput'
-import GuestLayout from '@/Layouts/GuestLayout'
-import { Head, Link, useForm } from '@inertiajs/react'
-import { useEffect } from 'react'
+import { Head, useForm } from '@inertiajs/react'
+import React, { useEffect } from 'react'
+import Layout from '@/Components/Layout'
+import {
+	Button,
+	Card,
+	Checkbox,
+	Input,
+	Row,
+	Spacer,
+	Text
+} from '@nextui-org/react'
+import { BsAt, BsLock } from 'react-icons/bs'
+import { BaseProps } from '@/types/base.type'
 
-interface Props {
+interface Props extends BaseProps {
 	status: string
-	canResetPassword: boolean
 }
 
-export default function Login({ status, canResetPassword }: Props) {
-	const { data, setData, post, processing, errors, reset } = useForm({
-		email: '',
-		password: '',
-		remember: ''
-	})
+const Login = ({ status, auth }: Props) => {
+	const { data, setData, post, processing, errors, reset } =
+		useForm({
+			email: '',
+			password: '',
+			remember: ''
+		})
 
 	useEffect(() => {
 		return () => {
@@ -25,9 +31,14 @@ export default function Login({ status, canResetPassword }: Props) {
 		}
 	}, [])
 
-	const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleOnChange = (
+		event: React.ChangeEvent<HTMLInputElement>
+	) => {
 		setData(
-			event.target.name as 'email' | 'password' | 'remember',
+			event.target.name as
+				| 'email'
+				| 'password'
+				| 'remember',
 			event.target.type === 'checkbox'
 				? event.target.checked + ''
 				: event.target.value
@@ -36,85 +47,60 @@ export default function Login({ status, canResetPassword }: Props) {
 
 	const submit = (e: React.FormEvent) => {
 		e.preventDefault()
-
 		post(route('login'))
 	}
 
 	return (
-		<GuestLayout>
+		<>
 			<Head title='Log in' />
-
-			{status && (
-				<div className='mb-4 font-medium text-sm text-green-600'>{status}</div>
-			)}
-
-			<form onSubmit={submit}>
-				<div>
-					<InputLabel htmlFor='email' value='Email' />
-					<TextInput
-						id='email'
-						type='email'
-						name='email'
-						value={data.email}
-						className='mt-1 block w-full'
-						autoComplete='username'
-						isFocused={true}
-						onChange={handleOnChange}
-					/>
-
-					<InputError message={errors.email as string} className='mt-2' />
-				</div>
-
-				<div className='mt-4'>
-					<InputLabel htmlFor='password' value='Password' />
-
-					<TextInput
-						id='password'
-						type='password'
-						name='password'
-						value={data.password}
-						className='mt-1 block w-full'
-						autoComplete='current-password'
-						onChange={handleOnChange}
-					/>
-
-					<InputError message={errors.password as string} className='mt-2' />
-				</div>
-
-				<div className='block mt-4'>
-					<label className='flex items-center'>
-						<Checkbox
-							name='remember'
-							value={data.remember}
-							onChange={handleOnChange}
-						/>
-						<span className='ml-2 text-sm text-gray-600 dark:text-gray-400'>
-							Remember me
-						</span>
-					</label>
-				</div>
-
-				<div className='flex items-center justify-end mt-4'>
-					<Link
-						href={route('register')}
-						className='underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800 mx-3'
+			<Layout auth={auth}>
+				<div className='flex justify-center '>
+					<Card
+						css={{
+							borderWidth: '0px',
+							maxWidth: '400px',
+							mt: '120px'
+						}}
 					>
-						Not registered yet?
-					</Link>
-					{canResetPassword && (
-						<Link
-							href={route('password.request')}
-							className='underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800'
-						>
-							Forgot your password?
-						</Link>
-					)}
-
-					<PrimaryButton className='ml-4' disabled={processing}>
-						Log in
-					</PrimaryButton>
+						<Card.Body>
+							<Spacer y={1} />
+							<Input
+								clearable
+								bordered
+								fullWidth
+								color='primary'
+								size='lg'
+								type='email'
+								placeholder='Email'
+								contentLeft={<BsAt />}
+							/>
+							<Spacer y={1} />
+							<Input
+								clearable
+								bordered
+								fullWidth
+								color='primary'
+								type='password'
+								size='lg'
+								placeholder='Password'
+								contentLeft={<BsLock />}
+							/>
+							<Spacer y={1} />
+							<Row justify='space-between'>
+								<Checkbox>
+									<Text size={14}>Remember me</Text>
+								</Checkbox>
+								<Text size={14}>Forgot password?</Text>
+							</Row>
+						</Card.Body>
+						<Card.Footer className=''>
+							<Button>Sign in</Button>
+						</Card.Footer>
+					</Card>
 				</div>
-			</form>
-		</GuestLayout>
+			</Layout>
+		</>
 	)
 }
+
+export default Login

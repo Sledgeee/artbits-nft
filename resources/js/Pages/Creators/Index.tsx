@@ -14,6 +14,7 @@ interface CreatorProps extends BaseProps {
 }
 
 const Index: FC<CreatorProps> = ({ creatorItems, auth, user }) => {
+	console.log(creatorItems)
 	return (
 		<>
 			<Head title={user?.username} />

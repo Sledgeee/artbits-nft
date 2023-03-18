@@ -7,13 +7,17 @@ interface CollectionListProps {
 	collections: Collection[]
 }
 
-const CollectionList: FC<CollectionListProps> = ({ collections }) => {
+const CollectionList: FC<CollectionListProps> = ({
+	collections
+}) => {
 	return (
 		<>
 			<div className='container mx-auto'>
 				<div className='mx-2'>
 					<Text h2>Trending Collection</Text>
-					<Text h4>Checkout our weekly updated trending collection.</Text>
+					<Text h4>
+						Checkout our weekly updated trending collection.
+					</Text>
 				</div>
 				<Grid.Container gap={2}>
 					{collections.map((value, index) => (
