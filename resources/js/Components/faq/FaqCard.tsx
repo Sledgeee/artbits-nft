@@ -17,13 +17,7 @@ const FaqCard: FC<IFaqCardProps> = ({ data }) => {
 			}}
 		>
 			<Card.Body css={{ p: 0 }}>
-				<Card.Image
-					src={data.img}
-					objectFit='cover'
-					width='100%'
-					height='100%'
-					alt={data.title}
-				/>
+				<Card.Image src={data.img} alt={data.title} />
 			</Card.Body>
 			<Card.Footer>
 				<Row wrap='wrap' justify='space-around' align='center'>
