@@ -14,21 +14,18 @@ class NftItemController extends Controller
     public function nfts()
     {
         return Inertia::render('Nfts/Index', [
-            'nfts' => NftItem::with('creator', 'creator.user')
-                ->paginate(8)
+            'nfts' => NftItem::with('user')->paginate(8)
         ]);
     }
 
     public function nftsByCollection(int $collection_id)
     {
-        $collection = Collection::where('id', $collection_id)
-            ->with('creator', 'creator.user')
-            ->first();
+        $collection = Collection::where('id', $collection_id)->with('user')->first();
 
         if (!$collection)
             return Response('Not found', 404);
 
-        $collectionItems = NftItem::with('creator', 'creator.user')
+        $collectionItems = NftItem::with('user')
             ->whereHas('collection', function ($query) use ($collection_id) {
                 $query->where('collection_id', $collection_id);
             })->paginate(8);
@@ -46,15 +43,15 @@ class NftItemController extends Controller
     {
         return Inertia::render('Nfts/ByCategory', [
             'nfts' => NftItem::where('category_id', $category_id)
-                ->with('creator', 'creator.user')
+                ->with('user')
                 ->paginate(8)
         ]);
     }
 
     public function currentNft(string $username, string $name)
     {
-        $data = NftItem::with('creator', 'creator.user', 'nftItemTags')
-            ->whereHas('creator.user', function ($query) use ($username) {
+        $data = NftItem::with('user', 'nftItemTags')
+            ->whereHas('.user', function ($query) use ($username) {
                 $query->where('username', $username);
             })
             ->where('name', $name)
@@ -63,8 +60,8 @@ class NftItemController extends Controller
         if (!$data)
             return Response('Not found', 404);
 
-        $nfts = NftItem::with('creator', 'creator.user')
-            ->where('creator_id', $data->creator_id)
+        $nfts = NftItem::with('user')
+            ->where('user_id', $data->id)
             ->limit(8)
             ->get();
 

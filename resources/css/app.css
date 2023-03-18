@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .nprogress-busy {
-    height: 70px;
+	height: 70px;
 }

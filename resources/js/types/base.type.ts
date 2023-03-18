@@ -1,5 +1,5 @@
-import {User} from "@/types/user.type";
+import { User } from '@/types/user.type'
 
 export interface BaseProps {
-    auth: { user: User }
+	auth: { user: User }
 }

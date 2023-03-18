@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('image', 128);
             $table->string('header_image', 128);
             $table->decimal('price', 18, 2, true);
-            $table->foreignId('creator_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
