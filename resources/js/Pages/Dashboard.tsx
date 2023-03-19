@@ -1,33 +1,32 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
+import Layout from '@/Components/Layout'
 import { Head } from '@inertiajs/react'
+import { FC } from 'react'
 
-interface Props {
+interface DashboardProps {
 	auth: any
 	errors: any
 }
 
-export default function Dashboard(props: Props) {
-	return (
-		<AuthenticatedLayout
-			auth={props.auth}
-			error={props.errors}
-			header={
-				<h2 className='font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight'>
-					Dashboard
-				</h2>
-			}
-		>
-			<Head title='Dashboard' />
+const Dashboard: FC<DashboardProps> = ({
+                                           errors,
+                                           auth
+                                       }) => {
+    return (
+        <>
+            <Head title='Dashboard' />
 
-			<div className='py-12'>
-				<div className='max-w-7xl mx-auto sm:px-6 lg:px-8'>
-					<div className='bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg'>
-						<div className='p-6 text-gray-900 dark:text-gray-100'>
-							You're logged in!
-						</div>
-					</div>
-				</div>
-			</div>
-		</AuthenticatedLayout>
-	)
+            <Layout auth={auth}>
+                <div className='py-12'>
+                    <div className='max-w-7xl mx-auto sm:px-6 lg:px-8'>
+                        <div className='bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg'>
+                            <div className='p-6 text-gray-900 dark:text-gray-100'>
+                                You're logged in!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Layout>
+        </>
+    )
 }
+export default Dashboard

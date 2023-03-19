@@ -2,12 +2,11 @@
 
 namespace Database\Factories;
 
-use DateTime;
+use App\Models\Auction;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Date;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Auction>
+ * @extends Factory<Auction>
  */
 class AuctionFactory extends Factory
 {
@@ -18,8 +17,10 @@ class AuctionFactory extends Factory
      */
     public function definition(): array
     {
+        $events = fake()->dateTimeBetween('-30 days', '+30 days');
+
         return [
-            'end_at' => fake()->dateTimeBetween('-30 days', '+30 days'),
+            'end_at' => $events->format('Y-m-d'),
             'nft_item_id' => fake()->unique()->numberBetween(1, 10000)
         ];
     }

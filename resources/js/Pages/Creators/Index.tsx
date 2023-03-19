@@ -7,24 +7,35 @@ import { Nft } from '@/types/nft.type'
 import { User } from '@/types/user.type'
 import { Head } from '@inertiajs/react'
 import { FC } from 'react'
+import { Collection } from '@/types/collection.type'
+import CollectionList from '@/Components/collections/CollectionList'
 
 interface CreatorProps extends BaseProps {
-	user: User
-	creatorItems: Nft[]
+    user: User
+    creatorItems: Nft[]
+    creatorCollections: Collection[]
 }
 
-const Index: FC<CreatorProps> = ({ creatorItems, auth, user }) => {
-	console.log(creatorItems)
-	return (
-		<>
-			<Head title={user?.username} />
-			<Layout auth={auth}>
-				<HeaderImage image={user.banner_image || ''} />
-				<CreatorPageCard user={user} />
-				<DefaultNftList trendingNftList={creatorItems} />
-			</Layout>
-		</>
-	)
+const Index: FC<CreatorProps> = ({
+                                     creatorItems,
+                                     creatorCollections,
+                                     auth,
+                                     user
+                                 }) => {
+    return (
+        <>
+            <Head title={user?.username} />
+            <Layout auth={auth}>
+                <HeaderImage image={user.banner_image || ''} />
+                <CreatorPageCard user={user} />
+                {location.pathname === `/creator/${user.username}/collections` ?
+                    <CollectionList collections={creatorCollections} /> :
+                    <DefaultNftList trendingNftList={creatorItems} />
+                }
+
+            </Layout>
+        </>
+    )
 }
 
 export default Index

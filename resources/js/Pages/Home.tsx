@@ -21,15 +21,13 @@ interface IHomePageProps extends BaseProps {
     trendingNftList: Nft[]
 }
 
-const Home: FC<
-    IHomePageProps
-> = ({
-         categories,
-         auth,
-         creators,
-         collections,
-         trendingNftList
-     }) => {
+const Home: FC<IHomePageProps> = ({
+                                      categories,
+                                      auth,
+                                      creators,
+                                      collections,
+                                      trendingNftList
+                                  }) => {
     return (
         <>
             <Head title='Home' />
@@ -37,7 +35,11 @@ const Home: FC<
             <Layout auth={auth}>
                 <HeroSection />
                 <CategoryList categories={categories} />
-                <CollectionList collections={collections} />
+                <CollectionList
+                    title='Trending Collection'
+                    description='Checkout our weekly updated trending collection.'
+                    collections={collections}
+                />
                 <DefaultNftList
                     trendingNftList={trendingNftList}
                     title='Discover More Nfts'

@@ -8,26 +8,26 @@ import { Head } from '@inertiajs/react'
 import { FC } from 'react'
 
 interface CurrentNftProps extends BaseProps {
-	nft: Nft
-	nfts: Nft[]
+    nft: Nft
+    nfts: Nft[]
 }
 
 const CurrentNft: FC<CurrentNftProps> = ({ auth, nft, nfts }) => {
-	return (
-		<>
-			<Head title={nft.name} />
-			<Layout auth={auth}>
-				<HeaderImage image={nft.header_image} />
-				<NftPageCard nft={nft} />
-				<DefaultNftList
-					trendingNftList={nfts}
-					title='More From This Artist'
-					buttonName='Go to artist page'
-					buttonHref={'/creator/' + nft.user?.username}
-				/>
-			</Layout>
-		</>
-	)
+    return (
+        <>
+            <Head title={nft.name} />
+            <Layout auth={auth}>
+                <HeaderImage image={nft.header_image} />
+                <NftPageCard nft={nft} />
+                <DefaultNftList
+                    trendingNftList={nfts}
+                    title='More From This Artist'
+                    buttonName='Go to artist page'
+                    buttonHref={`/creator/${nft.user?.username}/created`}
+                />
+            </Layout>
+        </>
+    )
 }
 
 export default CurrentNft

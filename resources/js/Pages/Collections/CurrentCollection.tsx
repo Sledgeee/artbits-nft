@@ -8,30 +8,28 @@ import { FC } from 'react'
 import { Nft } from '@/types/nft.type'
 
 interface CurrentCollectionProps extends BaseProps {
-	collection: Collection
-	collectionItems: PaginationResponse<Nft>
+    collection: Collection
+    collectionItems: PaginationResponse<Nft>
 }
 
 const CurrentCollection: FC<CurrentCollectionProps> = ({
-	collectionItems,
-	collection,
-	auth
-}) => {
-	return (
-		<>
-			<Head title={`${collection.name} collection`} />
-			<Layout auth={auth}>
-				<NftListWithPagination
-					title={`${collection.name} collection`}
-					paginationItems={collectionItems}
-					buttonName='Go to artist page'
-					buttonHref={
-						'/creator/' + collection.user?.username
-					}
-				/>
-			</Layout>
-		</>
-	)
+                                                           collectionItems,
+                                                           collection,
+                                                           auth
+                                                       }) => {
+    return (
+        <>
+            <Head title={`${collection.name} collection`} />
+            <Layout auth={auth}>
+                <NftListWithPagination
+                    title={`${collection.name} collection`}
+                    paginationItems={collectionItems}
+                    buttonName='Go to artist page'
+                    buttonHref={`/creator/${collection.user?.username}/created`}
+                />
+            </Layout>
+        </>
+    )
 }
 
 export default CurrentCollection

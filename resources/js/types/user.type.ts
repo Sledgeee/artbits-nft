@@ -1,12 +1,16 @@
-import { UserWallet } from '@/types/wallet.type'
-
 export interface User extends Creator {
 	id: number
-	wallet: UserWallet
 	username: string
 	email: string
 	avatar_image: string
 	metamask_address: string
+	createdCount: number
+	ownedCount: string
+	collectionCount: number
+	followers_to_count: number
+	followers_from_count: number
+	transactions_from_sum_value: string
+	transactions_from_count: number
 }
 
 export interface Creator {
@@ -15,7 +19,6 @@ export interface Creator {
 }
 
 export interface UserWithCreator extends User {
-	transactions_from_sum_value: string
 	creator: Creator
 }
 

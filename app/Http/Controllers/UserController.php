@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Collection;
 use App\Models\NftItem;
 use App\Models\User;
 use Inertia\Inertia;
@@ -24,19 +25,49 @@ class UserController extends Controller
         ]);
     }
 
-    public function user(string $username)
+    public function creator(string $username, string $pathname)
     {
-        $user = User::where('username', $username)->first();
+        $user = User::where('username', $username)
+            ->withSum('transactionsFrom', 'value')
+            ->withCount('transactionsFrom', 'followersTo')
+            ->first();
+
+        $userId = $user->id;
 
         if (!$user)
             return Response('Not found', 404);
 
-        $userItems = NftItem::where('user_id', $user->id)
+        $createdItems = NftItem::whereHas('transactions',
+            function ($query) use ($userId) {
+                $query->where('from_user_id', $userId);
+            })->with('user')->get();
+
+        $ownedItems = NftItem::whereHas('transactions',
+            function ($query) use ($userId) {
+                $query->where('to_user_id', $userId);
+            })->with('user')->get();
+
+        $collections = Collection::where('user_id', $userId)
+            ->with('user')
             ->get();
+
+        foreach ($collections as $collection) {
+            $collection->nftItemsLimited;
+        }
+
+        $user->createdCount = count($createdItems);
+        $user->ownedCount = count($ownedItems);
+        $user->collectionCount = count($collections);
+
+        $userItems = match ($pathname) {
+            'owned' => $ownedItems,
+            default => $createdItems,
+        };
 
         return Inertia::render('Creators/Index', [
             'user' => $user,
-            'creatorItems' => $userItems
+            'creatorItems' => $userItems,
+            'creatorCollections' => $collections
         ]);
     }
 }

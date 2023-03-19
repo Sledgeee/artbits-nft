@@ -20,7 +20,7 @@ Route::controller(AuctionController::class)->group(function () {
 
 Route::controller(UserController::class)->group(function () {
     Route::get('/rankings', 'index');
-    Route::get('/creator/{username}', 'user');
+    Route::get('/creator/{username}/{pathname}', 'creator');
 });
 
 Route::controller(NftItemController::class)->group(function () {

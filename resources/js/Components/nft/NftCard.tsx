@@ -1,28 +1,12 @@
 import Box from '@/Components/Box'
 import { Nft } from '@/types/nft.type'
 import { router } from '@inertiajs/react'
-import {
-	Card,
-	Col,
-	Grid,
-	Row,
-	Text,
-	User
-} from '@nextui-org/react'
+import { Card, Col, Grid, Row, Text, User } from '@nextui-org/react'
 import { FC } from 'react'
-import { motion } from 'framer-motion'
+import ScaleIn from '@/Components/ScaleIn'
 
 interface NftCardProps {
-	item: Nft
-}
-
-const boxVariant = {
-    visible: {
-        opacity: 1,
-        scale: 1,
-        transition: { duration: 0.5 }
-    },
-    hidden: { opacity: 0, scale: 0 }
+    item: Nft
 }
 
 const NftCard: FC<NftCardProps> = ({ item }) => {
@@ -31,11 +15,7 @@ const NftCard: FC<NftCardProps> = ({ item }) => {
         router.replace(`/nft/${user?.username}/${item?.name}`)
 
     return (
-        <motion.div
-            variants={boxVariant}
-            initial="hidden"
-            animate="visible"
-        >
+        <ScaleIn>
             <Card
                 isPressable
                 css={{ w: '100%', h: '400px', borderWidth: '0px' }}
@@ -55,14 +35,15 @@ const NftCard: FC<NftCardProps> = ({ item }) => {
                         <Col>
                             <Grid.Container>
                                 <Grid xs={12}>
-                                    <Text h4 className='pl-3'>
+                                    <Text h5 size='' className='pl-3'>
                                         {item?.name}
                                     </Text>
                                 </Grid>
                                 <Grid xs={12}>
                                     <User
                                         size='xs'
-                                        name={user?.username}
+                                        name={''}
+                                        description={user?.username}
                                         src={user?.avatar_image}
                                     />
                                 </Grid>
@@ -79,7 +60,7 @@ const NftCard: FC<NftCardProps> = ({ item }) => {
                     </Row>
                 </Card.Footer>
             </Card>
-        </motion.div>
+        </ScaleIn>
     )
 }
 

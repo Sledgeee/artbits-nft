@@ -2,6 +2,7 @@ import Box from '@/Components/Box'
 import { User } from '@/types/user.type'
 import {
 	Avatar,
+	Badge,
 	Button,
 	Grid,
 	Row,
@@ -16,6 +17,7 @@ import {
 	BsTwitter,
 	BsYoutube
 } from 'react-icons/bs'
+import { Link } from '@inertiajs/react'
 
 interface CreatorPageCardProps {
 	user: User
@@ -38,7 +40,7 @@ const CreatorButtons: FC<CreatorPageCardProps> = ({
 	}
 	return (
 		<Box className='flex z-0 mx-auto md:mx-0'>
-			<Button> + Follow </Button>
+			<Button auto> + Follow </Button>
 			<Spacer y={0.5} />
 			<Button
 				bordered
@@ -55,6 +57,27 @@ const CreatorButtons: FC<CreatorPageCardProps> = ({
 const CreatorPageCard: FC<CreatorPageCardProps> = ({
 	user
 }) => {
+	const checkActiveRoute = (href: string) =>
+		location.pathname == `/creator/${user.username}/${href}`
+
+	const routes = [
+		{
+			href: 'created',
+			name: 'Created',
+			count: user.createdCount || 0
+		},
+		{
+			href: 'owned',
+			name: 'Owned',
+			count: user.ownedCount || 0
+		},
+		{
+			href: 'collections',
+			name: 'Collections',
+			count: user.collectionCount || 0
+		}
+	]
+
 	return (
 		<div className='container mx-auto'>
 			<Grid.Container gap={2}>
@@ -73,19 +96,19 @@ const CreatorPageCard: FC<CreatorPageCardProps> = ({
 						<Box className='flex justify-between mr-6'>
 							<Box>
 								<Text h4 b>
-									240k+
+									{user.transactions_from_sum_value} +
 								</Text>
 								<Text h6>Volume</Text>
 							</Box>
 							<Box>
 								<Text h4 b>
-									100k+
+									{user.transactions_from_count} +
 								</Text>
 								<Text h6>Nfts Sold</Text>
 							</Box>
 							<Box>
 								<Text h4 b>
-									340k+
+									{user.followers_to_count || 0} +
 								</Text>
 								<Text h6>Followers</Text>
 							</Box>
@@ -115,6 +138,51 @@ const CreatorPageCard: FC<CreatorPageCardProps> = ({
 					<CreatorButtons user={user} />
 				</Grid>
 			</Grid.Container>
+			<Box>
+				<Row className='flex mx-auto border-b-[1px] gap-x-8 border-gray-700 px-4 '>
+					{routes.map((value, index) => (
+						<Box
+							key={index}
+							className={`pb-1 ${
+								checkActiveRoute(value.href)
+									? ' border-b-2 border-blue-400'
+									: ''
+							}`}
+						>
+							{value.count !== 0 ? (
+								<Link
+									href={`/creator/${user.username}/${value.href}`}
+								>
+									<Text
+										h5
+										color={
+											checkActiveRoute(value.href)
+												? 'primary'
+												: 'gray'
+										}
+									>
+										{value.name}
+										<Badge
+											children={value.count}
+											size='xs'
+											className='ml-3'
+										/>
+									</Text>
+								</Link>
+							) : (
+								<Text h5 color='gray'>
+									{value.name}
+									<Badge
+										children={value.count}
+										size='xs'
+										className='ml-3'
+									/>
+								</Text>
+							)}
+						</Box>
+					))}
+				</Row>
+			</Box>
 		</div>
 	)
 }
