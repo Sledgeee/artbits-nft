@@ -1,15 +1,21 @@
-import InputError from '@/Components/InputError'
-import InputLabel from '@/Components/InputLabel'
-import PrimaryButton from '@/Components/PrimaryButton'
-import TextInput from '@/Components/TextInput'
-import GuestLayout from '@/Layouts/GuestLayout'
-import { Head, useForm } from '@inertiajs/react'
-import { useEffect } from 'react'
+import { Link, useForm } from '@inertiajs/react'
+import { BaseProps } from '@/types/base.type'
+import React, { useEffect } from 'react'
+import {
+	Button,
+	Card,
+	Input,
+	Row,
+	Spacer,
+	Text
+} from '@nextui-org/react'
+import { BsAt } from 'react-icons/bs'
 
-export default function ConfirmPassword() {
-	const { data, setData, post, processing, errors, reset } = useForm({
-		password: ''
-	})
+const ConfirmPassword = ({ auth }: BaseProps) => {
+	const { data, setData, post, processing, errors, reset } =
+		useForm({
+			password: ''
+		})
 
 	useEffect(() => {
 		return () => {
@@ -17,48 +23,63 @@ export default function ConfirmPassword() {
 		}
 	}, [])
 
-	const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setData(event.target.name as 'password', event.target.value)
-	}
-
-	const submit = (e: React.FormEvent) => {
-		e.preventDefault()
-
-		post(route('password.confirm'))
-	}
+	const submit = () => post(route('password.email'))
 
 	return (
-		<GuestLayout>
-			<Head title='Confirm Password' />
-
-			<div className='mb-4 text-sm text-gray-600 dark:text-gray-400'>
-				This is a secure area of the application. Please confirm your password
-				before continuing.
-			</div>
-
-			<form onSubmit={submit}>
-				<div className='mt-4'>
-					<InputLabel htmlFor='password' value='Password' />
-
-					<TextInput
-						id='password'
+		<div>
+			<Card
+				css={{
+					borderWidth: '0px',
+					maxWidth: '400px',
+					mt: '120px'
+				}}
+				isHoverable
+			>
+				<Card.Body>
+					<Text h3 className='text-center'>
+						Password reset
+					</Text>
+					<Spacer y={1} />
+					<Input
 						type='password'
-						name='password'
+						placeholder='Confirm your password'
 						value={data.password}
-						className='mt-1 block w-full'
-						isFocused={true}
-						onChange={handleOnChange}
+						onChange={e =>
+							setData('password', e.target.value)
+						}
+						helperText={errors.password}
+						helperColor='error'
+						clearable
+						bordered
+						fullWidth
+						color='primary'
+						size='lg'
+						contentLeft={<BsAt />}
 					/>
+					<Spacer y={1} />
+					<Row>
+						<Button
+							onPress={submit}
+							disabled={processing}
+							css={{ width: '100%' }}
+						>
+							Sign in
+						</Button>
+					</Row>
+				</Card.Body>
+				<Card.Footer>
+					<Row justify='space-between' css={{ mx: '10px' }}>
+						<Link href={route('login')}>
+							<Text size={14}>Already have account?</Text>
+						</Link>
 
-					<InputError message={errors.password as string} className='mt-2' />
-				</div>
-
-				<div className='flex items-center justify-end mt-4'>
-					<PrimaryButton className='ml-4' disabled={processing}>
-						Confirm
-					</PrimaryButton>
-				</div>
-			</form>
-		</GuestLayout>
+						<Link href={route('register')}>
+							<Text size={14}>Not registered yet?</Text>
+						</Link>
+					</Row>
+				</Card.Footer>
+			</Card>
+		</div>
 	)
 }
+export default ConfirmPassword

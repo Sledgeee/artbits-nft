@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\NftItem;
 use Inertia\Inertia;
 
 class NftItemController extends Controller
 {
-    
+
     public function currentNft(string $username, string $name)
     {
         $data = NftItem::with('user', 'nftItemTags')
@@ -46,10 +47,14 @@ class NftItemController extends Controller
      */
     public function nftsByCategory(int $category_id)
     {
+        $category = Category::where('id', $category_id)->first();
+        $nftItems = NftItem::where('category_id', $category_id)
+            ->with('user')
+            ->paginate(16);
+
         return Inertia::render('Nfts/ByCategory', [
-            'nfts' => NftItem::where('category_id', $category_id)
-                ->with('user')
-                ->paginate(16)
+            'category' => $category,
+            'nfts' => $nftItems
         ]);
     }
 }

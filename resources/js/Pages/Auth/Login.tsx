@@ -4,16 +4,12 @@ import Layout from '@/Components/Layout'
 import { BaseProps } from '@/types/base.type'
 import LoginForm from '@/Components/auth/LoginForm'
 
-interface Props extends BaseProps {
-	status: string
-}
-
-const Login = ({ status, auth }: Props) => {
+const Login = ({ auth }: BaseProps) => {
 	return (
 		<>
 			<Head title='Log in' />
 			<Layout auth={auth}>
-				<LoginForm status={status} />
+				<LoginForm />
 			</Layout>
 		</>
 	)

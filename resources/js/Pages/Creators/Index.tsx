@@ -11,31 +11,34 @@ import { Collection } from '@/types/collection.type'
 import CollectionList from '@/Components/collections/CollectionList'
 
 interface CreatorProps extends BaseProps {
-    user: User
-    creatorItems: Nft[]
-    creatorCollections: Collection[]
+	user: User
+	creatorItems: Nft[]
+	creatorCollections: Collection[]
 }
 
 const Index: FC<CreatorProps> = ({
-                                     creatorItems,
-                                     creatorCollections,
-                                     auth,
-                                     user
-                                 }) => {
-    return (
-        <>
-            <Head title={user?.username} />
-            <Layout auth={auth}>
-                <HeaderImage image={user.banner_image || ''} />
-                <CreatorPageCard user={user} />
-                {location.pathname === `/creator/${user.username}/collections` ?
-                    <CollectionList collections={creatorCollections} /> :
-                    <DefaultNftList trendingNftList={creatorItems} />
-                }
-
-            </Layout>
-        </>
-    )
+	creatorItems,
+	creatorCollections,
+	auth,
+	user
+}) => {
+	return (
+		<>
+			<Head title={user?.username} />
+			<Layout auth={auth}>
+				<HeaderImage image={user.banner_image || ''} />
+				<CreatorPageCard user={auth.user} creator={user} />
+				{location.pathname ===
+				`/creator/${user.username}/collections` ? (
+					<CollectionList
+						collections={creatorCollections}
+					/>
+				) : (
+					<DefaultNftList trendingNftList={creatorItems} />
+				)}
+			</Layout>
+		</>
+	)
 }
 
 export default Index

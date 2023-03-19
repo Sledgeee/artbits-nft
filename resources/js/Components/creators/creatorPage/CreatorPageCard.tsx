@@ -5,6 +5,7 @@ import {
 	Badge,
 	Button,
 	Grid,
+	Loading,
 	Row,
 	Spacer,
 	Text
@@ -17,30 +18,69 @@ import {
 	BsTwitter,
 	BsYoutube
 } from 'react-icons/bs'
-import { Link } from '@inertiajs/react'
+import { Link, useForm } from '@inertiajs/react'
 
 interface CreatorPageCardProps {
-	user: User
+	creator: User
+	user?: User
 }
 
 const CreatorButtons: FC<CreatorPageCardProps> = ({
-	user
+	user,
+	creator
 }) => {
-	const wallet = user?.metamask_address || ''
+	const wallet = creator.metamask_address
 	const shortText =
 		wallet.substring(0, 8) +
 		'...' +
 		wallet.substring(wallet.length - 5)
 	const [buttonText, setButtonText] =
 		useState<string>(shortText)
-	const copyToClipboard = () => {
-		navigator.clipboard.writeText(wallet)
+
+	const copyToClipboard = async () => {
+		await navigator.clipboard.writeText(wallet)
 		setButtonText('Copied to clipboard!')
 		setTimeout(() => setButtonText(shortText), 3000)
 	}
+
+	const isFollowed = true
+
+	const { post, processing, wasSuccessful } = useForm({
+		from: user?.id || 1,
+		to: creator.id
+	})
+	const [color, setColor] = useState<'primary' | 'error'>(
+		'primary'
+	)
+	const submit = () => {
+		if (user) post(route('user.follow'))
+		else setColor('error')
+	}
+
 	return (
 		<Box className='flex z-0 mx-auto md:mx-0'>
-			<Button auto> + Follow </Button>
+			<Button
+				onPress={submit}
+				disabled={processing}
+				color={color}
+				auto
+			>
+				{processing ? (
+					<Loading
+						type='points'
+						color='currentColor'
+						size='sm'
+					/>
+				) : wasSuccessful ? (
+					isFollowed ? (
+						'Followed'
+					) : (
+						'UnFollow'
+					)
+				) : (
+					'+ Follow'
+				)}
+			</Button>
 			<Spacer y={0.5} />
 			<Button
 				bordered
@@ -55,26 +95,28 @@ const CreatorButtons: FC<CreatorPageCardProps> = ({
 }
 
 const CreatorPageCard: FC<CreatorPageCardProps> = ({
-	user
+	user,
+	creator
 }) => {
 	const checkActiveRoute = (href: string) =>
-		location.pathname == `/creator/${user.username}/${href}`
+		location.pathname ==
+		`/creator/${creator.username}/${href}`
 
 	const routes = [
 		{
 			href: 'created',
 			name: 'Created',
-			count: user.createdCount || 0
+			count: creator.createdCount || 0
 		},
 		{
 			href: 'owned',
 			name: 'Owned',
-			count: user.ownedCount || 0
+			count: creator.ownedCount || 0
 		},
 		{
 			href: 'collections',
 			name: 'Collections',
-			count: user.collectionCount || 0
+			count: creator.collectionCount || 0
 		}
 	]
 
@@ -87,28 +129,28 @@ const CreatorPageCard: FC<CreatorPageCardProps> = ({
 							<Spacer y={-2} />
 							<Avatar
 								size='xl'
-								src={user.avatar_image}
-								alt={user.username + ' image'}
+								src={creator.avatar_image}
+								alt={creator.username + ' image'}
 							/>
 						</Box>
-						<Text h1>{user.username}</Text>
+						<Text h1>{creator.username}</Text>
 						<Spacer y={1} />
 						<Box className='flex justify-between mr-6'>
 							<Box>
 								<Text h4 b>
-									{user.transactions_from_sum_value} +
+									{creator.transactions_from_sum_value} +
 								</Text>
 								<Text h6>Volume</Text>
 							</Box>
 							<Box>
 								<Text h4 b>
-									{user.transactions_from_count} +
+									{creator.transactions_from_count} +
 								</Text>
 								<Text h6>Nfts Sold</Text>
 							</Box>
 							<Box>
 								<Text h4 b>
-									{user.followers_to_count || 0} +
+									{creator.followers_to_count || 0} +
 								</Text>
 								<Text h6>Followers</Text>
 							</Box>
@@ -118,7 +160,7 @@ const CreatorPageCard: FC<CreatorPageCardProps> = ({
 								Bio
 							</Text>
 							<Text size='$md' css={{ maxW: '400px' }}>
-								{user.bio}
+								{creator.bio}
 							</Text>
 						</>
 						<Spacer y={0.5} />
@@ -135,7 +177,7 @@ const CreatorPageCard: FC<CreatorPageCardProps> = ({
 					</Box>
 				</Grid>
 				<Grid xs={12} sm={5} className='flex-end'>
-					<CreatorButtons user={user} />
+					<CreatorButtons creator={creator} user={user} />
 				</Grid>
 			</Grid.Container>
 			<Box>
@@ -151,7 +193,7 @@ const CreatorPageCard: FC<CreatorPageCardProps> = ({
 						>
 							{value.count !== 0 ? (
 								<Link
-									href={`/creator/${user.username}/${value.href}`}
+									href={`/creator/${creator.username}/${value.href}`}
 								>
 									<Text
 										h5
