@@ -15,7 +15,7 @@ export interface User extends Creator {
 
 export interface Creator {
 	bio: string
-	banner_image?: string
+	banner_image: string
 }
 
 export interface UserWithCreator extends User {

@@ -29,7 +29,6 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "framer-motion": "^10.6.0",
         "react-intersection-observer": "^9.4.3"
     }
 }

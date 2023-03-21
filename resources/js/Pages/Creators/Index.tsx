@@ -12,10 +12,10 @@ import { Head } from '@inertiajs/react'
 import { FC } from 'react'
 
 interface CreatorProps extends BaseProps {
-	user: User
-	followers: Follower[]
-	creatorItems: Nft[]
-	creatorCollections: Collection[]
+	creator: User
+    creatorItems: Nft[]
+    creatorCollections: Collection[]
+    followers: Follower[]
 }
 
 const Index: FC<CreatorProps> = ({
@@ -23,19 +23,19 @@ const Index: FC<CreatorProps> = ({
 	creatorCollections,
 	followers,
 	auth,
-	user
+	creator
 }) => {
 	return (
 		<>
-			<Head title={user?.username} />
+			<Head title={creator?.username} />
 			<Layout auth={auth}>
-				<HeaderImage image={user.banner_image || ''} />
+				<HeaderImage image={creator.banner_image} />
 				<CreatorPageCard
 					followers={followers}
-					creator={user}
+					creator={creator}
 				/>
 				{location.pathname ===
-				`/creator/${user.username}/collections` ? (
+				`/creator/${creator.username}/collections` ? (
 					<CollectionList
 						collections={creatorCollections}
 					/>

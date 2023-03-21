@@ -14,7 +14,8 @@ class CollectionController extends Controller
     public function index()
     {
         $collections = Collection::with('user')
-            ->paginate(6);
+            ->paginate(9);
+
         foreach ($collections as $collection) {
             $collection->nftItemsLimited;
         }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Auction;
 use App\Models\Category;
 use App\Models\NftItem;
 use Inertia\Inertia;
@@ -26,8 +27,11 @@ class NftItemController extends Controller
             ->limit(8)
             ->get();
 
+        $auction = Auction::where('nft_item_id', $data->id)->first();
+
         return Inertia::render('Nfts/CurrentNft', [
             'nft' => $data,
+            'auction' => $auction,
             'nfts' => $nfts
         ]);
     }

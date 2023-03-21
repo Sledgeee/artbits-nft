@@ -17,7 +17,7 @@ const CategoryList: FC<ICategoryListProps> = ({
 			</div>
 			<Grid.Container gap={2} justify='center'>
 				{categories.map(value => (
-					<Grid key={value.id} xs={5} sm={3}>
+					<Grid key={value.id} xs={6} sm={3}>
 						<CategoryCard category={value} />
 					</Grid>
 				))}
