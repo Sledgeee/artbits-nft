@@ -6,8 +6,6 @@ use App\Models\Collection;
 use App\Models\Follower;
 use App\Models\NftItem;
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class UserController extends Controller
@@ -28,25 +26,24 @@ class UserController extends Controller
         ]);
     }
 
-    public function subscribe(Request $request): RedirectResponse
+    public function follow($user_id)
     {
-        $isFollowed = Follower::where('from_user_id', $request->post('from'))
-            ->where('to_user_id', $request->post('to'))
-            ->first();
-        if ($isFollowed)
-            Follower::destroy('id', $isFollowed->id);
-        else
-            Follower::insert(
-                [
-                    'from_user_id' => $request->post('from'),
-                    'to_user_id' => $request->post('to'),
-                    'created_at' => fake()->dateTime()
-                ]
-            );
-        $user = User::where('id', $request->post('from'))
-            ->first();
+        if (!$user_id || !User::where(['id' => $user_id])->first() || !auth()->user() || Follower::where(['from_user_id' => auth()->user()->id, 'to_user_id' => $user_id])->first()) {
+            return Response(0, 400);
+        }
+        return !!Follower::create(['from_user_id' => auth()->user()->id, 'to_user_id' => $user_id]);
+    }
 
-        return redirect('/creator/' . $user->username . '/created');
+    public function unfollow($user_id)
+    {
+        if (!$user_id) {
+            return Response(0, 400);
+        }
+
+        return !!Follower::where([
+            'from_user_id' => auth()->user()->id,
+            'to_user_id' => $user_id
+        ])->delete();
     }
 
     public function creator(string $username, string $pathname)
@@ -56,22 +53,26 @@ class UserController extends Controller
             ->withCount('transactionsFrom', 'followersTo')
             ->first();
 
-        $userId = $user->id;
-
         if (!$user)
             return Response('Not found', 404);
 
-        $createdItems = NftItem::whereHas('transactions',
-            function ($query) use ($userId) {
-                $query->where('from_user_id', $userId);
-            })->with('user')->get();
+        $user_id = $user->id;
 
-        $ownedItems = NftItem::whereHas('transactions',
-            function ($query) use ($userId) {
-                $query->where('to_user_id', $userId);
-            })->with('user')->get();
+        $createdItems = NftItem::whereHas(
+            'transactions',
+            function ($query) use ($user_id) {
+                $query->where('from_user_id', $user_id);
+            }
+        )->with('user')->get();
 
-        $collections = Collection::where('user_id', $userId)
+        $ownedItems = NftItem::whereHas(
+            'transactions',
+            function ($query) use ($user_id) {
+                $query->where('to_user_id', $user_id);
+            }
+        )->with('user')->get();
+
+        $collections = Collection::where('user_id', $user_id)
             ->with('user')
             ->get();
 
@@ -90,8 +91,9 @@ class UserController extends Controller
 
         return Inertia::render('Creators/Index', [
             'user' => $user,
+            'followers' => auth()->user()->followersFrom,
             'creatorItems' => $userItems,
-            'creatorCollections' => $collections
+            'creatorCollections' => $collections,
         ]);
     }
 }
