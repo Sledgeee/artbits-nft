@@ -28,10 +28,19 @@ class UserController extends Controller
 
     public function follow($user_id)
     {
-        if (!$user_id || !User::where(['id' => $user_id])->first() || !auth()->user() || Follower::where(['from_user_id' => auth()->user()->id, 'to_user_id' => $user_id])->first()) {
+        if (!$user_id
+            || !User::where(['id' => $user_id])->first()
+            || !auth()->user()
+            || Follower::where([
+                'from_user_id' => auth()->user()->id,
+                'to_user_id' => $user_id
+            ])->first()) {
             return Response(0, 400);
         }
-        return !!Follower::create(['from_user_id' => auth()->user()->id, 'to_user_id' => $user_id]);
+        return !!Follower::create([
+            'from_user_id' => auth()->user()->id,
+            'to_user_id' => $user_id
+        ]);
     }
 
     public function unfollow($user_id)
@@ -48,50 +57,54 @@ class UserController extends Controller
 
     public function creator(string $username, string $pathname)
     {
-        $user = User::where('username', $username)
+        $creator = User::where('username', $username)
             ->withSum('transactionsFrom', 'value')
             ->withCount('transactionsFrom', 'followersTo')
             ->first();
 
-        if (!$user)
+        if (!$creator)
             return Response('Not found', 404);
 
-        $user_id = $user->id;
+        $creator_id = $creator->id;
 
         $createdItems = NftItem::whereHas(
             'transactions',
-            function ($query) use ($user_id) {
-                $query->where('from_user_id', $user_id);
+            function ($query) use ($creator_id) {
+                $query->where('from_user_id', $creator_id);
             }
         )->with('user')->get();
 
         $ownedItems = NftItem::whereHas(
             'transactions',
-            function ($query) use ($user_id) {
-                $query->where('to_user_id', $user_id);
+            function ($query) use ($creator_id) {
+                $query->where('to_user_id', $creator_id);
             }
         )->with('user')->get();
 
-        $collections = Collection::where('user_id', $user_id)
+        $collections = Collection::where('user_id', $creator_id)
             ->with('user')
-            ->get();
+            ->get()
+            ->each
+            ->nftItemsLimited;
 
-        foreach ($collections as $collection) {
-            $collection->nftItemsLimited;
-        }
-
-        $user->createdCount = count($createdItems);
-        $user->ownedCount = count($ownedItems);
-        $user->collectionCount = count($collections);
+        $creator->createdCount = count($createdItems);
+        $creator->ownedCount = count($ownedItems);
+        $creator->collectionCount = count($collections);
 
         $userItems = match ($pathname) {
             'owned' => $ownedItems,
             default => $createdItems,
         };
 
+        $userFollowers = [];
+        if (auth()->user())
+            $userFollowers = auth()
+                ->user()
+                ->followersFrom;
+
         return Inertia::render('Creators/Index', [
-            'user' => $user,
-            'followers' => auth()->user()->followersFrom,
+            'creator' => $creator,
+            'followers' => $userFollowers,
             'creatorItems' => $userItems,
             'creatorCollections' => $collections,
         ]);

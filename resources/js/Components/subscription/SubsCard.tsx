@@ -29,7 +29,7 @@ const SubsCard: FC = () => {
 	return (
 		<div className='container mx-auto'>
 			<Grid.Container gap={2} justify='center'>
-				<Grid xs={12} sm={5}>
+				<Grid xs={12} sm={7}>
 					<Card css={{ w: '100%', h: '300px', borderWidth: '0px' }}>
 						<Card.Body css={{ p: 0 }}>
 							<Card.Image
@@ -42,8 +42,8 @@ const SubsCard: FC = () => {
 						</Card.Body>
 					</Card>
 				</Grid>
-				<Grid xs={12} sm={7}>
-					<Box>
+				<Grid xs={12} sm={5}>
+					<Box className='mx-auto'>
 						<Text h1>Join our weekly digest</Text>
 						<Text h4 className='mb-4 lg:mb-0'>
 							Get exclusive promotions & updates straight to your inbox.

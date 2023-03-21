@@ -12,6 +12,7 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $heroNft = NftItem::with('user')->first();
         $users = User::withSum('transactionsFrom', 'value')
             ->orderBy('transactions_from_sum_value', 'DESC')
             ->limit(9)
@@ -26,6 +27,7 @@ class HomeController extends Controller
             ->take(4)
             ->get();
         return Inertia::render('Home', [
+            'heroNft' => $heroNft,
             'categories' => Category::all(),
             'creators' => $users,
             'collections' => $collections,
