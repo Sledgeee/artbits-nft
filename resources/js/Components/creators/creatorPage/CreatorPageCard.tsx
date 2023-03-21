@@ -1,5 +1,7 @@
 import Box from '@/Components/Box'
+import { Follower } from '@/types/follower.type'
 import { User } from '@/types/user.type'
+import { Link } from '@inertiajs/react'
 import {
 	Avatar,
 	Badge,
@@ -10,6 +12,7 @@ import {
 	Spacer,
 	Text
 } from '@nextui-org/react'
+import axios from 'axios'
 import { FC, useState } from 'react'
 import {
 	BsClipboard,
@@ -18,16 +21,15 @@ import {
 	BsTwitter,
 	BsYoutube
 } from 'react-icons/bs'
-import { Link, useForm } from '@inertiajs/react'
 
 interface CreatorPageCardProps {
 	creator: User
-	user?: User
+	followers?: Follower[]
 }
 
 const CreatorButtons: FC<CreatorPageCardProps> = ({
-	user,
-	creator
+	creator,
+	followers
 }) => {
 	const wallet = creator.metamask_address
 	const shortText =
@@ -43,40 +45,54 @@ const CreatorButtons: FC<CreatorPageCardProps> = ({
 		setTimeout(() => setButtonText(shortText), 3000)
 	}
 
-	const isFollowed = true
-
-	const { post, processing, wasSuccessful } = useForm({
-		from: user?.id || 1,
-		to: creator.id
-	})
 	const [color, setColor] = useState<'primary' | 'error'>(
 		'primary'
 	)
+	const [followBtnIsDisabled, setFollowBtnIsDisabled] =
+		useState(false)
+	const [followed, setFollowed] = useState(
+		followers?.some(x => x.to_user_id === creator.id) ||
+			false
+	)
 	const submit = () => {
-		if (user) post(route('user.follow'))
-		else setColor('error')
+		setFollowBtnIsDisabled(true)
+
+		const handle = (url: string, state: boolean) => {
+			axios
+				.get(`/api/${url}/${creator.id}`)
+				.then(response => {
+					if (response.status === 200) {
+						setFollowed(state)
+						setFollowBtnIsDisabled(false)
+					}
+				})
+				.catch(e => {
+					console.log(e)
+					setColor('error')
+				})
+		}
+
+		!followed
+			? handle('follow', true)
+			: handle('unfollow', false)
 	}
 
 	return (
 		<Box className='flex z-0 mx-auto md:mx-0'>
 			<Button
 				onPress={submit}
-				disabled={processing}
+				disabled={followBtnIsDisabled}
 				color={color}
 				auto
 			>
-				{processing ? (
+				{followBtnIsDisabled ? (
 					<Loading
 						type='points'
 						color='currentColor'
 						size='sm'
 					/>
-				) : wasSuccessful ? (
-					isFollowed ? (
-						'Followed'
-					) : (
-						'UnFollow'
-					)
+				) : followed ? (
+					'Unfollow'
 				) : (
 					'+ Follow'
 				)}
@@ -95,7 +111,7 @@ const CreatorButtons: FC<CreatorPageCardProps> = ({
 }
 
 const CreatorPageCard: FC<CreatorPageCardProps> = ({
-	user,
+	followers,
 	creator
 }) => {
 	const checkActiveRoute = (href: string) =>
@@ -177,7 +193,10 @@ const CreatorPageCard: FC<CreatorPageCardProps> = ({
 					</Box>
 				</Grid>
 				<Grid xs={12} sm={5} className='flex-end'>
-					<CreatorButtons creator={creator} user={user} />
+					<CreatorButtons
+						creator={creator}
+						followers={followers}
+					/>
 				</Grid>
 			</Grid.Container>
 			<Box>

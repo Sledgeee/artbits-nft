@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-	return $request->user();
+Route::middleware('auth')->group(function () {
+	Route::get('/follow/{user_id}', [UserController::class, 'follow'])->name('user.follow');
+	Route::get('/unfollow/{user_id}', [UserController::class, 'unfollow'])->name('user.unfollow');
 });

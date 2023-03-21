@@ -45,15 +45,15 @@ class DatabaseSeeder extends Seeder
                 'image' => '/images/categories/Virtual Worlds.png'
             ]
         ];
-//        User::factory(500)->create();
-//        Category::insert($categories);
-//        NftItem::factory(10000)->create();
-//        NFtItemTag::factory(30000)->create();
-//        Collection::factory(100)->create();
-//        CollectionNftItems::factory(3000)->create();
-//        Auction::factory(2789)->create();
-//        AuctionBet::factory(13024)->create();
-//        Transaction::factory(36546)->create();
-//        Follower::factory(200)->create();
+        \App\Models\User::factory(500)->create();
+        \App\Models\Category::insert($categories);
+        \App\Models\NftItem::factory(10000)->create();
+        \App\Models\NFtItemTag::factory(30000)->create();
+        \App\Models\Collection::factory(100)->create();
+        \App\Models\CollectionNftItems::factory(3000)->create();
+        \App\Models\Auction::factory(2789)->create();
+        \App\Models\AuctionBet::factory(13024)->create();
+        \App\Models\Transaction::factory(36546)->create();
+        \App\Models\Follower::factory(200)->create();
     }
 }
