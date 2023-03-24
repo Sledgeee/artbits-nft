@@ -6,7 +6,9 @@ interface HeaderImageProps {
 	image: string
 }
 
-const HeaderImage: FC<HeaderImageProps> = ({ image }) => {
+const HeaderImageSection: FC<HeaderImageProps> = ({
+	image
+}) => {
 	return (
 		<Box>
 			<Image
@@ -21,4 +23,4 @@ const HeaderImage: FC<HeaderImageProps> = ({ image }) => {
 	)
 }
 
-export default HeaderImage
+export default HeaderImageSection

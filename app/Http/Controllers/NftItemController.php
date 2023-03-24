@@ -42,19 +42,19 @@ class NftItemController extends Controller
     public function nfts()
     {
         return Inertia::render('Nfts/AllNfts', [
-            'nfts' => NftItem::with('user')->paginate(16)
+            'nfts' => NftItem::with('user')->paginate(24)
         ]);
     }
 
     /**
      * Display a listing of the nft by category.
      */
-    public function nftsByCategory(int $category_id)
+    public function nftsByCategory(string $pathname)
     {
-        $category = Category::where('id', $category_id)->first();
-        $nftItems = NftItem::where('category_id', $category_id)
+        $category = Category::where('pathname', $pathname)->first();
+        $nftItems = NftItem::where('category_id', $category->id)
             ->with('user')
-            ->paginate(16);
+            ->paginate(24);
 
         return Inertia::render('Nfts/ByCategory', [
             'category' => $category,

@@ -2,12 +2,12 @@
 
 use App\Http\Controllers\AuctionController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NftItemController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index');
@@ -34,9 +34,10 @@ Route::controller(CollectionController::class)->group(function () {
     Route::get('/collection/{collection_id}', 'nftsByCollection');
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::controller(DashboardController::class)->group(function () {
+    Route::get('/dashboard', 'index')->name('dashboard');
+})->
+middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
