@@ -5,7 +5,7 @@ export interface User extends Creator {
 	avatar_image: string
 	metamask_address: string
 	createdCount: number
-	ownedCount: string
+	ownedCount: number
 	collectionCount: number
 	followers_to_count: number
 	followers_from_count: number

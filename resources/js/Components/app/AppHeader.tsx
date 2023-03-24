@@ -64,9 +64,9 @@ const AppHeader: FC<IAppHeaderProps> = ({ user }) => {
 				hideIn='xs'
 				variant='highlight'
 			>
-				{routes.map(value => (
+				{routes.map((value, index) => (
 					<Navbar.Link
-						key={value.href}
+						key={index}
 						isActive={checkActive(value.href)}
 						onClick={() => navigate(value.href)}
 					>
@@ -135,9 +135,17 @@ const AppHeader: FC<IAppHeaderProps> = ({ user }) => {
 											{user.email}
 										</Text>
 									</Dropdown.Item>
-									<Dropdown.Item key='settings' withDivider>
+									<Dropdown.Item
+										key='dashboard'
+										withDivider
+									>
 										<Link href={route('dashboard')}>
 											Dashboard
+										</Link>
+									</Dropdown.Item>
+									<Dropdown.Item key='edit-profile'>
+										<Link href={'/profile'}>
+											Edit profile
 										</Link>
 									</Dropdown.Item>
 									<Dropdown.Item withDivider color='error'>
