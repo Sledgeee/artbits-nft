@@ -20,7 +20,7 @@ class NftUpdateRequest extends FormRequest
             'description' => 'nullable|string|max:2000',
             'image' => 'nullable|url',
             'header_image' => 'nullable|url',
-            'price' => 'required|numeric|min:0',
+            'price' => 'numeric|min:0',
             'category_id' => 'required'
         ];
     }

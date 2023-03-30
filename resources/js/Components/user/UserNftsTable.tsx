@@ -8,9 +8,8 @@ import {
 	Text,
 	Tooltip
 } from '@nextui-org/react'
-import { Link } from '@inertiajs/react'
 import { Nft } from '@/types/nft.type'
-import { BsEye, BsPen, BsTrash } from 'react-icons/bs'
+import { BsEye, BsPen } from 'react-icons/bs'
 
 interface UserNftsTableProps {
 	userItems: Nft[]
@@ -88,7 +87,7 @@ const UserNftsTable: FC<UserNftsTableProps> = ({
 											<Tooltip content='Details'>
 												<a
 													target='_blank'
-													href={`/nft/${value.user.username}/${value.name}`}
+													href={`/nft/${value?.user?.username}/${value.name}`}
 												>
 													<BsEye size={20} fill='#979797' />
 												</a>

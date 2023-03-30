@@ -27,6 +27,7 @@ const CreateNftCard: FC<CreateNftCardProps> = ({
 		name: '',
 		description: '',
 		image: '',
+		price: 0,
 		header_image: '',
 		category_id: categories[0].id
 	})
@@ -46,6 +47,9 @@ const CreateNftCard: FC<CreateNftCardProps> = ({
 			setData('name', e.target.value)
 		}
 	}
+
+	const createNftItem = () => post(route('nft.create'))
+
 	return (
 		<Card css={{ borderWidth: '0px' }}>
 			<Card.Body>
@@ -134,7 +138,7 @@ const CreateNftCard: FC<CreateNftCardProps> = ({
 					</Dropdown.Menu>
 				</Dropdown>
 				<Spacer y={1} />
-				<Button>Create nft</Button>
+				<Button onClick={createNftItem}>Create nft</Button>
 			</Card.Body>
 		</Card>
 	)

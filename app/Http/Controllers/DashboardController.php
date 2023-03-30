@@ -14,7 +14,7 @@ class DashboardController extends Controller
         $userId = auth()->user()->id;
         $categories = Category::all();
 
-        $userItems = NftItem::where('user_id', $userId)->get();
+        $userItems = NftItem::with('user')->where('user_id', $userId)->get();
 
         $transactions = Transaction::selectRaw('DATE(created_at) as date, SUM(value) as total_value')
             ->where('from_user_id', $userId)
