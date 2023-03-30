@@ -2,60 +2,44 @@ import Layout from '@/Components/Layout'
 import { Head } from '@inertiajs/react'
 import { FC } from 'react'
 import { BaseProps } from '@/types/base.type'
-import { Card, Text } from '@nextui-org/react'
-import {
-	CartesianGrid,
-	Line,
-	LineChart,
-	ResponsiveContainer,
-	XAxis,
-	YAxis
-} from 'recharts'
 import { TotalTransaction } from '@/types/transaction.type'
+import { Nft } from '@/types/nft.type'
+import { Category } from '@/types/category.type'
+import TransactionGraph from '@/Components/user/analytics/TransactionGraph'
+import CreateNftCard from '@/Components/user/CreateNftCard'
+import { Spacer, Text } from '@nextui-org/react'
+import UserNftsTable from '@/Components/user/UserNftsTable'
 
 interface Props extends BaseProps {
 	transactions: TotalTransaction[]
+	userItems: Nft[]
+	categories: Category[]
 }
 
-const Dashboard: FC<Props> = ({ auth, transactions }) => {
+const Dashboard: FC<Props> = ({
+	auth,
+	transactions,
+	userItems,
+	categories
+}) => {
+	return (
+		<>
+			<Head title='Dashboard' />
 
-
-    return (
-        <>
-            <Head title='Dashboard' />
-
-            <Layout auth={auth}>
-                <div className='max-w-7xl mx-auto py-12'>
-                    <Card css={{ borderWidth: '0px' }}>
-                        <Card.Body>
-                            <Text h3 className='mx-6'>
-                                Transactions review
-                            </Text>
-                            <div className='h-96'>
-                                <ResponsiveContainer
-                                    width='100%'
-                                    height='100%'
-                                    className='-mx-4'
-                                >
-                                    <LineChart data={transactions}>
-                                        <CartesianGrid strokeDasharray='3 3' />
-                                        <XAxis
-                                            dataKey='date'
-                                            name='Date:'
-                                        />
-                                        <YAxis name='ETH' />
-                                        <Line
-                                            type='monotone'
-                                            dataKey='total_value'
-                                        />
-                                    </LineChart>
-                                </ResponsiveContainer>
-                            </div>
-                        </Card.Body>
-                    </Card>
-                </div>
-            </Layout>
-        </>
-    )
+			<Layout auth={auth}>
+				<div className='container mx-auto max-w-7xl py-12 px-4'>
+					<Text h2>Dashboard</Text>
+					<CreateNftCard
+						userItems={userItems}
+						categories={categories}
+					/>
+                    <Spacer y={1} />
+					<UserNftsTable userItems={userItems} />
+					<Spacer y={1} />
+					<TransactionGraph transactions={transactions} />
+				</div>
+			</Layout>
+		</>
+	)
 }
 export default Dashboard

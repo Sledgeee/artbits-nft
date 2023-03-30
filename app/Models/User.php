@@ -24,6 +24,7 @@ class User extends Authenticatable
         'bio',
         'avatar_image',
         'banner_image',
+        'metamask_address'
     ];
 
     /**

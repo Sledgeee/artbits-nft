@@ -1,4 +1,3 @@
-import Box from '@/Components/Box'
 import { Nft } from '@/types/nft.type'
 import {
 	Card,
@@ -25,7 +24,7 @@ const NftSection: FC<NftPageCardProps> = ({
 		<div className='container mx-auto'>
 			<Grid.Container gap={2} justify='center'>
 				<Grid xs={12} sm={7}>
-					<Box>
+					<div>
 						<Text h1>{nft?.name}</Text>
 						<Text h5 color='#787f85'>
 							Minted on{' '}
@@ -93,7 +92,7 @@ const NftSection: FC<NftPageCardProps> = ({
 								</Grid.Container>
 							</>
 						)}
-					</Box>
+					</div>
 				</Grid>
 				<Grid sm={5}>
 					{auction?.end_at && (

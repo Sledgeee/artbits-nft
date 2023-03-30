@@ -7,7 +7,7 @@ import {
 	Spacer,
 	Text
 } from '@nextui-org/react'
-import { BsLock } from 'react-icons/bs'
+import { BsLock, BsLockFill } from 'react-icons/bs'
 
 export default function UpdatePasswordForm() {
 	const {
@@ -64,7 +64,7 @@ export default function UpdatePasswordForm() {
 						color='primary'
 						size='lg'
 						placeholder='Enter current password'
-						contentLeft={<BsLock />}
+						contentLeft={<BsLockFill />}
 					/>
 
 					<Input.Password

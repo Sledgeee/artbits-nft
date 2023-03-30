@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NftUpdateRequest;
 use App\Models\Auction;
 use App\Models\Category;
 use App\Models\NftItem;
@@ -9,6 +10,16 @@ use Inertia\Inertia;
 
 class NftItemController extends Controller
 {
+
+    public function create(NftUpdateRequest $request)
+    {
+        if (!auth()->user())
+            return Response(0, 400);
+
+        return
+            !!NftItem::create($request->validated());
+    }
+
 
     public function currentNft(string $username, string $name)
     {

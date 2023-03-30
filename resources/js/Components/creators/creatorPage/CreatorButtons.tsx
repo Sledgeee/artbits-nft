@@ -1,6 +1,5 @@
 import { FC, useState } from 'react'
 import axios from 'axios'
-import Box from '@/Components/Box'
 import { Button, Loading, Spacer } from '@nextui-org/react'
 import { BsClipboard } from 'react-icons/bs'
 import { User } from '@/types/user.type'
@@ -15,7 +14,7 @@ const CreatorButtons: FC<CreatorSectionProps> = ({
 	creator,
 	followers
 }) => {
-	const wallet = creator.metamask_address
+	const wallet = creator?.metamask_address || ''
 	const shortText =
 		wallet.substring(0, 8) +
 		'...' +
@@ -47,10 +46,10 @@ const CreatorButtons: FC<CreatorSectionProps> = ({
 					if (response.status === 200) {
 						setFollowed(state)
 						setFollowBtnIsDisabled(false)
-					} else setColor('error')
+					}
 				})
-				.catch(e => {
-					console.log(e)
+				.catch(() => {
+                    setFollowBtnIsDisabled(false)
 					setColor('error')
 				})
 		}
@@ -61,7 +60,7 @@ const CreatorButtons: FC<CreatorSectionProps> = ({
 	}
 
 	return (
-		<Box className='flex z-0 mx-auto md:ml-auto'>
+		<div className='flex z-0 mx-auto md:ml-auto'>
 			<Button
 				onPress={submit}
 				disabled={followBtnIsDisabled}
@@ -89,7 +88,7 @@ const CreatorButtons: FC<CreatorSectionProps> = ({
 				<BsClipboard className='mr-2' />
 				{buttonText}
 			</Button>
-		</Box>
+		</div>
 	)
 }
 
