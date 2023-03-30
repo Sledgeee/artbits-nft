@@ -1,4 +1,3 @@
-import Box from '@/Components/Box'
 import {
 	Button,
 	Input,
@@ -19,9 +18,9 @@ import { MdEmail } from 'react-icons/md'
 const AppFooter: FC = () => {
 	return (
 		<footer>
-			<Box className='min-h-[20px] container mx-auto border-t-[0.5px] mt-3'>
-				<Box className='my-4 flex justify-between ml-4 mx-4 sm:mr-20'>
-					<Box>
+			<div className='min-h-[20px] container mx-auto border-t-[0.5px] mt-3'>
+				<div className='my-4 flex justify-between ml-4 mx-4 sm:mr-20'>
+					<div>
 						<Row>
 							<AiFillShop className='mr-1 mt-1' />
 							<Text b>ArtBits - NFT Marketplace</Text>
@@ -35,8 +34,8 @@ const AppFooter: FC = () => {
 							<BsInstagram />
 							<BsTwitter />
 						</Row>
-					</Box>
-					<Box>
+					</div>
+					<div>
 						<Text h4 b>
 							Explore
 						</Text>
@@ -49,8 +48,8 @@ const AppFooter: FC = () => {
 						<Text h6 color='#787f85'>
 							Connect a wallet
 						</Text>
-					</Box>
-					<Box>
+					</div>
+					<div>
 						<Text h4 b>
 							Join our weekly digest
 						</Text>
@@ -74,9 +73,9 @@ const AppFooter: FC = () => {
 								<Text span>Subscribe</Text>
 							</Button>
 						</Row>
-					</Box>
-				</Box>
-			</Box>
+					</div>
+				</div>
+			</div>
 		</footer>
 	)
 }

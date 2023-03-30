@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Collection;
-use App\Models\Follower;
 use App\Models\NftItem;
 use App\Models\User;
 use Inertia\Inertia;
@@ -24,35 +23,6 @@ class UserController extends Controller
         return Inertia::render('Creators/Rankings', [
             'topCreators' => $creators
         ]);
-    }
-
-    public function follow($user_id)
-    {
-        if (!$user_id
-            || !User::where(['id' => $user_id])->first()
-            || !auth()->user()
-            || Follower::where([
-                'from_user_id' => auth()->user()->id,
-                'to_user_id' => $user_id
-            ])->first()) {
-            return Response(0, 400);
-        }
-        return !!Follower::create([
-            'from_user_id' => auth()->user()->id,
-            'to_user_id' => $user_id
-        ]);
-    }
-
-    public function unfollow($user_id)
-    {
-        if (!$user_id) {
-            return Response(0, 400);
-        }
-
-        return !!Follower::where([
-            'from_user_id' => auth()->user()->id,
-            'to_user_id' => $user_id
-        ])->delete();
     }
 
     public function creator(string $username, string $pathname)

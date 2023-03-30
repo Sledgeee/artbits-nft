@@ -1,4 +1,3 @@
-import Box from '@/Components/Box'
 import { Button, Card, Grid, Input, Text, useInput } from '@nextui-org/react'
 import { FC, useMemo } from 'react'
 import { MdEmail } from 'react-icons/md'
@@ -43,12 +42,12 @@ const SubsCard: FC = () => {
 					</Card>
 				</Grid>
 				<Grid xs={12} sm={5}>
-					<Box className='mx-auto'>
+					<div className='mx-auto'>
 						<Text h1>Join our weekly digest</Text>
 						<Text h4 className='mb-4 lg:mb-0'>
 							Get exclusive promotions & updates straight to your inbox.
 						</Text>
-						<Box className='mt-6'>
+						<div className='mt-6'>
 							<Input
 								{...bindings}
 								css={{ width: '100%' }}
@@ -71,8 +70,8 @@ const SubsCard: FC = () => {
 								<MdEmail className='mr-1' />
 								<Text span>Subscribe</Text>
 							</Button>
-						</Box>
-					</Box>
+						</div>
+					</div>
 				</Grid>
 			</Grid.Container>
 		</div>

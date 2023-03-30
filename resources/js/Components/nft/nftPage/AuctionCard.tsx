@@ -7,7 +7,6 @@ import {
 	Spacer,
 	Text
 } from '@nextui-org/react'
-import Box from '@/Components/Box'
 
 const AuctionCard: FC<{ auction: Auction }> = ({
 	auction
@@ -50,47 +49,47 @@ const AuctionCard: FC<{ auction: Auction }> = ({
 						Auction ends in: {auctionDate.toString()}
 					</Text>
 					<Spacer y={1} />
-					<Box className='flex justify-between mx-3'>
-						<Box>
+					<div className='flex justify-between mx-3'>
+						<div>
 							<Text h3 b>
 								{date.getUTCDate() - 1}
 							</Text>
 							<Text h6>Days</Text>
-						</Box>
-						<Box>
+						</div>
+						<div>
 							<Text h3 b>
 								:
 							</Text>
-						</Box>
-						<Box>
+						</div>
+						<div>
 							<Text h3 b>
 								{date.getUTCHours()}
 							</Text>
 							<Text h6>Hours</Text>
-						</Box>
-						<Box>
+						</div>
+						<div>
 							<Text h3 b>
 								:
 							</Text>
-						</Box>
-						<Box>
+						</div>
+						<div>
 							<Text h3 b>
 								{date.getUTCMinutes()}
 							</Text>
 							<Text h6>Minutes</Text>
-						</Box>
-						<Box>
+						</div>
+						<span>
 							<Text h3 b>
 								:
 							</Text>
-						</Box>
-						<Box>
+						</span>
+						<div>
 							<Text h3 b>
 								{date.getUTCSeconds()}
 							</Text>
 							<Text h6>Seconds</Text>
-						</Box>
-					</Box>
+						</div>
+					</div>
 					<Spacer y={0.5} />
 					<Button
 						onPress={handleConfetti}

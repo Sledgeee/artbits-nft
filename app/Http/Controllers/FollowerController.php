@@ -3,63 +3,42 @@
 namespace App\Http\Controllers;
 
 use App\Models\Follower;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class FollowerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function follow($user_id)
     {
-        //
+        if (!$user_id
+            || !User::where(['id' => $user_id])->first()
+            || !auth()->user()
+            || Follower::where([
+                'from_user_id' => auth()->user()->id,
+                'to_user_id' => $user_id
+            ])->first()) {
+            return Response(0, 400);
+        }
+        return !!Follower::create([
+            'from_user_id' => auth()->user()->id,
+            'to_user_id' => $user_id
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function unfollow($user_id)
     {
-        //
-    }
+        if (!$user_id) {
+            return Response(0, 400);
+        }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Follower $follower)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Follower $follower)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Follower $follower)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Follower $follower)
-    {
-        //
+        return !!Follower::where([
+            'from_user_id' => auth()->user()->id,
+            'to_user_id' => $user_id
+        ])->delete();
     }
 }

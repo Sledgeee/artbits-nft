@@ -1,4 +1,3 @@
-import Box from '@/Components/Box'
 import {Nft} from '@/types/nft.type'
 import {router} from '@inertiajs/react'
 import {Card, Col, Grid, Row, Text, User} from '@nextui-org/react'
@@ -58,12 +57,12 @@ const NftCard: FC<NftCardProps> = ({item}) => {
                         </Grid.Container>
                     </Col>
                     <Row justify='flex-end'>
-                        <Box className='mr-2 mt-3 text-right'>
+                        <div className='mr-2 mt-3 text-right'>
                             <Text h6 color='#858584'>
                                 Price
                             </Text>
                             <Text h5>{item?.price} ETH</Text>
-                        </Box>
+                        </div>
                     </Row>
                 </Row>
             </Card.Footer>

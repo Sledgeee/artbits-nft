@@ -1,6 +1,5 @@
 import AppFooter from '@/Components/app/AppFooter'
 import AppHeader from '@/Components/app/AppHeader'
-import Box from '@/Components/Box'
 import { User } from '@/types/user.type'
 import {
 	createTheme,
@@ -16,19 +15,25 @@ const lightTheme = createTheme({
 const darkTheme = createTheme({
 	type: 'dark'
 })
-type Props = {
+
+type LayoutProps = {
 	children: JSX.Element | JSX.Element[]
 	auth: { user: User }
 }
 
-export const Layout: FC<Props> = ({ children, auth }) => {
+export const Layout: FC<LayoutProps> = ({
+	children,
+	auth
+}) => {
 	const [isDark, setIsDark] = useState(false)
 
 	useEffect(() => {
 		const theme = window.localStorage.getItem('data-theme')
 		setIsDark(theme === 'dark')
 		const observer = new MutationObserver(() => {
-			const newTheme = getDocumentTheme(document?.documentElement)
+			const newTheme = getDocumentTheme(
+				document?.documentElement
+			)
 			setIsDark(newTheme === 'dark')
 		})
 		observer.observe(document?.documentElement, {
@@ -40,13 +45,15 @@ export const Layout: FC<Props> = ({ children, auth }) => {
 
 	return (
 		<NextUIProvider theme={isDark ? darkTheme : lightTheme}>
-			<Box className='flex flex-col h-screen'>
+			<div className='flex flex-col h-screen'>
 				<AppHeader user={auth.user} />
 				<main className='w-full flex-grow'>
-					<div className='max-w-7xl mx-auto'>{children}</div>
+					<div className='max-w-7xl mx-auto'>
+						{children}
+					</div>
 				</main>
 				<AppFooter />
-			</Box>
+			</div>
 		</NextUIProvider>
 	)
 }

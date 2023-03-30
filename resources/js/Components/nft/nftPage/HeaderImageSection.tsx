@@ -1,4 +1,3 @@
-import Box from '@/Components/Box'
 import { Image } from '@nextui-org/react'
 import { FC } from 'react'
 
@@ -10,7 +9,7 @@ const HeaderImageSection: FC<HeaderImageProps> = ({
 	image
 }) => {
 	return (
-		<Box>
+		<div>
 			<Image
 				showSkeleton
 				width='100%'
@@ -19,7 +18,7 @@ const HeaderImageSection: FC<HeaderImageProps> = ({
 				src={image}
 				alt='Header Image'
 			/>
-		</Box>
+		</div>
 	)
 }
 

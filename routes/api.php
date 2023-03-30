@@ -1,20 +1,12 @@
 <?php
 
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\FollowerController;
+use App\Http\Controllers\NftItemController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
 
 Route::middleware('auth')->group(function () {
-	Route::get('/follow/{user_id}', [UserController::class, 'follow'])->name('user.follow');
-	Route::get('/unfollow/{user_id}', [UserController::class, 'unfollow'])->name('user.unfollow');
+    Route::post('/nft/create', [NftItemController::class, 'create'])->name('nft.create');
+    Route::get('/follow/{user_id}', [FollowerController::class, 'follow'])->name('user.follow');
+    Route::get('/unfollow/{user_id}', [FollowerController::class, 'unfollow'])->name('user.unfollow');
 });
