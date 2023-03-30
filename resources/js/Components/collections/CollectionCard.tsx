@@ -1,4 +1,3 @@
-import Box from '@/Components/Box'
 import {Collection} from '@/types/collection.type'
 import {router} from '@inertiajs/react'
 import {Card, Grid, Spacer, User} from '@nextui-org/react'
@@ -20,7 +19,7 @@ const CollectionCard: FC<ICollectionCardProps> = ({collection}) => {
             isHoverable
             onPress={() => router.replace(`/collection/${collection.id}`)}
         >
-            <Box className={`p-1 transition duration-500 motion-reduce:transition-none ${
+            <div className={`p-1 transition duration-500 motion-reduce:transition-none ${
                 inView ? "opacity-100 blur-none translate-y-0"
                     : "opacity-70 blur-sm translate-y-5"
             } motion-reduce:hover:transform-none`}>
@@ -34,7 +33,7 @@ const CollectionCard: FC<ICollectionCardProps> = ({collection}) => {
                     />
                 </Card>
                 <Spacer y={0.2}/>
-                <Box>
+                <div>
                     <Grid.Container gap={1} justify='flex-start'>
                         {collection.nft_items_limited.map((value, index) => (
                             <Grid xs key={index}>
@@ -50,14 +49,14 @@ const CollectionCard: FC<ICollectionCardProps> = ({collection}) => {
                             </Grid>
                         ))}
                     </Grid.Container>
-                </Box>
+                </div>
                 <Spacer y={0.2}/>
                 <User
                     name={collection.name}
                     src={collection.user?.avatar_image || '/images/icons/1.png'}
                     description={collection.user?.username}
                 />
-            </Box>
+            </div>
         </Card>
     )
 }

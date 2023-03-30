@@ -21,17 +21,12 @@ const ForgotPassForm: FC = () => {
 	return (
 		<div>
 			<div className='min-h-screen flex max-w-[1920px] mx-auto'>
-				<div className='hidden lg:flex w-full lg:w-1/2 justify-around items-center bg-gradient-to-bl from-purple-900 to-blue-900'>
-					<div className=' w-full mx-auto px-20 flex-col items-center space-y-6'>
-						<h1 className='text-white font-bold text-4xl font-sans'>
-							Forgot password
-						</h1>
-						<p className='text-white mt-1'>
-							Forgot your password? No problem. Just let us
-							know your email address and we will email you
-							a password reset link that will allow you to
-							choose a new one.
-						</p>
+				<div className='hidden lg:flex w-full lg:w-1/2'>
+					<div className='w-full h-full overflow-hidden'>
+						<img
+							src='https://cdn.i-scmp.com/sites/default/files/styles/portrait/public/d8/images/canvas/2021/12/17/986e4a7b-7baf-4078-b82c-4c44d1958150_2fa4f97a.jpg?itok=kcHz5C3G&v=1639737717'
+							className='object-cover h-full'
+						/>
 					</div>
 				</div>
 				<div className='flex w-full lg:w-1/2 justify-center items-center bg-gray-900 space-y-8'>

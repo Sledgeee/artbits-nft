@@ -3,7 +3,6 @@ import './bootstrap'
 
 import { createInertiaApp } from '@inertiajs/react'
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
-import { MetaMaskProvider } from 'metamask-react'
 import { createRoot } from 'react-dom/client'
 
 createInertiaApp({
@@ -16,11 +15,7 @@ createInertiaApp({
 	setup({ el, App, props }) {
 		const root = createRoot(el)
 
-		root.render(
-			<MetaMaskProvider>
-				<App {...props} />
-			</MetaMaskProvider>
-		)
+		root.render(<App {...props} />)
 	},
 	progress: {
 		delay: 250,

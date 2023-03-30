@@ -20,7 +20,8 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => fake()->unique()->userName(),
-            'image' => fake()->imageUrl()
+            'image' => fake()->imageUrl(),
+            'pathname' => fake()->userName()
         ];
     }
 }

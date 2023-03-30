@@ -1,8 +1,8 @@
 import CollectionList from '@/Components/collections/CollectionList'
-import CreatorPageCard from '@/Components/creators/creatorPage/CreatorPageCard'
+import CreatorSection from '@/Components/creators/creatorPage/CreatorSection'
 import Layout from '@/Components/Layout'
 import DefaultNftList from '@/Components/nft/DefaultNftList'
-import HeaderImage from '@/Components/nft/nftPage/HeaderImage'
+import HeaderImageSection from '@/Components/nft/nftPage/HeaderImageSection'
 import { BaseProps } from '@/types/base.type'
 import { Collection } from '@/types/collection.type'
 import { Follower } from '@/types/follower.type'
@@ -13,9 +13,9 @@ import { FC } from 'react'
 
 interface CreatorProps extends BaseProps {
 	creator: User
-    creatorItems: Nft[]
-    creatorCollections: Collection[]
-    followers: Follower[]
+	creatorItems: Nft[]
+	creatorCollections: Collection[]
+	followers: Follower[]
 }
 
 const Index: FC<CreatorProps> = ({
@@ -29,8 +29,8 @@ const Index: FC<CreatorProps> = ({
 		<>
 			<Head title={creator?.username} />
 			<Layout auth={auth}>
-				<HeaderImage image={creator.banner_image} />
-				<CreatorPageCard
+				<HeaderImageSection image={creator.banner_image} />
+				<CreatorSection
 					followers={followers}
 					creator={creator}
 				/>

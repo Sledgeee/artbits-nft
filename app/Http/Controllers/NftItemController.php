@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NftUpdateRequest;
 use App\Models\Auction;
 use App\Models\Category;
 use App\Models\NftItem;
@@ -9,6 +10,16 @@ use Inertia\Inertia;
 
 class NftItemController extends Controller
 {
+
+    public function create(NftUpdateRequest $request)
+    {
+        if (!auth()->user())
+            return Response(0, 400);
+
+        return
+            !!NftItem::create($request->validated());
+    }
+
 
     public function currentNft(string $username, string $name)
     {
@@ -42,19 +53,19 @@ class NftItemController extends Controller
     public function nfts()
     {
         return Inertia::render('Nfts/AllNfts', [
-            'nfts' => NftItem::with('user')->paginate(16)
+            'nfts' => NftItem::with('user')->paginate(24)
         ]);
     }
 
     /**
      * Display a listing of the nft by category.
      */
-    public function nftsByCategory(int $category_id)
+    public function nftsByCategory(string $pathname)
     {
-        $category = Category::where('id', $category_id)->first();
-        $nftItems = NftItem::where('category_id', $category_id)
+        $category = Category::where('pathname', $pathname)->first();
+        $nftItems = NftItem::where('category_id', $category->id)
             ->with('user')
-            ->paginate(16);
+            ->paginate(24);
 
         return Inertia::render('Nfts/ByCategory', [
             'category' => $category,
