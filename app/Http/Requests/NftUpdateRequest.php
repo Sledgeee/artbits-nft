@@ -17,11 +17,10 @@ class NftUpdateRequest extends FormRequest
     {
         return [
             'name' => 'required|string|min:3|max:255',
-            'description' => 'nullable|string|max:2000',
-            'image' => 'nullable|url',
-            'header_image' => 'nullable|url',
-            'price' => 'required|numeric|min:0',
-            'category_id' => 'required'
+            'description' => 'string|max:2000',
+            'price' => 'required|numeric',
+            'image' => 'required|image|mimes:png,jpg,jpeg,webp|max:10256',
+            'category_id' => 'required',
         ];
     }
 

@@ -6,13 +6,11 @@ import {
 	Spacer,
 	Text
 } from '@nextui-org/react'
-import { useForm, usePage } from '@inertiajs/react'
-import { InertiaPage } from '@/Components/auth/Partials/UpdateProfileInformationForm'
+import { useForm } from '@inertiajs/react'
+import { useUser } from '@/hooks/useUser'
 
 const ConnectWalletForm: FC = () => {
-	const user = usePage<
-		InertiaPage & { [key: string]: any }
-	>().props.auth.user
+	const user = useUser()
 
 	const { data, setData, patch, errors } = useForm({
 		email: user.email,

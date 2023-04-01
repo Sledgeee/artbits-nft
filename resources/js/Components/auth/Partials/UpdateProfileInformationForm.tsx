@@ -19,22 +19,10 @@ import {
 	BsPersonCircle
 } from 'react-icons/bs'
 import React from 'react'
-import { User } from '@/types/user.type'
-
-export interface InertiaPage extends Page<PageProps> {
-	props: {
-		errors: Errors & ErrorBag
-		auth: {
-			user: User
-		}
-	}
-}
+import { useUser } from '@/hooks/useUser'
 
 const UpdateProfileInformation = () => {
-	const user = usePage<
-		InertiaPage & { [key: string]: any }
-	>().props.auth.user
-
+	const user = useUser()
 	const { data, setData, patch, errors, processing } =
 		useForm({
 			username: user.username,

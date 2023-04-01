@@ -2,12 +2,15 @@ import { FC } from 'react'
 import { TotalTransaction } from '@/types/transaction.type'
 import { Card, Text } from '@nextui-org/react'
 import {
-	CartesianGrid,
-	Line,
-	LineChart,
-	ResponsiveContainer,
-	XAxis,
-	YAxis
+    Area,
+    AreaChart,
+    CartesianGrid, Legend,
+    Line,
+    LineChart,
+    ResponsiveContainer,
+    Tooltip,
+    XAxis,
+    YAxis
 } from 'recharts'
 
 interface TransactionGraphProps {
@@ -23,18 +26,37 @@ const TransactionGraph: FC<TransactionGraphProps> = ({
 				<Text h3 className='mx-6'>
 					Transactions review
 				</Text>
-				<div className='h-96'>
+				<div className='h-[28rem]'>
 					<ResponsiveContainer
 						width='100%'
 						height='100%'
 						className='-mx-4'
 					>
-						<LineChart data={transactions}>
-							<CartesianGrid strokeDasharray='3 3' />
-							<XAxis dataKey='date' name='Date:' />
-							<YAxis name='ETH' />
-							<Line type='monotone' dataKey='total_value' />
-						</LineChart>
+						<AreaChart
+                            data={transactions}
+                        >
+							<CartesianGrid strokeDasharray='3 9' />
+							<XAxis
+								dataKey='date'
+								name='Date:'
+								fontSize={10}
+							/>
+							<YAxis name='ETH' fontSize={10} />
+							<Tooltip />
+                            <Legend />
+							<Area
+								type='monotone'
+								dataKey='total_value'
+								name='From'
+                                activeDot={{ r: 8 }}
+							/>
+							<Area
+								type='monotone'
+								dataKey='total_value_to'
+								stroke='red'
+								name='To'
+							/>
+						</AreaChart>
 					</ResponsiveContainer>
 				</div>
 			</Card.Body>

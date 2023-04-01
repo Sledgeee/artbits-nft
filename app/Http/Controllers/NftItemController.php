@@ -6,18 +6,42 @@ use App\Http\Requests\NftUpdateRequest;
 use App\Models\Auction;
 use App\Models\Category;
 use App\Models\NftItem;
+use App\Models\User;
 use Inertia\Inertia;
 
 class NftItemController extends Controller
 {
 
-    public function create(NftUpdateRequest $request)
+    public function createNft(NftUpdateRequest $request)
     {
-        if (!auth()->user())
+        $user = auth()->user();
+        if (!$user)
             return Response(0, 400);
 
-        return
-            !!NftItem::create($request->validated());
+        $request->validated();
+
+        $image = $request->image;
+
+        $imageName = time() . rand() . '.' . $image->extension();
+
+        $image->move(public_path('images/nfts/'), $imageName);
+
+        copy(
+            public_path('images/nfts/') . $imageName,
+            public_path('images/nfts/') . 'header_' . $imageName
+        );
+
+
+        NftItem::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'image' => '/images/nfts/' . $imageName,
+            'header_image' => '/images/nfts/header_' . $imageName,
+            'category_id' => $request->category_id,
+            'user_id' => $user->id,
+        ]);
+
     }
 
 
@@ -33,8 +57,10 @@ class NftItemController extends Controller
         if (!$data)
             return Response('Not found', 404);
 
+        $user = User::where('username', $username)->first();
+
         $nfts = NftItem::with('user')
-            ->where('user_id', $data->id)
+            ->where('user_id', $user->id)
             ->limit(8)
             ->get();
 
