@@ -1,9 +1,10 @@
-import React, { FC, useState } from 'react'
+import React, { ChangeEvent, FC, useState } from 'react'
 import {
 	Button,
 	Card,
 	Dropdown,
 	Input,
+	Progress,
 	Spacer,
 	Text,
 	Textarea
@@ -11,8 +12,11 @@ import {
 import { Nft } from '@/types/nft.type'
 import { Category } from '@/types/category.type'
 import { useForm } from '@inertiajs/react'
-import { BsImage, BsImageFill } from 'react-icons/bs'
 import { RxLetterCaseCapitalize } from 'react-icons/rx'
+import {
+	AiOutlineCloudUpload,
+	AiOutlineFieldNumber
+} from 'react-icons/ai'
 
 interface CreateNftCardProps {
 	userItems: Nft[]
@@ -23,37 +27,50 @@ const CreateNftCard: FC<CreateNftCardProps> = ({
 	userItems,
 	categories
 }) => {
-	const { data, setData, post, errors } = useForm({
-		name: '',
-		description: '',
-		image: '',
-		price: 0,
-		header_image: '',
-		category_id: categories[0].id
-	})
-	const [nameErrors, setNameErrors] = useState<string>('')
-	const [nameColor, setNameColor] = useState<
-		'error' | 'primary'
+	const { data, setData, errors, reset, post, progress } =
+		useForm({
+			name: '',
+			description: '',
+			image: {} as File | undefined,
+			price: 0,
+			category_id: 1
+		})
+
+	const [buttColor, setButtColor] = useState<
+		'error' | 'success' | 'primary'
 	>('primary')
-	const validateName = (e: any) => {
+	const submit = () =>
+		post(route('nft.create'), {
+			preserveScroll: true,
+			onSuccess: () => {
+				setButtColor('success')
+				reset('name', 'description', 'price')
+				setData('image', undefined)
+				setTimeout(() => setButtColor('primary'), 4000)
+			},
+			onError: () => setButtColor('error')
+		})
+
+	const [nameErrors, setNameErrors] = useState<string>('')
+
+	const validateName = (e:any) => {
 		if (
 			userItems.some(value => value.name === e.target.value)
 		) {
-			setNameColor('error')
+			setButtColor('error')
 			setNameErrors('You need to enter a unique name!')
 		} else {
-			setNameErrors('')
-			setNameColor('primary')
+			setButtColor('primary')
 			setData('name', e.target.value)
 		}
 	}
 
-	const createNftItem = () => post(route('nft.create'))
-
 	return (
 		<Card css={{ borderWidth: '0px' }}>
-			<Card.Body>
+			<Card.Header>
 				<Text h4>Create new nft</Text>
+			</Card.Header>
+			<Card.Body>
 				<Input
 					value={data.name}
 					onChange={validateName}
@@ -62,7 +79,6 @@ const CreateNftCard: FC<CreateNftCardProps> = ({
 					clearable
 					bordered
 					fullWidth
-					color={nameColor}
 					size='lg'
 					placeholder='Enter nft name'
 					contentLeft={<RxLetterCaseCapitalize />}
@@ -81,40 +97,49 @@ const CreateNftCard: FC<CreateNftCardProps> = ({
 					size='lg'
 					placeholder='Enter description for nft'
 				/>
-				<Spacer y={1} />
+				<Spacer y={1.2} />
 				<Input
-					value={data.image}
-					onChange={e => setData('image', e.target.value)}
-					helperColor='error'
-					helperText={errors.image}
-					clearable
-					bordered
-					fullWidth
-					color='primary'
-					size='lg'
-					placeholder='Enter url to image'
-					contentLeft={<BsImageFill />}
-				/>
-				<Spacer y={1} />
-				<Input
-					value={data.header_image}
+					type='number'
+					value={data.price}
 					onChange={e =>
-						setData('header_image', e.target.value)
+						setData('price', Number(e.target.value))
 					}
 					helperColor='error'
-					helperText={errors.header_image}
-					clearable
+					helperText={errors.description}
 					bordered
 					fullWidth
 					color='primary'
 					size='lg'
-					placeholder='Enter url to header image'
-					contentLeft={<BsImage />}
+					placeholder='Enter minimum price'
+					contentLeft={<AiOutlineFieldNumber />}
 				/>
-				<Spacer y={1} />
+				<Spacer y={1.2} />
+				<div className='w-full'>
+					<label className='flex justify-center w-full h-32 px-4 transition border-2 border-gray-600 border-dashed rounded-lg cursor-pointer hover:border-blue-300'>
+						<span className='flex items-center space-x-2'>
+							<AiOutlineCloudUpload className='w-6 h-6 text-gray-500' />
+							<span className='font-medium text-gray-500'>
+								{data.image
+									? 'Image is selected'
+									: 'Drop image here'
+                                }
+							</span>
+						</span>
+						<input
+							type='file'
+							onChange={(e: any) =>
+								setData('image', e.target.files[0])
+							}
+							className='hidden'
+						/>
+					</label>
+				</div>
+				<Spacer y={1.2} />
 				<Dropdown>
 					<Dropdown.Button flat>
-						Select category
+						{`Current category is ${
+							categories[data.category_id - 1].name
+						}`}
 					</Dropdown.Button>
 					<Dropdown.Menu aria-label='All categories'>
 						{categories.map(value => (
@@ -137,8 +162,21 @@ const CreateNftCard: FC<CreateNftCardProps> = ({
 						))}
 					</Dropdown.Menu>
 				</Dropdown>
+				{progress && (
+					<>
+						<Spacer y={1} />
+						<Progress
+							value={progress.percentage}
+							color='gradient'
+							indeterminated
+						/>
+					</>
+				)}
+
 				<Spacer y={1} />
-				<Button onClick={createNftItem}>Create nft</Button>
+				<Button color={buttColor} onPress={submit}>
+					Create nft
+				</Button>
 			</Card.Body>
 		</Card>
 	)

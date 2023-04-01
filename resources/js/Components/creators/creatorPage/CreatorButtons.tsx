@@ -1,9 +1,10 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import axios from 'axios'
 import { Button, Loading, Spacer } from '@nextui-org/react'
 import { BsClipboard } from 'react-icons/bs'
 import { User } from '@/types/user.type'
 import { Follower } from '@/types/follower.type'
+import { useUser } from '@/hooks/useUser'
 
 export interface CreatorSectionProps {
 	creator: User
@@ -14,11 +15,13 @@ const CreatorButtons: FC<CreatorSectionProps> = ({
 	creator,
 	followers
 }) => {
+	const user = useUser()
 	const wallet = creator?.metamask_address || ''
 	const shortText =
 		wallet.substring(0, 8) +
 		'...' +
 		wallet.substring(wallet.length - 5)
+
 	const [buttonText, setButtonText] =
 		useState<string>(shortText)
 
@@ -34,8 +37,7 @@ const CreatorButtons: FC<CreatorSectionProps> = ({
 	const [followBtnIsDisabled, setFollowBtnIsDisabled] =
 		useState(false)
 	const [followed, setFollowed] = useState(
-		followers?.some(x => x.to_user_id === creator.id) ||
-			false
+		followers?.some(x => x.to_user_id === creator.id)
 	)
 	const submit = () => {
 		setFollowBtnIsDisabled(true)
@@ -49,7 +51,7 @@ const CreatorButtons: FC<CreatorSectionProps> = ({
 					}
 				})
 				.catch(() => {
-                    setFollowBtnIsDisabled(false)
+					setFollowBtnIsDisabled(false)
 					setColor('error')
 				})
 		}
@@ -58,6 +60,10 @@ const CreatorButtons: FC<CreatorSectionProps> = ({
 			? handle('follow', true)
 			: handle('unfollow', false)
 	}
+
+	useEffect(() => {
+		if (!user) setFollowBtnIsDisabled(true)
+	}, [])
 
 	return (
 		<div className='flex z-0 mx-auto md:ml-auto'>
@@ -76,7 +82,7 @@ const CreatorButtons: FC<CreatorSectionProps> = ({
 				) : followed ? (
 					'Unfollow'
 				) : (
-					'+ Follow'
+					'Follow'
 				)}
 			</Button>
 			<Spacer y={0.5} />
