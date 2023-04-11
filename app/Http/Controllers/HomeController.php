@@ -15,7 +15,7 @@ class HomeController extends Controller
         $heroNft = NftItem::with('user')->first();
         $users = User::withSum('transactionsFrom', 'value')
             ->orderBy('transactions_from_sum_value', 'DESC')
-            ->limit(9)
+            ->limit(6)
             ->get();
         $collections = Collection::with('user')
             ->limit(3)

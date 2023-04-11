@@ -21,6 +21,7 @@ class NftUpdateRequest extends FormRequest
             'price' => 'required|numeric',
             'image' => 'required|image|mimes:png,jpg,jpeg,webp|max:10256',
             'category_id' => 'required',
+            'auction_date'=>'required|date'
         ];
     }
 

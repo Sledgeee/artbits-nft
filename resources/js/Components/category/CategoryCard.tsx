@@ -1,53 +1,59 @@
 import { Category } from '@/types/category.type'
 import { router } from '@inertiajs/react'
-import { Card, Row, Text } from '@nextui-org/react'
+import { Card, Grid, Row, Text } from '@nextui-org/react'
 import { FC } from 'react'
-import { useInView } from 'react-intersection-observer'
+import { fadeIn } from '@/utils/motion'
+import { motion } from 'framer-motion'
 
 interface ICategoryCard {
 	category: Category
 }
 
 const CategoryCard: FC<ICategoryCard> = ({ category }) => {
-	const [ref, inView] = useInView()
-
 	const navigate = (pathname: string) =>
 		router.replace(`category/${pathname}`)
 
 	return (
-		<Card
-			ref={ref}
-			isPressable
-			isHoverable
-			onClick={() => navigate(category.pathname)}
-			css={{ borderWidth: '0px' }}
-		>
-			<Card.Body
-				css={{ p: 0 }}
-				className={`transition duration-500 motion-reduce:transition-none ${
-					inView
-						? 'opacity-100 blur-none translate-y-0'
-						: 'opacity-70 blur-sm translate-y-5'
-				} motion-reduce:hover:transform-none`}
+		<Grid xs={6} sm={3}>
+			<motion.div
+				variants={fadeIn(
+					'up',
+					'spring',
+					category.id * 0.15,
+					0.75
+				)}
+				className='w-full'
 			>
-				<Card.Image
-					src={category.image}
-					objectFit='cover'
-					width='100%'
-					height='100%'
-					alt={category.name}
-				/>
-			</Card.Body>
-			<Card.Footer css={{ justifyItems: 'flex-start' }}>
-				<Row
-					wrap='wrap'
-					justify='space-between'
-					align='center'
+				<Card
+					isPressable
+                    isHoverable
+					onClick={() => navigate(category.pathname)}
+					css={{ borderWidth: '0px', minWidth: '100%' }}
 				>
-					<Text b>{category.name}</Text>
-				</Row>
-			</Card.Footer>
-		</Card>
+					<Card.Body
+						css={{ p: 0 }}
+						className='transition duration-500'
+					>
+						<Card.Image
+							src={category.image}
+							objectFit='cover'
+							width='100%'
+							height='100%'
+							alt={category.name}
+						/>
+					</Card.Body>
+					<Card.Footer css={{ justifyItems: 'flex-start' }}>
+						<Row
+							wrap='wrap'
+							justify='space-between'
+							align='center'
+						>
+							<Text b>{category.name}</Text>
+						</Row>
+					</Card.Footer>
+				</Card>
+			</motion.div>
+		</Grid>
 	)
 }
 

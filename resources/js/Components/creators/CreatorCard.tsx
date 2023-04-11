@@ -1,8 +1,10 @@
 import { UserWithCreator } from '@/types/creator.type'
 import { router } from '@inertiajs/react'
-import { Badge, Card, User } from '@nextui-org/react'
+import { Badge, Card, Grid, User } from '@nextui-org/react'
 import { FC } from 'react'
-import { useInView } from 'react-intersection-observer'
+import { fadeIn, tiltOptions } from '@/utils/motion'
+import { Tilt } from 'react-tilt'
+import { motion } from 'framer-motion'
 
 interface ICreatorCardProps {
 	creator: UserWithCreator
@@ -13,46 +15,47 @@ const CreatorCard: FC<ICreatorCardProps> = ({
 	creator,
 	id
 }) => {
-	const [ref, inView] = useInView()
-
 	return (
-		<Card
-			ref={ref}
-			isHoverable
-			isPressable
-			variant='shadow'
-			css={{ borderWidth: '0px' }}
-			onPress={() =>
-				router.replace(
-					`/creator/${creator.username}/created`
-				)
-			}
-		>
-			<Card.Body
-				className={`transition duration-500 motion-reduce:transition-none ${
-					inView
-						? 'opacity-100 blur-none translate-y-0'
-						: 'opacity-70 blur-sm translate-y-5'
-				} motion-reduce:hover:transform-none`}
+		<Grid xs={12} sm={4}>
+			<motion.div
+				variants={fadeIn('up', 'spring', id * 0.15, 0.75)}
+				className='w-full'
 			>
-				<Badge
-					content={id + 1}
-					enableShadow
-					variant='bordered'
-				>
-					<User
-						size='xl'
-						src={
-							creator.avatar_image || '/images/icons/1.png'
+				<Tilt options={tiltOptions()}>
+					<Card
+						isHoverable
+						isPressable
+						variant='shadow'
+						css={{ borderWidth: '0px' }}
+						onPress={() =>
+							router.replace(
+								`/creator/${creator.username}/created`
+							)
 						}
-						name={creator.username || 'username'}
-						description={`Total sales: ${
-							creator.transactions_from_sum_value || 0
-						} ETH`}
-					/>
-				</Badge>
-			</Card.Body>
-		</Card>
+					>
+						<Card.Body className='transition duration-500'>
+							<Badge
+								content={id + 1}
+								enableShadow
+								variant='bordered'
+							>
+								<User
+									size='xl'
+									src={
+										creator.avatar_image ||
+										'/images/icons/1.png'
+									}
+									name={creator.username || 'username'}
+									description={`Total sales: ${
+										creator.transactions_from_sum_value || 0
+									} ETH`}
+								/>
+							</Badge>
+						</Card.Body>
+					</Card>
+				</Tilt>
+			</motion.div>
+		</Grid>
 	)
 }
 
