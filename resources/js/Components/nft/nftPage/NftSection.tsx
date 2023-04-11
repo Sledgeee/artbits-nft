@@ -95,9 +95,7 @@ const NftSection: FC<NftPageCardProps> = ({
 					</div>
 				</Grid>
 				<Grid sm={5}>
-					{auction?.end_at && (
-						<AuctionCard auction={auction} />
-					)}
+					<AuctionCard auction={auction} />
 				</Grid>
 			</Grid.Container>
 		</div>

@@ -1,20 +1,24 @@
 import HeroCard from '@/Components/hero/HeroCard'
-import {router} from '@inertiajs/react'
-import {Button, Grid, Text} from '@nextui-org/react'
-import {FC} from 'react'
-import {Nft} from "@/types/nft.type";
+import { router } from '@inertiajs/react'
+import { Button, Grid, Text } from '@nextui-org/react'
+import { FC } from 'react'
+import { Nft } from '@/types/nft.type'
+import { motion } from 'framer-motion'
+import { textVariant } from '@/utils/motion'
 
-const HeroSection: FC<{ nft: Nft }> = ({nft}) => {
-    return (
-        <div className='container mx-auto'>
-            <Grid.Container gap={2} justify='center'>
-                <Grid xs={12} sm={5}>
-                    <div>
-                        <Text h1>Discover digital art & Collect NFTs</Text>
-                        <Text h4>
-                            NFT marketplace. Collect, buy and sell art from more than 20k NFT
-                            artists.
-                        </Text>
+const HeroSection: FC<{ nft: Nft }> = ({ nft }) => {
+	return (
+		<div className='container mx-auto'>
+			<Grid.Container gap={2} justify='center'>
+				<Grid xs={12} sm={5}>
+					<motion.div variants={textVariant(0)}>
+						<Text h1>
+							Discover digital art & Collect NFTs
+						</Text>
+						<Text h4>
+							NFT marketplace. Collect, buy and sell art
+							from more than 20k NFT artists.
+						</Text>
 						<Button
 							shadow
 							color='gradient'
@@ -43,7 +47,7 @@ const HeroSection: FC<{ nft: Nft }> = ({nft}) => {
 								<Text h6>Creators</Text>
 							</div>
 						</div>
-					</div>
+					</motion.div>
 				</Grid>
 				<Grid xs={12} sm={7}>
 					<HeroCard nft={nft} />

@@ -27,14 +27,21 @@ const CreateNftCard: FC<CreateNftCardProps> = ({
 	userItems,
 	categories
 }) => {
-	const { data, setData, errors, reset, post, progress } =
-		useForm({
-			name: '',
-			description: '',
-			image: {} as File | undefined,
-			price: 0,
-			category_id: 1
-		})
+	const {
+		data,
+		setData,
+		errors: apiErrors,
+		reset,
+		post,
+		progress
+	} = useForm({
+		name: '',
+		description: '',
+		image: {} as File | undefined,
+		price: 1,
+		category_id: 1,
+		auction_date: new Date().toDateString()
+	})
 
 	const [buttColor, setButtColor] = useState<
 		'error' | 'success' | 'primary'
@@ -44,24 +51,50 @@ const CreateNftCard: FC<CreateNftCardProps> = ({
 			preserveScroll: true,
 			onSuccess: () => {
 				setButtColor('success')
-				reset('name', 'description', 'price')
+				reset(
+					'name',
+					'description',
+					'price',
+					'auction_date',
+					'category_id'
+				)
 				setData('image', undefined)
 				setTimeout(() => setButtColor('primary'), 4000)
 			},
 			onError: () => setButtColor('error')
 		})
 
-	const [nameErrors, setNameErrors] = useState<string>('')
+	const [errors, setErrors] = useState<{
+		name: string
+		date: string
+	}>({ date: '', name: '' })
 
-	const validateName = (e:any) => {
+	const validateName = (e: any) => {
 		if (
 			userItems.some(value => value.name === e.target.value)
 		) {
 			setButtColor('error')
-			setNameErrors('You need to enter a unique name!')
+			setErrors({
+				name: 'You need to enter a unique name!',
+				date: errors.date
+			})
 		} else {
 			setButtColor('primary')
 			setData('name', e.target.value)
+		}
+	}
+
+	const validateDate = (e: any) => {
+		if (new Date() > new Date(e.target.value)) {
+			setButtColor('error')
+			setErrors({
+				name: errors.name,
+				date: 'You need to enter a date greater than today!'
+			})
+		} else {
+			setErrors({ name: '', date: '' })
+			setButtColor('primary')
+			setData('auction_date', e.target.value)
 		}
 	}
 
@@ -75,7 +108,7 @@ const CreateNftCard: FC<CreateNftCardProps> = ({
 					value={data.name}
 					onChange={validateName}
 					helperColor='error'
-					helperText={errors.name || nameErrors}
+					helperText={apiErrors.name || errors.name}
 					clearable
 					bordered
 					fullWidth
@@ -83,29 +116,44 @@ const CreateNftCard: FC<CreateNftCardProps> = ({
 					placeholder='Enter nft name'
 					contentLeft={<RxLetterCaseCapitalize />}
 				/>
-				<Spacer y={1.2} />
+				<Spacer y={1.3} />
 				<Textarea
 					value={data.description}
 					onChange={e =>
 						setData('description', e.target.value)
 					}
 					helperColor='error'
-					helperText={errors.description}
+					helperText={apiErrors.description}
 					bordered
 					fullWidth
 					color='primary'
 					size='lg'
 					placeholder='Enter description for nft'
 				/>
-				<Spacer y={1.2} />
+				<Spacer y={1.3} />
+				<Input
+					type='datetime-local'
+					value={data.auction_date}
+					onChange={validateDate}
+					helperColor='error'
+					helperText={errors.date || apiErrors.auction_date}
+					bordered
+					fullWidth
+					color='primary'
+					size='lg'
+					placeholder='Enter auction date'
+					min={new Date().toDateString()}
+				/>
+				<Spacer y={1.3} />
 				<Input
 					type='number'
+					min={1}
 					value={data.price}
 					onChange={e =>
 						setData('price', Number(e.target.value))
 					}
 					helperColor='error'
-					helperText={errors.description}
+					helperText={apiErrors.description}
 					bordered
 					fullWidth
 					color='primary'
@@ -113,7 +161,7 @@ const CreateNftCard: FC<CreateNftCardProps> = ({
 					placeholder='Enter minimum price'
 					contentLeft={<AiOutlineFieldNumber />}
 				/>
-				<Spacer y={1.2} />
+				<Spacer y={1.3} />
 				<div className='w-full'>
 					<label className='flex justify-center w-full h-32 px-4 transition border-2 border-gray-600 border-dashed rounded-lg cursor-pointer hover:border-blue-300'>
 						<span className='flex items-center space-x-2'>
@@ -121,8 +169,7 @@ const CreateNftCard: FC<CreateNftCardProps> = ({
 							<span className='font-medium text-gray-500'>
 								{data.image
 									? 'Image is selected'
-									: 'Drop image here'
-                                }
+									: 'Drop image here'}
 							</span>
 						</span>
 						<input
@@ -134,7 +181,7 @@ const CreateNftCard: FC<CreateNftCardProps> = ({
 						/>
 					</label>
 				</div>
-				<Spacer y={1.2} />
+				<Spacer y={1.3} />
 				<Dropdown>
 					<Dropdown.Button flat>
 						{`Current category is ${

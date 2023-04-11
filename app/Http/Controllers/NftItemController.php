@@ -32,7 +32,7 @@ class NftItemController extends Controller
         );
 
 
-        NftItem::create([
+        $nft = NftItem::create([
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
@@ -41,6 +41,12 @@ class NftItemController extends Controller
             'category_id' => $request->category_id,
             'user_id' => $user->id,
         ]);
+
+        Auction::create([
+            'end_at' => $request->auction_date,
+            'nft_item_id' => $nft->id
+        ]);
+
 
     }
 

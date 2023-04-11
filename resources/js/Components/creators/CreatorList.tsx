@@ -4,6 +4,8 @@ import { router } from '@inertiajs/react'
 import { Button, Grid, Text } from '@nextui-org/react'
 import { FC } from 'react'
 import { GoRocket } from 'react-icons/go'
+import { textVariant } from '@/utils/motion'
+import { motion } from 'framer-motion'
 
 interface ICreatorListProps {
 	creators: UserWithCreator[]
@@ -15,7 +17,10 @@ const CreatorList: FC<ICreatorListProps> = ({
 	return (
 		<>
 			<div className='container mx-auto'>
-				<div className='mx-2'>
+				<motion.div
+					variants={textVariant(0)}
+					className='mx-2'
+				>
 					<Text h2 className='flex'>
 						Top creators
 						<Button
@@ -33,12 +38,14 @@ const CreatorList: FC<ICreatorListProps> = ({
 						Checkout Top Rated Creators on the NFT
 						Marketplace
 					</Text>
-				</div>
+				</motion.div>
 				<Grid.Container gap={2}>
 					{creators.map((value, index) => (
-						<Grid xs={12} sm={4} key={index}>
-							<CreatorCard creator={value} id={index} />
-						</Grid>
+						<CreatorCard
+							key={index}
+							id={index}
+							creator={value}
+						/>
 					))}
 				</Grid.Container>
 			</div>
