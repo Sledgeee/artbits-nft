@@ -2,7 +2,7 @@ import HeroCard from '@/Components/hero/HeroCard'
 import { router } from '@inertiajs/react'
 import { Button, Grid, Text } from '@nextui-org/react'
 import { FC } from 'react'
-import { Nft } from '@/types/nft.type'
+import { Nft } from '@/interfaces/nft.interface'
 import { motion } from 'framer-motion'
 import { textVariant } from '@/utils/motion'
 

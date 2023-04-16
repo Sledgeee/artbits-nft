@@ -1,4 +1,4 @@
-import { Category } from '@/types/category.type'
+import { Category } from '@/interfaces/category.interface'
 import { router } from '@inertiajs/react'
 import { Card, Grid, Row, Text } from '@nextui-org/react'
 import { FC } from 'react'

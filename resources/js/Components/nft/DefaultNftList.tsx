@@ -1,9 +1,11 @@
 import NftCard from '@/Components/nft/NftCard'
-import { Nft } from '@/types/nft.type'
+import { Nft } from '@/interfaces/nft.interface'
 import { router } from '@inertiajs/react'
 import { Button, Grid, Text } from '@nextui-org/react'
 import { FC } from 'react'
 import { BsEye } from 'react-icons/bs'
+import { motion } from 'framer-motion'
+import { fadeIn } from '@/utils/motion'
 
 interface TrendingNftListProps {
     trendingNftList: Nft[]
@@ -13,17 +15,22 @@ interface TrendingNftListProps {
     buttonName?: string
 }
 
-const DefaultNftList: FC<TrendingNftListProps> = ({
-                                                      trendingNftList,
-                                                      title,
-                                                      buttonHref,
-                                                      buttonName,
-                                                      desc
-                                                  }) => {
+const DefaultNftList: FC<
+    TrendingNftListProps
+> = ({
+         trendingNftList,
+         title,
+         buttonHref,
+         buttonName,
+         desc
+     }) => {
     return (
         <>
             <div className='container mx-auto'>
-                <div className='mx-2'>
+                <motion.div
+                    variants={fadeIn('up', 'spring', 0, 1)}
+                    className='mx-2'
+                >
                     <Text h2 className='flex'>
                         {title}
                         {buttonHref && buttonName && (
@@ -40,7 +47,7 @@ const DefaultNftList: FC<TrendingNftListProps> = ({
                         )}
                     </Text>
                     {desc && <Text h4>{desc}</Text>}
-                </div>
+                </motion.div>
                 <Grid.Container gap={2}>
                     {trendingNftList.map((value, index) => (
                         <Grid xs={6} sm={3} md={3} key={index}>

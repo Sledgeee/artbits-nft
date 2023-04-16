@@ -1,4 +1,4 @@
-import { User } from '@/types/user.type'
+import { User } from '@/interfaces/user.interface'
 import { Link, router } from '@inertiajs/react'
 import {
 	Avatar,
@@ -14,25 +14,11 @@ import {
 import { FC } from 'react'
 import { BsMoonFill, BsSunFill } from 'react-icons/bs'
 import { SiCoinmarketcap } from 'react-icons/si'
+import { routes } from '@/constants'
 
 interface IAppHeaderProps {
 	user: User
 }
-
-export const routes = [
-	{
-		name: 'Marketplace',
-		href: '/nft'
-	},
-	{
-		name: 'Rankings',
-		href: '/rankings'
-	},
-	{
-		name: 'Collections',
-		href: '/collections'
-	}
-]
 
 const navigate = (href: string) => router.replace(href)
 

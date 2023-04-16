@@ -1,7 +1,7 @@
 import { Head, Link, useForm } from '@inertiajs/react'
 import Layout from '@/Components/Layout'
 import { Button } from '@nextui-org/react'
-import { BaseProps } from '@/types/base.type'
+import { BaseProps } from '@/interfaces/base.interface'
 import { FormEvent } from 'react'
 
 interface Props extends BaseProps {
@@ -17,7 +17,7 @@ const VerifyEmail = ({ status, auth }: Props) => {
 		<>
 			<Head title='Email Verification' />
 			<Layout auth={auth}>
-				<div className='mb-4 text-sm text-gray-600 dark:text-gray-400'>
+				<div className='mb-4 text-sm text-gray-400'>
 					Thanks for signing up! Before getting started,
 					could you verify your email address by clicking on
 					the link we just emailed to you? If you didn't
@@ -26,7 +26,7 @@ const VerifyEmail = ({ status, auth }: Props) => {
 				</div>
 
 				{status === 'verification-link-sent' ? (
-					<div className='mb-4 font-medium text-sm text-green-600 dark:text-green-400'>
+					<div className='mb-4 font-medium text-sm text-green-400'>
 						A new verification link has been sent to the
 						email address you provided during registration.
 					</div>
@@ -44,7 +44,7 @@ const VerifyEmail = ({ status, auth }: Props) => {
 							href={route('logout')}
 							method='post'
 							as='button'
-							className='underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800'
+							className='underline text-sm text-gray-600 hover:text-gray-900 rounded-md'
 						>
 							Log Out
 						</Link>

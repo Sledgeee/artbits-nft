@@ -44,7 +44,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::post('/bet/create', [AuctionController::class, 'createBet'])->name('bet.create');
     Route::post('/nft/create', [NftItemController::class, 'createNft'])->name('nft.create');
+    Route::delete('/nft/delete/{id}', [NftItemController::class, 'deleteNft'])->name('nft.delete');
     Route::get('/follow/{user_id}', [FollowerController::class, 'follow'])->name('user.follow');
     Route::get('/unfollow/{user_id}', [FollowerController::class, 'unfollow'])->name('user.unfollow');
 });

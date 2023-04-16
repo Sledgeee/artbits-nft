@@ -1,7 +1,7 @@
 import RankingsContent from '@/Components/creators/rankings/RankingsContent'
 import Layout from '@/Components/Layout'
-import { BaseProps } from '@/types/base.type'
-import { RankingCreators } from '@/types/creator.type'
+import { BaseProps } from '@/interfaces/base.interface'
+import { RankingCreators } from '@/interfaces/creator.interface'
 import { Head } from '@inertiajs/react'
 import { FC } from 'react'
 

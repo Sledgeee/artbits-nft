@@ -1,5 +1,5 @@
 import CollectionCard from '@/Components/collections/CollectionCard'
-import { Collection } from '@/types/collection.type'
+import { Collection } from '@/interfaces/collection.interface'
 import { Grid, Text } from '@nextui-org/react'
 import { FC } from 'react'
 import { textVariant } from '@/utils/motion'

@@ -11,7 +11,6 @@ import { MdEmail } from 'react-icons/md'
 import { textVariant } from '@/utils/motion'
 import { motion } from 'framer-motion'
 
-
 interface IEmailInputProps {
 	text: 'Correct email' | 'Enter a valid email' | ''
 	color: 'success' | 'error' | ''
@@ -43,23 +42,25 @@ const SubsCard: FC = () => {
 		<div className='container mx-auto'>
 			<Grid.Container gap={2} justify='center'>
 				<Grid xs={12} sm={7}>
-					<Card
-						css={{
-							w: '100%',
-							h: '300px',
-							borderWidth: '0px'
-						}}
-					>
-						<Card.Body css={{ p: 0 }}>
-							<Card.Image
-								src='https://i.ytimg.com/vi/KtKOZB6Mshc/maxresdefault.jpg'
-								objectFit='cover'
-								width='100%'
-								height='100%'
-								alt='Relaxing app background'
-							/>
-						</Card.Body>
-					</Card>
+					<motion.div variants={textVariant(0)}>
+						<Card
+							css={{
+								w: '100%',
+								h: '300px',
+								borderWidth: '0px'
+							}}
+						>
+							<Card.Body css={{ p: 0 }}>
+								<Card.Image
+									src='https://i.ytimg.com/vi/KtKOZB6Mshc/maxresdefault.jpg'
+									objectFit='cover'
+									width='100%'
+									height='100%'
+									alt='Relaxing app background'
+								/>
+							</Card.Body>
+						</Card>
+					</motion.div>
 				</Grid>
 				<Grid xs={12} sm={5}>
 					<motion.div

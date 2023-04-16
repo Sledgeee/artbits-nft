@@ -1,7 +1,7 @@
 import { Head, Link, useForm } from '@inertiajs/react'
 import React, { useEffect } from 'react'
 import Layout from '@/Components/Layout'
-import { BaseProps } from '@/types/base.type'
+import { BaseProps } from '@/interfaces/base.interface'
 import {
 	Button,
 	Card,

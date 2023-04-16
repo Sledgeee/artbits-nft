@@ -1,12 +1,10 @@
 import { FC } from 'react'
-import { TotalTransaction } from '@/types/transaction.type'
+import { TotalTransaction } from '@/interfaces/transaction.interface'
 import { Card, Text } from '@nextui-org/react'
 import {
     Area,
     AreaChart,
     CartesianGrid, Legend,
-    Line,
-    LineChart,
     ResponsiveContainer,
     Tooltip,
     XAxis,

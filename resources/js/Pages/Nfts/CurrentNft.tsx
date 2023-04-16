@@ -2,11 +2,11 @@ import Layout from '@/Components/Layout'
 import DefaultNftList from '@/Components/nft/DefaultNftList'
 import HeaderImageSection from '@/Components/nft/nftPage/HeaderImageSection'
 import NftSection from '@/Components/nft/nftPage/NftSection'
-import { BaseProps } from '@/types/base.type'
-import { Nft } from '@/types/nft.type'
+import { BaseProps } from '@/interfaces/base.interface'
+import { Nft } from '@/interfaces/nft.interface'
 import { Head } from '@inertiajs/react'
 import { FC } from 'react'
-import { Auction } from '@/types/auction.type'
+import { Auction } from '@/interfaces/auction.interface'
 
 interface CurrentNftProps extends BaseProps {
 	nft: Nft

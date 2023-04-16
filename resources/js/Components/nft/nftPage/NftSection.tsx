@@ -1,4 +1,4 @@
-import { Nft } from '@/types/nft.type'
+import { Nft } from '@/interfaces/nft.interface'
 import {
 	Card,
 	Grid,
@@ -7,7 +7,7 @@ import {
 	User
 } from '@nextui-org/react'
 import { FC } from 'react'
-import { Auction } from '@/types/auction.type'
+import { Auction } from '@/interfaces/auction.interface'
 import { Link } from '@inertiajs/react'
 import AuctionCard from '@/Components/nft/nftPage/AuctionCard'
 
@@ -71,7 +71,7 @@ const NftSection: FC<NftPageCardProps> = ({
 							</a>
 						</Text>
 						<Spacer y={0.7} />
-						{nft.nft_item_tags && (
+						{nft.nft_item_tags!.length > 0 && (
 							<>
 								<Text span color='#787f85'>
 									Tags
@@ -95,7 +95,10 @@ const NftSection: FC<NftPageCardProps> = ({
 					</div>
 				</Grid>
 				<Grid sm={5}>
-					<AuctionCard auction={auction} />
+					<AuctionCard
+						auction={auction}
+						minPrice={Number(nft.price)}
+					/>
 				</Grid>
 			</Grid.Container>
 		</div>

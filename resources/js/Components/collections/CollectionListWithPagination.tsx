@@ -6,8 +6,8 @@ import {
 	Text
 } from '@nextui-org/react'
 import CollectionCard from '@/Components/collections/CollectionCard'
-import { PaginationResponse } from '@/Pages/Nfts/nft.interface'
-import { Collection } from '@/types/collection.type'
+import { PaginationResponse } from '@/interfaces/nft.interface'
+import { Collection } from '@/interfaces/collection.interface'
 import { router } from '@inertiajs/react'
 
 interface CollectionListWithPaginationProps {

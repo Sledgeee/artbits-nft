@@ -7,10 +7,15 @@ use App\Models\Auction;
 use App\Models\Category;
 use App\Models\NftItem;
 use App\Models\User;
+use Illuminate\Support\Facades\File;
 use Inertia\Inertia;
 
 class NftItemController extends Controller
 {
+
+    /**
+     * Create new nft with auction.
+     */
 
     public function createNft(NftUpdateRequest $request)
     {
@@ -50,6 +55,9 @@ class NftItemController extends Controller
 
     }
 
+    /**
+     * Display current nft.
+     */
 
     public function currentNft(string $username, string $name)
     {
@@ -70,7 +78,9 @@ class NftItemController extends Controller
             ->limit(8)
             ->get();
 
-        $auction = Auction::where('nft_item_id', $data->id)->first();
+        $auction = Auction::where('nft_item_id', $data->id)
+            ->with('auctionBets', 'auctionBets.user')
+            ->first();
 
         return Inertia::render('Nfts/CurrentNft', [
             'nft' => $data,
@@ -103,5 +113,21 @@ class NftItemController extends Controller
             'category' => $category,
             'nfts' => $nftItems
         ]);
+    }
+
+    public function deleteNft(string $id)
+    {
+        $user = auth()->user();
+        if (!$user)
+            return Response(0, 400);
+
+        $nft = NftItem::where('id', $id)->first();
+
+        if (File::exists(public_path($nft->image)))
+            unlink(public_path($nft->image));
+        if (File::exists(public_path($nft->header_image)))
+            unlink(public_path($nft->header_image));
+
+        $nft->delete();
     }
 }

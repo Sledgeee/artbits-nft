@@ -1,5 +1,5 @@
 import CreatorCard from '@/Components/creators/CreatorCard'
-import { UserWithCreator } from '@/types/creator.type'
+import { UserWithCreator } from '@/interfaces/creator.interface'
 import { router } from '@inertiajs/react'
 import { Button, Grid, Text } from '@nextui-org/react'
 import { FC } from 'react'

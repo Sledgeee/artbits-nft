@@ -1,4 +1,4 @@
-import { Collection } from '@/types/collection.type'
+import { Collection } from '@/interfaces/collection.interface'
 import { router } from '@inertiajs/react'
 import { Card, Grid, Spacer, User } from '@nextui-org/react'
 import { FC } from 'react'

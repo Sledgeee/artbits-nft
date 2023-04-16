@@ -1,4 +1,4 @@
-import { User } from '@/types/user.type'
+import { User } from '@/interfaces/user.interface'
 
 export interface Creator {
 	id: number
