@@ -1,6 +1,6 @@
 import { Head } from '@inertiajs/react'
 import Layout from '@/Components/Layout'
-import { BaseProps } from '@/types/base.type'
+import { BaseProps } from '@/interfaces/base.interface'
 import UpdatePasswordForm from '@/Components/auth/Partials/UpdatePasswordForm'
 import DeleteUserForm from '@/Components/auth/Partials/DeleteUserForm'
 import UpdateProfileInformationForm from '@/Components/auth/Partials/UpdateProfileInformationForm'

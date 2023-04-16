@@ -13,8 +13,8 @@ const HeaderImageSection: FC<HeaderImageProps> = ({
 			<Image
 				showSkeleton
 				width='100%'
-				objectFit={'cover'}
-				height={300}
+				objectFit='cover'
+				height={350}
 				src={image}
 				alt='Header Image'
 			/>

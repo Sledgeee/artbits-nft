@@ -1,10 +1,10 @@
 import { FC } from 'react'
-import { Collection } from '@/types/collection.type'
+import { Collection } from '@/interfaces/collection.interface'
 import { Head } from '@inertiajs/react'
 import Layout from '@/Components/Layout'
-import { BaseProps } from '@/types/base.type'
+import { BaseProps } from '@/interfaces/base.interface'
 import CollectionListWithPagination from '@/Components/collections/CollectionListWithPagination'
-import { PaginationResponse } from '@/Pages/Nfts/nft.interface'
+import { PaginationResponse } from '@/interfaces/nft.interface'
 
 interface AllCollectionsProps extends BaseProps {
 	collections: PaginationResponse<Collection>

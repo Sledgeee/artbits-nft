@@ -1,4 +1,4 @@
-import { UserWithCreator } from '@/types/creator.type'
+import { UserWithCreator } from '@/interfaces/creator.interface'
 import { router } from '@inertiajs/react'
 import { Badge, Card, Grid, User } from '@nextui-org/react'
 import { FC } from 'react'

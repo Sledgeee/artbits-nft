@@ -15,6 +15,8 @@ export default function DeleteUserForm() {
 
 	const handler = () => setVisible(true)
 
+    const closeModal = () => reset()
+
 	const {
 		data,
 		setData,
@@ -32,8 +34,6 @@ export default function DeleteUserForm() {
 			onSuccess: () => closeModal(),
 			onFinish: () => reset()
 		})
-
-	const closeModal = () => reset()
 
 	return (
 		<Card css={{ borderWidth: '0px' }}>
@@ -56,7 +56,7 @@ export default function DeleteUserForm() {
 
 			<Modal
 				closeButton
-				aria-labelledby='modal-title'
+				aria-labelledby='delete-user-modal'
 				open={visible}
 				onClose={closeModal}
 			>

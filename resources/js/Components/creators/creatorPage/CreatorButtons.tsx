@@ -2,8 +2,8 @@ import { FC, useEffect, useState } from 'react'
 import axios from 'axios'
 import { Button, Loading, Spacer } from '@nextui-org/react'
 import { BsClipboard } from 'react-icons/bs'
-import { User } from '@/types/user.type'
-import { Follower } from '@/types/follower.type'
+import { User } from '@/interfaces/user.interface'
+import { Follower } from '@/interfaces/follower.interface'
 import { useUser } from '@/hooks/useUser'
 
 export interface CreatorSectionProps {

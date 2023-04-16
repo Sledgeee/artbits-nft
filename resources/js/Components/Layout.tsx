@@ -1,6 +1,6 @@
 import AppFooter from '@/Components/app/AppFooter'
 import AppHeader from '@/Components/app/AppHeader'
-import { User } from '@/types/user.type'
+import { User } from '@/interfaces/user.interface'
 import {
 	createTheme,
 	getDocumentTheme,

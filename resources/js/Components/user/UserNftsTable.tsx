@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import {
 	Avatar,
 	Card,
@@ -8,9 +8,11 @@ import {
 	Text,
 	Tooltip
 } from '@nextui-org/react'
-import { Nft } from '@/types/nft.type'
-import { BsEye, BsPen, BsTrash } from 'react-icons/bs'
+import { Nft } from '@/interfaces/nft.interface'
+import { BsEye, BsTrash } from 'react-icons/bs'
 import { useUser } from '@/hooks/useUser'
+import { userNftsTableColumns } from '@/constants'
+import axios from 'axios'
 
 interface UserNftsTableProps {
 	userItems: Nft[]
@@ -19,32 +21,16 @@ interface UserNftsTableProps {
 const UserNftsTable: FC<UserNftsTableProps> = ({
 	userItems
 }) => {
-	const columns = [
-		{
-			key: 'key',
-			label: '№'
-		},
-		{
-			key: 'img',
-			label: 'Image'
-		},
-		{
-			key: 'name',
-			label: 'Name'
-		},
-		{
-			key: 'price',
-			label: 'Price'
-		},
-		{
-			key: 'tools',
-			label: 'Tools'
-		}
-	]
+	const [nfts, setNfts] = useState<Nft[]>(userItems)
 
-	const itemsLength = userItems.length
+	const itemsLength = nfts.length
 
 	const user = useUser()
+
+	const deleteNft = (id: number) =>
+		axios
+			.delete(route('nft.delete', id))
+			.then(() => setNfts(nfts.filter(n => n.id !== id)))
 
 	return (
 		<Card css={{ borderWidth: '0px' }}>
@@ -66,7 +52,7 @@ const UserNftsTable: FC<UserNftsTableProps> = ({
 							border: 0
 						}}
 					>
-						<Table.Header columns={columns}>
+						<Table.Header columns={userNftsTableColumns}>
 							{column => (
 								<Table.Column key={column.key}>
 									{column.label}
@@ -74,7 +60,7 @@ const UserNftsTable: FC<UserNftsTableProps> = ({
 							)}
 						</Table.Header>
 						<Table.Body>
-							{userItems.map((value, index) => (
+							{nfts.map((value, index) => (
 								<Table.Row key={index}>
 									<Table.Cell>
 										<Text className='pl-1'>
@@ -96,8 +82,8 @@ const UserNftsTable: FC<UserNftsTableProps> = ({
 									</Table.Cell>
 									<Table.Cell>
 										<Row justify='center' align='center'>
-											<Col css={{ d: 'flex' }}>
-												<Tooltip content='Details'>
+											<Col>
+												<Tooltip content='Show in another tab'>
 													<a
 														target='_blank'
 														href={`/nft/${user.username}/${value.name}`}
@@ -107,6 +93,21 @@ const UserNftsTable: FC<UserNftsTableProps> = ({
 															fill='#979797'
 														/>
 													</a>
+												</Tooltip>
+											</Col>
+											<Col>
+												<Tooltip
+													content={`Delete nft ${value.name}`}
+													color='error'
+													onClick={() =>
+														deleteNft(value.id)
+													}
+												>
+													{' '}
+													<BsTrash
+														size={20}
+														fill='#FF0080'
+													/>
 												</Tooltip>
 											</Col>
 										</Row>

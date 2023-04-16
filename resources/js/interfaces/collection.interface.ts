@@ -1,5 +1,5 @@
-import { NftItemsLimited } from '@/types/nft.type'
-import { User } from './user.type'
+import { NftItemsLimited } from '@/interfaces/nft.interface'
+import { User } from './user.interface'
 
 export interface Collection {
 	id: number

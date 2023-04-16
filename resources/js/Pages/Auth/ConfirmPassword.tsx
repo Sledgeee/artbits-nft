@@ -1,5 +1,5 @@
 import { Link, useForm } from '@inertiajs/react'
-import { BaseProps } from '@/types/base.type'
+import { BaseProps } from '@/interfaces/base.interface'
 import React, { useEffect } from 'react'
 import {
 	Button,

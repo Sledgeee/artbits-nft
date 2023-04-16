@@ -1,11 +1,11 @@
 import Layout from '@/Components/Layout'
 import NftListWithPagination from '@/Components/nft/NftListWithPagination'
-import { BaseProps } from '@/types/base.type'
+import { BaseProps } from '@/interfaces/base.interface'
 import { Head } from '@inertiajs/react'
 import { FC } from 'react'
-import { PaginationResponse } from './nft.interface'
-import { Nft } from '@/types/nft.type'
-import { Category } from '@/types/category.type'
+import { PaginationResponse } from '../../interfaces/nft.interface'
+import { Nft } from '@/interfaces/nft.interface'
+import { Category } from '@/interfaces/category.interface'
 
 interface NftPageProps extends BaseProps {
 	category: Category

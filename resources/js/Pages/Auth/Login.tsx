@@ -1,7 +1,7 @@
 import { Head } from '@inertiajs/react'
 import React from 'react'
 import Layout from '@/Components/Layout'
-import { BaseProps } from '@/types/base.type'
+import { BaseProps } from '@/interfaces/base.interface'
 import LoginForm from '@/Components/auth/LoginForm'
 
 const Login = ({ auth }: BaseProps) => {

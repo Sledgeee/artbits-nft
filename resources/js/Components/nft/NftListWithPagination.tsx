@@ -1,10 +1,10 @@
 import NftCard from '@/Components/nft/NftCard'
-import { PaginationResponse } from '@/Pages/Nfts/nft.interface'
+import { PaginationResponse } from '@/interfaces/nft.interface'
 import { router } from '@inertiajs/react'
 import { Button, Grid, Pagination, Spacer, Text } from '@nextui-org/react'
 import { FC } from 'react'
 import { BsEye } from 'react-icons/bs'
-import { Nft } from '@/types/nft.type'
+import { Nft } from '@/interfaces/nft.interface'
 
 interface NftListProps {
     paginationItems: PaginationResponse<Nft>

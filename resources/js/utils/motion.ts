@@ -9,7 +9,7 @@ export const tiltOptions = (
 		max: max,
 		scale: scale,
 		speed: speed,
-        transition: true,
+		transition: true
 	}
 }
 

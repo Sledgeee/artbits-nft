@@ -4,7 +4,7 @@ import {
 	Page,
 	PageProps
 } from '@inertiajs/core'
-import { User } from '@/types/user.type'
+import { User } from '@/interfaces/user.interface'
 import { usePage } from '@inertiajs/react'
 
 interface InertiaPage extends Page<PageProps> {
