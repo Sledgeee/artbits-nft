@@ -13,7 +13,8 @@ const HeroCard: FC<{ nft: Nft }> = ({ nft }) => {
 		)
 
 	return (
-		<motion.div variants={fadeIn('up', 'spring', 0.15, 0.75)}>
+		<motion.div variants={fadeIn('up', 'spring', 0.15, 0.75)}
+        className='w-full'>
 			<Tilt options={{ max: 45, scale: 1, speed: 450 }}>
 				<Card
 					isPressable
