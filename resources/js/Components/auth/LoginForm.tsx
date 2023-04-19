@@ -1,69 +1,62 @@
-import React, { FC, useEffect } from 'react'
-import {
-	Button,
-	Card,
-	Checkbox,
-	Input,
-	Row,
-	Spacer,
-	Text
-} from '@nextui-org/react'
-import { BsAt, BsLock } from 'react-icons/bs'
-import { Link, useForm } from '@inertiajs/react'
+import React, {FC, useEffect} from 'react'
+import {Button, Card, Checkbox, Input, Row, Spacer, Text} from '@nextui-org/react'
+import {BsAt, BsLock} from 'react-icons/bs'
+import {Link, useForm} from '@inertiajs/react'
 
 const LoginForm: FC = () => {
-	const { data, setData, post, processing, errors, reset } =
-		useForm({
-			email: '',
-			password: '',
-			remember: ''
-		})
+    const {data, setData, post, processing, errors, reset} =
+        useForm({
+            email: '',
+            password: '',
+            remember: '',
+            returnTo: new URLSearchParams(document.location.search).get('returnTo') || '/dashboard'
+        })
 
-	useEffect(() => {
-		return () => reset('password')
-	}, [])
+    useEffect(() => {
+        return () => reset('password')
+    }, [])
 
-	const submit = () => post(route('login'))
+    const submit = () => post(route('login'))
 
-	return (
-		<div>
-			<div className='min-h-screen flex max-w-[1920px] mx-auto'>
-				<div className='hidden lg:flex w-full lg:w-1/2'>
-					<div className='w-full h-full overflow-hidden'>
-						<img
-							src='https://airnfts.s3.amazonaws.com/nft-images/20210830/Blue_space__1630266520997.jpg'
-							className='object-cover h-full'
-						/>
-					</div>
-				</div>
-				<div className='flex w-full lg:w-1/2 justify-center items-center bg-gray-900 space-y-8'>
-					<Card
-						css={{
-							borderWidth: '0px',
-							maxWidth: '400px',
-							mt: '120px'
-						}}
-						isHoverable
-					>
-						<Card.Body>
-							<Text h3 className='text-center'>
-								Login
-							</Text>
-							<Spacer y={2} />
-							<Input
-								type='email'
-								placeholder='Email'
-								value={data.email}
-								onChange={e =>
-									setData('email', e.target.value)
-								}
-								helperText={errors.email}
-								helperColor='error'
-								clearable
-								bordered
-								fullWidth
-								color='primary'
-								size='lg'
+    return (
+        <div>
+            <div className='min-h-screen flex max-w-[1920px] mx-auto'>
+                <div className='hidden lg:flex w-full lg:w-1/2'>
+                    <div className='w-full h-full overflow-hidden'>
+                        <img
+                            src='https://airnfts.s3.amazonaws.com/nft-images/20210830/Blue_space__1630266520997.jpg'
+                            className='object-cover h-full'
+                        />
+                    </div>
+                </div>
+                <div className='flex w-full lg:w-1/2 justify-center items-center bg-gray-900 space-y-8'>
+                    <Card
+                        css={{
+                            borderWidth: '0px',
+                            maxWidth: '400px',
+                            mt: '120px'
+                        }}
+                        isHoverable
+                    >
+                        <Card.Body>
+                            <Text h3 className='text-center'>
+                                Login
+                            </Text>
+                            <Spacer y={2}/>
+                            <Input
+                                type='email'
+                                placeholder='Email'
+                                value={data.email}
+                                onChange={e =>
+                                    setData('email', e.target.value)
+                                }
+                                helperText={errors.email}
+                                helperColor='error'
+                                clearable
+                                bordered
+                                fullWidth
+                                color='primary'
+                                size='lg'
 								contentLeft={<BsAt />}
 							/>
 							<Spacer y={1.5} />
