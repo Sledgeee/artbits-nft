@@ -1,28 +1,23 @@
-import {FC} from 'react'
-import {Head} from "@inertiajs/react";
-import Layout from "@/Components/Layout";
-import {BaseProps} from "@/types/base.type";
-import {RankingCreators} from "@/types/creator.type";
-import RankingsContent from "@/Components/creators/rankings/RankingsContent";
+import RankingsContent from '@/Components/creators/rankings/RankingsContent'
+import Layout from '@/Components/Layout'
+import { BaseProps } from '@/interfaces/base.interface'
+import { RankingCreators } from '@/interfaces/creator.interface'
+import { Head } from '@inertiajs/react'
+import { FC } from 'react'
 
 interface CreatorsProps extends BaseProps {
-    topCreators: RankingCreators[]
+	topCreators: RankingCreators[]
 }
 
-const Rankings: FC<
-    CreatorsProps
-> = ({
-         auth,
-         topCreators
-     }) => {
-    return <>
-        <Head title="Rankings"/>
-        <Layout auth={auth}>
-            <RankingsContent topCreators={topCreators}/>
-        </Layout>
-    </>
-
-
+const Rankings: FC<CreatorsProps> = ({ auth, topCreators }) => {
+	return (
+		<>
+			<Head title='Rankings' />
+			<Layout auth={auth}>
+				<RankingsContent topCreators={topCreators} />
+			</Layout>
+		</>
+	)
 }
 
 export default Rankings

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AuctionBetCreateRequest;
 use App\Models\Auction;
+use App\Models\AuctionBet;
 use Illuminate\Http\Request;
 
 class AuctionController extends Controller
@@ -18,17 +20,21 @@ class AuctionController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function createBet(AuctionBetCreateRequest $request)
     {
-        //
+        $userId = auth()->user()->id;
+
+        if (!$userId)
+            return Response(0, 400);
+
+        $request->validated();
+
+        AuctionBet::create([
+            'value' => $request->value,
+            'auction_id' => $request->auction_id,
+            'user_id' => $userId
+        ]);
     }
 
     /**
@@ -45,29 +51,5 @@ class AuctionController extends Controller
         }
 
         return $data;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Auction $auction)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Auction $auction)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Auction $auction)
-    {
-        //
     }
 }

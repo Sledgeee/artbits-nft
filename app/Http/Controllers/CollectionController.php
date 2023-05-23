@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Collection;
-use Illuminate\Http\Request;
+use App\Models\NftItem;
+use Inertia\Inertia;
 
 class CollectionController extends Controller
 {
@@ -12,58 +13,35 @@ class CollectionController extends Controller
      */
     public function index()
     {
-        $collections = Collection::with('creator')->limit(3)->get();
+        $collections = Collection::with('user')
+            ->paginate(9);
+
         foreach ($collections as $collection) {
             $collection->nftItemsLimited;
         }
-        return $collections;
+
+        return Inertia::render('Collections/AllCollections', [
+            'collections' => $collections
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function nftsByCollection(int $collection_id)
     {
-        //
+        $collection = Collection::where('id', $collection_id)->with('user')->first();
+
+        if (!$collection)
+            return Response('Not found', 404);
+
+        $collectionItems = NftItem::with('user')
+            ->whereHas('collection', function ($query) use ($collection_id) {
+                $query->where('collection_id', $collection_id);
+            })->paginate(16);
+
+
+        return Inertia::render('Collections/CurrentCollection', [
+            'collection' => $collection,
+            'collectionItems' => $collectionItems,
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Collection $collection)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Collection $collection)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Collection $collection)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Collection $collection)
-    {
-        //
-    }
 }

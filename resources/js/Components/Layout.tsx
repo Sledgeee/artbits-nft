@@ -1,53 +1,60 @@
-import AppFooter from "@/Components/app/AppFooter";
-import AppHeader from "@/Components/app/AppHeader";
-import Box from "@/Components/Box";
-import {User} from "@/types/user.type";
+import AppFooter from '@/Components/app/AppFooter'
+import AppHeader from '@/Components/app/AppHeader'
+import { User } from '@/interfaces/user.interface'
 import {
-    createTheme,
-    getDocumentTheme,
-    NextUIProvider,
-} from "@nextui-org/react";
-import {FC, useEffect, useState} from "react";
+	createTheme,
+	getDocumentTheme,
+	NextUIProvider
+} from '@nextui-org/react'
+import { FC, useEffect, useState } from 'react'
 
 const lightTheme = createTheme({
-    type: "light",
-});
+	type: 'light'
+})
 
 const darkTheme = createTheme({
-    type: "dark",
-});
-type Props = {
-    children: JSX.Element | JSX.Element[];
-    auth: { user: User };
-};
+	type: 'dark'
+})
 
-export const Layout: FC<Props> = ({children, auth}) => {
-    const [isDark, setIsDark] = useState(false);
+type LayoutProps = {
+	children: JSX.Element | JSX.Element[]
+	auth: { user: User }
+}
 
-    useEffect(() => {
-        const theme = window.localStorage.getItem("data-theme");
-        setIsDark(theme === "dark");
-        const observer = new MutationObserver(() => {
-            const newTheme = getDocumentTheme(document?.documentElement);
-            setIsDark(newTheme === "dark");
-        });
-        observer.observe(document?.documentElement, {
-            attributes: true,
-            attributeFilter: ["data-theme", "style"],
-        });
-        return () => observer.disconnect();
-    }, []);
+export const Layout: FC<LayoutProps> = ({
+	children,
+	auth
+}) => {
+	const [isDark, setIsDark] = useState(false)
 
-    return (
-        <NextUIProvider theme={isDark ? darkTheme : lightTheme}>
-            <Box>
-                <AppHeader user={auth.user}/>
-                <div className='max-w-7xl mx-auto'>
-                    {children}
-                </div>
-                <AppFooter/>
-            </Box>
-        </NextUIProvider>
-    );
-};
-export default Layout;
+	useEffect(() => {
+		const theme = window.localStorage.getItem('data-theme')
+		setIsDark(theme === 'dark')
+		const observer = new MutationObserver(() => {
+			const newTheme = getDocumentTheme(
+				document?.documentElement
+			)
+			setIsDark(newTheme === 'dark')
+		})
+		observer.observe(document?.documentElement, {
+			attributes: true,
+			attributeFilter: ['data-theme', 'style']
+		})
+		return () => observer.disconnect()
+	}, [])
+
+	return (
+		<NextUIProvider theme={isDark ? darkTheme : lightTheme}>
+			<div className='flex flex-col h-screen'>
+				<AppHeader user={auth.user} />
+				<main className='w-full flex-grow'>
+					<div className='max-w-7xl mx-auto'>
+						{children}
+					</div>
+				</main>
+				<AppFooter />
+			</div>
+		</NextUIProvider>
+	)
+}
+export default Layout

@@ -24,11 +24,25 @@ class Auction extends Model
     /**
      * Get the bets for the auction
      */
+    public function user(): HasOne
+    {
+        return $this->hasOne(User::class);
+    }
+
+    /**
+     * Get the bets for the auction
+     */
     public function auctionBets(): HasMany
     {
         return $this->hasMany(AuctionBet::class);
     }
-
+    /**
+     * Get the limited bets for the auction
+     */
+    public function auctionBetsLimited(): HasMany
+    {
+        return $this->hasMany(AuctionBet::class);
+    }
     /**
      * Get the auction's biggest bet
      */

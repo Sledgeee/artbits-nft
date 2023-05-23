@@ -1,27 +1,33 @@
-import {Head} from "@inertiajs/react";
-import {NftResponse} from "./nft.interface";
-import NftListWithPagination from "@/Components/nft/NftListWithPagination";
-import Layout from "@/Components/Layout";
-import {BaseProps} from "@/types/base.type";
-import {FC} from "react";
+import Layout from '@/Components/Layout'
+import NftListWithPagination from '@/Components/nft/NftListWithPagination'
+import { BaseProps } from '@/interfaces/base.interface'
+import { Head } from '@inertiajs/react'
+import { FC } from 'react'
+import { PaginationResponse } from '../../interfaces/nft.interface'
+import { Nft } from '@/interfaces/nft.interface'
+import { Category } from '@/interfaces/category.interface'
 
 interface NftPageProps extends BaseProps {
-    nfts: NftResponse
+	category: Category
+	nfts: PaginationResponse<Nft>
 }
 
-const ByCategory: FC<
-    NftPageProps
-> = ({nfts, auth}) => {
-    return (
-        <>
-            <Head title="Marketplace"/>
-            <Layout auth={auth}>
-                <NftListWithPagination
-                    paginationItems={nfts}
-                />
-            </Layout>
-        </>
-    );
-};
+const ByCategory: FC<NftPageProps> = ({
+	nfts,
+	auth,
+	category
+}) => {
+	return (
+		<>
+			<Head title={`${category.name} category`} />
+			<Layout auth={auth}>
+				<NftListWithPagination
+					paginationItems={nfts}
+					title={`${category.name} category`}
+				/>
+			</Layout>
+		</>
+	)
+}
 
-export default ByCategory;
+export default ByCategory

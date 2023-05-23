@@ -23,16 +23,16 @@ class NftItem extends Model
         'image',
         'header_image',
         'price',
-        'creator_id',
+        'user_id',
         'category_id'
     ];
 
     /**
-     * Get the creator of the NFT item
+     * Get the user of the NFT item
      */
-    public function creator(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Creator::class);
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -43,6 +43,9 @@ class NftItem extends Model
         return $this->hasOne(Category::class);
     }
 
+    /**
+     * Get the collection
+     */
     public function collection(): HasOne
     {
         return $this->hasOne(CollectionNftItems::class);
@@ -56,8 +59,16 @@ class NftItem extends Model
         return $this->hasMany(NftItemTag::class);
     }
 
+    /**
+     * Get the collection nft items
+     */
     public function collectionNftItems(): HasMany
     {
         return $this->hasMany(CollectionNftItems::class);
+    }
+
+    public function transactions(): HasOne
+    {
+        return $this->hasOne(Transaction::class);
     }
 }

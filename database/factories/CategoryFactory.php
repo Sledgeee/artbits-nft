@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Category>
+ * @extends Factory<Category>
  */
 class CategoryFactory extends Factory
 {
@@ -14,11 +15,13 @@ class CategoryFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
     public function definition(): array
     {
         return [
             'name' => fake()->unique()->userName(),
-            'image' => fake()->imageUrl()
+            'image' => fake()->imageUrl(),
+            'pathname' => fake()->userName()
         ];
     }
 }

@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();
+            $table->string('bio', 256)->nullable();
+            $table->string('banner_image', 128)->nullable();
+            $table->string('metamask_address', 42)->nullable();
             $table->string('avatar_image', 128)->nullable();
             $table->timestamps();
         });

@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -22,6 +21,10 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'bio',
+        'avatar_image',
+        'banner_image',
+        'metamask_address'
     ];
 
     /**
@@ -34,17 +37,6 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    /**
-     * Get user wallet
-     */
-    public function wallet(): HasOne
-    {
-        return $this->hasOne(Wallet::class);
-    }
-    public function creator(): HasOne
-    {
-        return $this->hasOne(Creator::class);
-    }
     public function transactionsTo(): HasMany
     {
         return $this->hasMany(Transaction::class, 'to_user_id');
@@ -53,5 +45,20 @@ class User extends Authenticatable
     public function transactionsFrom(): HasMany
     {
         return $this->hasMany(Transaction::class, 'from_user_id');
+    }
+
+    public function followersFrom(): HasMany
+    {
+        return $this->hasMany(Follower::class, 'from_user_id');
+    }
+
+    public function followersTo(): HasMany
+    {
+        return $this->hasMany(Follower::class, 'to_user_id');
+    }
+
+    public function nftItems(): HasMany
+    {
+        return $this->hasMany(NftItem::class);
     }
 }

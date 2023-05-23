@@ -13,11 +13,17 @@ class ProfileUpdateRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
      */
+
     public function rules(): array
     {
         return [
             'username' => ['string', 'max:255'],
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
+            'metamask_address' => ['nullable', 'string', 'max:255'],
+            'avatar_image' => ['nullable', 'string'],
+            'banner_image' => ['nullable', 'string'],
+            'bio' => ['nullable', 'string']
+
         ];
     }
 }

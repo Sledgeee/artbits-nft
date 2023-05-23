@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\AuctionBet;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\AuctionBet>
+ * @extends Factory<AuctionBet>
  */
 class AuctionBetFactory extends Factory
 {
@@ -17,7 +18,7 @@ class AuctionBetFactory extends Factory
     public function definition(): array
     {
         return [
-            'value' => fake()->randomDigit(),
+            'value' => fake()->numberBetween(1, 100),
             'auction_id' => fake()->numberBetween(1, 2789),
             'user_id' => fake()->numberBetween(1, 500)
         ];
