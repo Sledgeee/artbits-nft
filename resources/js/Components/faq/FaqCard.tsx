@@ -1,19 +1,18 @@
-import { FaqCardData } from '@/interfaces/faq.interface'
-import { Card, Grid, Row, Text } from '@nextui-org/react'
-import { FC } from 'react'
-import { fadeIn } from '@/utils/motion'
-import { motion } from 'framer-motion'
+import {FaqCardData} from '@/interfaces/faq.interface'
+import {Card, Row, Text} from '@nextui-org/react'
+import {FC} from 'react'
+import {fadeIn} from '@/utils/motion'
+import {motion} from 'framer-motion'
 
 interface FaqCardProps {
-	data: FaqCardData
-	index: number
+    data: FaqCardData
+    index: number
 }
 
-const FaqCard: FC<FaqCardProps> = ({ data, index }) => {
-	return (
-		<Grid xs={5} sm={4}>
-			<motion.div
-				variants={fadeIn('up', 'spring', index * 0.75, 0.75)}
+const FaqCard: FC<FaqCardProps> = ({data, index}) => {
+    return (
+        <motion.div
+            variants={fadeIn('up', 'spring', index * 0.75, 0.75)}
 			>
 				<Card
 					isHoverable
@@ -48,7 +47,6 @@ const FaqCard: FC<FaqCardProps> = ({ data, index }) => {
 					</Card.Footer>
 				</Card>
 			</motion.div>
-        </Grid>
 	)
 }
 

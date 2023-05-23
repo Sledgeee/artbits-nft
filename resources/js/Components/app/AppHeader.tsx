@@ -10,7 +10,7 @@ interface IAppHeaderProps {
     user: User
 }
 
-const navigate = (href: string) => router.replace(href)
+export const navigate = (href: string) => router.replace(href)
 
 const AppHeader: FC<IAppHeaderProps> = ({user}) => {
     const {isDark} = useTheme()
