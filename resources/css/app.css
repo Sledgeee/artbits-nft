@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    @apply border-0 p-0 m-0;
+}
+
 .nprogress-busy {
-	height: 70px;
+    height: 70px;
 }

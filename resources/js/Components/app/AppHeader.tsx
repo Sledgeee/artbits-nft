@@ -1,50 +1,40 @@
-import { User } from '@/interfaces/user.interface'
-import { Link, router } from '@inertiajs/react'
-import {
-	Avatar,
-	Button,
-	changeTheme,
-	Dropdown,
-	Navbar,
-	Spacer,
-	Switch,
-	Text,
-	useTheme
-} from '@nextui-org/react'
-import { FC } from 'react'
-import { BsMoonFill, BsSunFill } from 'react-icons/bs'
-import { SiCoinmarketcap } from 'react-icons/si'
-import { routes } from '@/constants'
+import {User} from '@/interfaces/user.interface'
+import {Link, router} from '@inertiajs/react'
+import {Avatar, Button, changeTheme, Dropdown, Navbar, Spacer, Switch, Text, useTheme} from '@nextui-org/react'
+import {FC} from 'react'
+import {BsMoonFill, BsSunFill} from 'react-icons/bs'
+import {SiCoinmarketcap} from 'react-icons/si'
+import {routes} from '@/constants'
 
 interface IAppHeaderProps {
-	user: User
+    user: User
 }
 
-const navigate = (href: string) => router.replace(href)
+export const navigate = (href: string) => router.replace(href)
 
-const AppHeader: FC<IAppHeaderProps> = ({ user }) => {
-	const { isDark } = useTheme()
-	const handleChange = () => {
-		const nextTheme = isDark ? 'light' : 'dark'
-		window.localStorage.setItem('data-theme', nextTheme)
-		changeTheme(nextTheme)
-	}
-	const checkActive = (href: string) =>
-		location.pathname === href
+const AppHeader: FC<IAppHeaderProps> = ({user}) => {
+    const {isDark} = useTheme()
+    const handleChange = () => {
+        const nextTheme = isDark ? 'light' : 'dark'
+        window.localStorage.setItem('data-theme', nextTheme)
+        changeTheme(nextTheme)
+    }
+    const checkActive = (href: string) =>
+        location.pathname === href
 
-	return (
-		<Navbar isBordered variant='sticky'>
-			<Navbar.Brand
-				className='cursor-pointer'
-				onClick={() => navigate('/')}
-			>
-				<Navbar.Toggle showIn='xs' className='mr-2' />
-				<SiCoinmarketcap className='mr-2 text-3xl sm:text-md' />
-				<Text b hideIn='xs'>
-					ArtBits
-				</Text>
-			</Navbar.Brand>
-			<Navbar.Content
+    return (
+        <Navbar isBordered variant='sticky'>
+            <Navbar.Brand
+                className='cursor-pointer'
+                onClick={() => navigate('/')}
+            >
+                <Navbar.Toggle showIn='xs' className='mr-2'/>
+                <SiCoinmarketcap className='mr-2 text-3xl sm:text-md'/>
+                <Text b hideIn='xs'>
+                    ArtBits
+                </Text>
+            </Navbar.Brand>
+            <Navbar.Content
 				enableCursorHighlight
 				activeColor='primary'
 				hideIn='xs'
@@ -71,18 +61,22 @@ const AppHeader: FC<IAppHeaderProps> = ({ user }) => {
 				</Navbar.Item>
 				<Navbar.Item>
 					{!user ? (
-						<>
-							<Spacer x={-0.5} />
-							<Button
-								auto
-								bordered
-								shadow
-								color='gradient'
-								onPress={() => navigate(route('login'))}
-							>
-								Login
-							</Button>
-						</>
+                        <>
+                            <Spacer x={-0.5}/>
+                            <Button
+                                auto
+                                bordered
+                                shadow
+                                color='gradient'
+                                onPress={() => navigate(
+                                    route('login')
+                                    + '?returnTo='
+                                    + window.location.pathname
+                                )}
+                            >
+                                Login
+                            </Button>
+                        </>
 					) : (
 						<>
 							<Spacer x={-0.5} />
