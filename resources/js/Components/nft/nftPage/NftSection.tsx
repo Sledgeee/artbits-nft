@@ -72,7 +72,7 @@ const NftSection: FC<NftPageCardProps> = ({
 						</Text>
 						<Spacer y={0.7} />
 						{nft.nft_item_tags!.length > 0 && (
-							<>
+							<div>
 								<Text span color='#787f85'>
 									Tags
 								</Text>
@@ -90,14 +90,14 @@ const NftSection: FC<NftPageCardProps> = ({
 										</Grid>
 									))}
 								</Grid.Container>
-							</>
+							</div>
 						)}
 					</div>
 				</Grid>
 				<Grid sm={5}>
 					<AuctionCard
 						auction={auction}
-						minPrice={Number(nft.price)}
+						minPrice={+nft.price}
 					/>
 				</Grid>
 			</Grid.Container>

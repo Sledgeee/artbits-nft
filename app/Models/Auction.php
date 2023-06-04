@@ -17,8 +17,8 @@ class Auction extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'duration',
-        'nft_item_id'
+        'end_at',
+        'nft_item_id',
     ];
 
     /**
