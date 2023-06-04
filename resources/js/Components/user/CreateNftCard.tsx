@@ -62,6 +62,7 @@ const CreateNftCard: FC<CreateNftCardProps> = ({
 					setData('image', undefined)
 					//reset does not work
 					setTimeout(() => setButtColor('primary'), 4000)
+                    location.reload()
 				},
 				onError: () => setButtColor('error')
 			})
@@ -129,7 +130,7 @@ const CreateNftCard: FC<CreateNftCardProps> = ({
 						label='Enter description for nft'
 					/>
 					<Input
-						type='date'
+						type='datetime-local'
 						value={data.auction_date}
 						onChange={validateDate}
 						helperColor='error'

@@ -144,7 +144,7 @@ const BaseAuctionCard: FC<
          headerText,
          children
      }) => {
-    return <div className='ml-auto w-full sm:max-w-min'>
+    return <div className='ml-auto w-full lg:max-w-min'>
         <Card css={{
             minWidth: '340px',
             borderWidth: '0px'
@@ -175,11 +175,12 @@ const AuctionCard: FC<
          minPrice
      }) => {
     const user = useUser()
-    const endDate = new Date(auction?.end_at || new Date())
+    const endDate = new Date(auction?.end_at || '')
     const [diff, setDiff] = useState(
         moment.duration(moment(endDate).diff(new Date()))
     )
-    const available = diff.seconds() > 0 && !!user
+
+    const available = diff.seconds() > -1
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -194,7 +195,7 @@ const AuctionCard: FC<
     if (!auction)
         return <></>
     else if (!user)
-        return <BaseAuctionCard headerText=' Log in to place a bet'/>
+        return <BaseAuctionCard headerText='Log in to place a bet'/>
     else
         return (
             <BaseAuctionCard>
