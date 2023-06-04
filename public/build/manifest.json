@@ -1,418 +1,415 @@
 {
-  "_CollectionCard-32723584.js": {
-    "file": "assets/CollectionCard-32723584.js",
+  "_CollectionCard-a041532c.js": {
+    "file": "assets/CollectionCard-a041532c.js",
     "imports": [
       "resources/js/app.tsx",
-      "_motion-9634ae7b.js",
-      "_index-b4c17590.js",
-      "_index.esm-566a47d6.js",
-      "_index-4ac4fb9c.js"
+      "_motion-8bae9ae2.js",
+      "_index-fa53052e.js",
+      "_index.esm-c9b5686a.js",
+      "_index-0a5164bc.js"
     ]
   },
-  "_CollectionList-edb3fd6b.js": {
-    "file": "assets/CollectionList-edb3fd6b.js",
+  "_CollectionList-a7aa16d1.js": {
+    "file": "assets/CollectionList-a7aa16d1.js",
     "imports": [
       "resources/js/app.tsx",
-      "_index.esm-566a47d6.js",
-      "_CollectionCard-32723584.js",
-      "_motion-9634ae7b.js",
-      "_index-4ac4fb9c.js"
+      "_index.esm-c9b5686a.js",
+      "_CollectionCard-a041532c.js",
+      "_motion-8bae9ae2.js",
+      "_index-0a5164bc.js"
     ]
   },
-  "_DefaultNftList-a911532c.js": {
-    "file": "assets/DefaultNftList-a911532c.js",
+  "_DefaultNftList-2270e33b.js": {
+    "file": "assets/DefaultNftList-2270e33b.js",
     "imports": [
       "resources/js/app.tsx",
-      "_NftCard-a904dd3c.js",
-      "_index.esm-566a47d6.js",
-      "_motion-9634ae7b.js",
-      "_index-4ac4fb9c.js"
+      "_NftCard-07c0ebd9.js",
+      "_index.esm-c9b5686a.js",
+      "_motion-8bae9ae2.js",
+      "_index-0a5164bc.js"
     ]
   },
-  "_HeaderImageSection-f4c12ae4.js": {
-    "file": "assets/HeaderImageSection-f4c12ae4.js",
+  "_HeaderImageSection-8728b557.js": {
+    "file": "assets/HeaderImageSection-8728b557.js",
     "imports": [
       "resources/js/app.tsx",
-      "_index-b4c17590.js"
+      "_index-fa53052e.js"
     ]
   },
-  "_Layout-ce40832f.js": {
-    "file": "assets/Layout-ce40832f.js",
+  "_Layout-dcf2d447.js": {
+    "file": "assets/Layout-dcf2d447.js",
     "imports": [
       "resources/js/app.tsx",
-      "_index.esm-566a47d6.js"
+      "_index.esm-c9b5686a.js"
     ]
   },
-  "_NftCard-a904dd3c.js": {
-    "file": "assets/NftCard-a904dd3c.js",
+  "_NftCard-07c0ebd9.js": {
+    "file": "assets/NftCard-07c0ebd9.js",
     "imports": [
       "resources/js/app.tsx",
-      "_motion-9634ae7b.js",
-      "_index-b4c17590.js",
-      "_index.esm-566a47d6.js",
-      "_col-c359b618.js",
-      "_index-4ac4fb9c.js"
+      "_motion-8bae9ae2.js",
+      "_index-fa53052e.js",
+      "_index.esm-c9b5686a.js",
+      "_col-438b23ee.js",
+      "_index-0a5164bc.js"
     ]
   },
-  "_NftListWithPagination-ee27e2e8.js": {
-    "file": "assets/NftListWithPagination-ee27e2e8.js",
+  "_NftListWithPagination-656c941b.js": {
+    "file": "assets/NftListWithPagination-656c941b.js",
     "imports": [
       "resources/js/app.tsx",
-      "_NftCard-a904dd3c.js",
-      "_index.esm-566a47d6.js",
-      "_index-4ac4fb9c.js",
-      "_pagination-327f9dc7.js"
+      "_NftCard-07c0ebd9.js",
+      "_index.esm-c9b5686a.js",
+      "_index-0a5164bc.js",
+      "_pagination-0f065369.js"
     ]
   },
-  "_col-c359b618.js": {
-    "file": "assets/col-c359b618.js",
+  "_col-438b23ee.js": {
+    "file": "assets/col-438b23ee.js",
     "imports": [
       "resources/js/app.tsx",
-      "_index.esm-566a47d6.js"
+      "_index.esm-c9b5686a.js"
     ]
   },
-  "_index-4ac4fb9c.js": {
-    "file": "assets/index-4ac4fb9c.js",
+  "_index-0a5164bc.js": {
+    "file": "assets/index-0a5164bc.js",
     "imports": [
       "resources/js/app.tsx",
-      "_index.esm-566a47d6.js"
+      "_index.esm-c9b5686a.js"
     ]
   },
-  "_index-7bc11f4a.js": {
-    "file": "assets/index-7bc11f4a.js",
+  "_index-2aa59de3.js": {
+    "file": "assets/index-2aa59de3.js",
     "imports": [
       "resources/js/app.tsx",
-      "_index.esm-566a47d6.js",
-      "_Layout-ce40832f.js"
+      "_index.esm-c9b5686a.js",
+      "_Layout-dcf2d447.js"
     ]
   },
-  "_index-8d992512.js": {
-    "file": "assets/index-8d992512.js",
+  "_index-9696c69b.js": {
+    "file": "assets/index-9696c69b.js",
     "imports": [
       "resources/js/app.tsx",
-      "_use-portal-cf809706.js",
-      "_index.esm-566a47d6.js",
-      "_Layout-ce40832f.js",
-      "_index-b4c17590.js"
+      "_use-portal-861ee852.js",
+      "_index.esm-c9b5686a.js",
+      "_Layout-dcf2d447.js",
+      "_index-fa53052e.js"
     ]
   },
-  "_index-b4c17590.js": {
-    "file": "assets/index-b4c17590.js",
+  "_index-fa53052e.js": {
+    "file": "assets/index-fa53052e.js",
     "imports": [
       "resources/js/app.tsx",
-      "_index.esm-566a47d6.js"
+      "_index.esm-c9b5686a.js"
     ]
   },
-  "_index.esm-566a47d6.js": {
-    "file": "assets/index.esm-566a47d6.js",
+  "_index.esm-2174d381.js": {
+    "file": "assets/index.esm-2174d381.js",
+    "imports": [
+      "_index.esm-c9b5686a.js"
+    ]
+  },
+  "_index.esm-c9b5686a.js": {
+    "file": "assets/index.esm-c9b5686a.js",
     "imports": [
       "resources/js/app.tsx"
     ]
   },
-  "_loading-c9668671.js": {
-    "file": "assets/loading-c9668671.js",
+  "_motion-8bae9ae2.js": {
+    "file": "assets/motion-8bae9ae2.js",
     "imports": [
+      "_index.esm-c9b5686a.js",
       "resources/js/app.tsx",
-      "_index.esm-566a47d6.js"
+      "_Layout-dcf2d447.js"
     ]
   },
-  "_motion-9634ae7b.js": {
-    "file": "assets/motion-9634ae7b.js",
-    "imports": [
-      "_index.esm-566a47d6.js",
-      "resources/js/app.tsx",
-      "_Layout-ce40832f.js"
-    ]
-  },
-  "_pagination-327f9dc7.js": {
-    "file": "assets/pagination-327f9dc7.js",
+  "_pagination-0f065369.js": {
+    "file": "assets/pagination-0f065369.js",
     "imports": [
       "resources/js/app.tsx",
-      "_index.esm-566a47d6.js"
+      "_index.esm-c9b5686a.js"
     ]
   },
-  "_tableColumns-9560a6d2.js": {
-    "file": "assets/tableColumns-9560a6d2.js",
+  "_tableColumns-cc38176b.js": {
+    "file": "assets/tableColumns-cc38176b.js",
     "imports": [
       "resources/js/app.tsx",
-      "_Layout-ce40832f.js",
-      "_index.esm-566a47d6.js",
-      "_index-7bc11f4a.js",
-      "_pagination-327f9dc7.js",
-      "_loading-c9668671.js"
+      "_index.esm-c9b5686a.js",
+      "_Layout-dcf2d447.js",
+      "_index-2aa59de3.js",
+      "_pagination-0f065369.js"
     ]
   },
-  "_textarea-d6e89e4c.js": {
-    "file": "assets/textarea-d6e89e4c.js",
+  "_textarea-250dcadc.js": {
+    "file": "assets/textarea-250dcadc.js",
     "imports": [
       "resources/js/app.tsx",
-      "_index.esm-566a47d6.js",
-      "_index-b4c17590.js",
-      "_Layout-ce40832f.js"
+      "_index.esm-c9b5686a.js",
+      "_index-fa53052e.js",
+      "_Layout-dcf2d447.js"
     ]
   },
-  "_use-portal-cf809706.js": {
-    "file": "assets/use-portal-cf809706.js",
+  "_use-portal-861ee852.js": {
+    "file": "assets/use-portal-861ee852.js",
     "imports": [
       "resources/js/app.tsx",
-      "_Layout-ce40832f.js"
+      "_Layout-dcf2d447.js"
     ]
   },
-  "_useUser-da4dc8cd.js": {
-    "file": "assets/useUser-da4dc8cd.js",
+  "_useUser-9f8f40a5.js": {
+    "file": "assets/useUser-9f8f40a5.js",
     "imports": [
       "resources/js/app.tsx"
     ]
   },
   "resources/js/Pages/Auth/ConfirmPassword.tsx": {
-    "file": "assets/ConfirmPassword-7439c689.js",
+    "file": "assets/ConfirmPassword-f0d95777.js",
     "imports": [
       "resources/js/app.tsx",
-      "_index.esm-566a47d6.js",
-      "_index-b4c17590.js"
+      "_index.esm-c9b5686a.js",
+      "_index-fa53052e.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/ConfirmPassword.tsx"
   },
   "resources/js/Pages/Auth/ForgotPassword.tsx": {
-    "file": "assets/ForgotPassword-a50760cd.js",
+    "file": "assets/ForgotPassword-b9083ecf.js",
     "imports": [
       "resources/js/app.tsx",
-      "_Layout-ce40832f.js",
-      "_index.esm-566a47d6.js",
-      "_index-b4c17590.js"
+      "_Layout-dcf2d447.js",
+      "_index.esm-c9b5686a.js",
+      "_index-fa53052e.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/ForgotPassword.tsx"
   },
   "resources/js/Pages/Auth/Login.tsx": {
-    "file": "assets/Login-8a083362.js",
+    "file": "assets/Login-975aff79.js",
     "imports": [
       "resources/js/app.tsx",
-      "_Layout-ce40832f.js",
-      "_index.esm-566a47d6.js",
-      "_index-b4c17590.js",
-      "_index-7bc11f4a.js"
+      "_Layout-dcf2d447.js",
+      "_index.esm-c9b5686a.js",
+      "_index-fa53052e.js",
+      "_index-2aa59de3.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/Login.tsx"
   },
   "resources/js/Pages/Auth/Register.tsx": {
-    "file": "assets/Register-d1bc182a.js",
+    "file": "assets/Register-e6b1a27a.js",
     "imports": [
       "resources/js/app.tsx",
-      "_Layout-ce40832f.js",
-      "_index.esm-566a47d6.js",
-      "_index-b4c17590.js"
+      "_Layout-dcf2d447.js",
+      "_index.esm-c9b5686a.js",
+      "_index-fa53052e.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/Register.tsx"
   },
   "resources/js/Pages/Auth/ResetPassword.tsx": {
-    "file": "assets/ResetPassword-d73904f0.js",
+    "file": "assets/ResetPassword-7b72fc55.js",
     "imports": [
       "resources/js/app.tsx",
-      "_Layout-ce40832f.js",
-      "_index.esm-566a47d6.js",
-      "_index-b4c17590.js"
+      "_Layout-dcf2d447.js",
+      "_index.esm-c9b5686a.js",
+      "_index-fa53052e.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/ResetPassword.tsx"
   },
   "resources/js/Pages/Auth/VerifyEmail.tsx": {
-    "file": "assets/VerifyEmail-d9a6116d.js",
+    "file": "assets/VerifyEmail-29df654e.js",
     "imports": [
       "resources/js/app.tsx",
-      "_Layout-ce40832f.js",
-      "_index.esm-566a47d6.js"
+      "_Layout-dcf2d447.js",
+      "_index.esm-c9b5686a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/VerifyEmail.tsx"
   },
   "resources/js/Pages/Collections/AllCollections.tsx": {
-    "file": "assets/AllCollections-4c952655.js",
+    "file": "assets/AllCollections-75c66db9.js",
     "imports": [
       "resources/js/app.tsx",
-      "_Layout-ce40832f.js",
-      "_CollectionCard-32723584.js",
-      "_index.esm-566a47d6.js",
-      "_index-4ac4fb9c.js",
-      "_pagination-327f9dc7.js",
-      "_motion-9634ae7b.js",
-      "_index-b4c17590.js"
+      "_Layout-dcf2d447.js",
+      "_CollectionCard-a041532c.js",
+      "_index.esm-c9b5686a.js",
+      "_index-0a5164bc.js",
+      "_pagination-0f065369.js",
+      "_motion-8bae9ae2.js",
+      "_index-fa53052e.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Collections/AllCollections.tsx"
   },
   "resources/js/Pages/Collections/CurrentCollection.tsx": {
-    "file": "assets/CurrentCollection-706a8301.js",
+    "file": "assets/CurrentCollection-362233c0.js",
     "imports": [
       "resources/js/app.tsx",
-      "_Layout-ce40832f.js",
-      "_NftListWithPagination-ee27e2e8.js",
-      "_index.esm-566a47d6.js",
-      "_NftCard-a904dd3c.js",
-      "_motion-9634ae7b.js",
-      "_index-b4c17590.js",
-      "_col-c359b618.js",
-      "_index-4ac4fb9c.js",
-      "_pagination-327f9dc7.js"
+      "_Layout-dcf2d447.js",
+      "_NftListWithPagination-656c941b.js",
+      "_index.esm-c9b5686a.js",
+      "_NftCard-07c0ebd9.js",
+      "_motion-8bae9ae2.js",
+      "_index-fa53052e.js",
+      "_col-438b23ee.js",
+      "_index-0a5164bc.js",
+      "_pagination-0f065369.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Collections/CurrentCollection.tsx"
   },
   "resources/js/Pages/Creators/Index.tsx": {
-    "file": "assets/Index-c363286a.js",
+    "file": "assets/Index-bb87912f.js",
     "imports": [
       "resources/js/app.tsx",
-      "_CollectionList-edb3fd6b.js",
-      "_index.esm-566a47d6.js",
-      "_useUser-da4dc8cd.js",
-      "_loading-c9668671.js",
-      "_index-4ac4fb9c.js",
-      "_Layout-ce40832f.js",
-      "_DefaultNftList-a911532c.js",
-      "_HeaderImageSection-f4c12ae4.js",
-      "_CollectionCard-32723584.js",
-      "_motion-9634ae7b.js",
-      "_index-b4c17590.js",
-      "_NftCard-a904dd3c.js",
-      "_col-c359b618.js"
+      "_CollectionList-a7aa16d1.js",
+      "_index.esm-c9b5686a.js",
+      "_useUser-9f8f40a5.js",
+      "_Layout-dcf2d447.js",
+      "_index-0a5164bc.js",
+      "_DefaultNftList-2270e33b.js",
+      "_HeaderImageSection-8728b557.js",
+      "_CollectionCard-a041532c.js",
+      "_motion-8bae9ae2.js",
+      "_index-fa53052e.js",
+      "_NftCard-07c0ebd9.js",
+      "_col-438b23ee.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Creators/Index.tsx"
   },
   "resources/js/Pages/Creators/Rankings.tsx": {
-    "file": "assets/Rankings-bc389446.js",
+    "file": "assets/Rankings-8bf68ae7.js",
     "imports": [
       "resources/js/app.tsx",
-      "_tableColumns-9560a6d2.js",
-      "_index.esm-566a47d6.js",
-      "_motion-9634ae7b.js",
-      "_Layout-ce40832f.js",
-      "_index-7bc11f4a.js",
-      "_pagination-327f9dc7.js",
-      "_loading-c9668671.js"
+      "_tableColumns-cc38176b.js",
+      "_index.esm-c9b5686a.js",
+      "_motion-8bae9ae2.js",
+      "_Layout-dcf2d447.js",
+      "_index-2aa59de3.js",
+      "_pagination-0f065369.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Creators/Rankings.tsx"
   },
   "resources/js/Pages/Home.tsx": {
-    "file": "assets/Home-ce914d89.js",
+    "file": "assets/Home-a07b73a6.js",
     "imports": [
       "resources/js/app.tsx",
-      "_motion-9634ae7b.js",
-      "_index-4ac4fb9c.js",
-      "_index-b4c17590.js",
-      "_index.esm-566a47d6.js",
-      "_CollectionList-edb3fd6b.js",
-      "_Layout-ce40832f.js",
-      "_DefaultNftList-a911532c.js",
-      "_CollectionCard-32723584.js",
-      "_NftCard-a904dd3c.js",
-      "_col-c359b618.js"
+      "_motion-8bae9ae2.js",
+      "_index-0a5164bc.js",
+      "_index-fa53052e.js",
+      "_index.esm-c9b5686a.js",
+      "_CollectionList-a7aa16d1.js",
+      "_Layout-dcf2d447.js",
+      "_DefaultNftList-2270e33b.js",
+      "_CollectionCard-a041532c.js",
+      "_NftCard-07c0ebd9.js",
+      "_col-438b23ee.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Home.tsx"
   },
   "resources/js/Pages/Nfts/AllNfts.tsx": {
-    "file": "assets/AllNfts-b2248408.js",
+    "file": "assets/AllNfts-9138796e.js",
     "imports": [
       "resources/js/app.tsx",
-      "_Layout-ce40832f.js",
-      "_NftListWithPagination-ee27e2e8.js",
-      "_index.esm-566a47d6.js",
-      "_NftCard-a904dd3c.js",
-      "_motion-9634ae7b.js",
-      "_index-b4c17590.js",
-      "_col-c359b618.js",
-      "_index-4ac4fb9c.js",
-      "_pagination-327f9dc7.js"
+      "_Layout-dcf2d447.js",
+      "_NftListWithPagination-656c941b.js",
+      "_index.esm-c9b5686a.js",
+      "_NftCard-07c0ebd9.js",
+      "_motion-8bae9ae2.js",
+      "_index-fa53052e.js",
+      "_col-438b23ee.js",
+      "_index-0a5164bc.js",
+      "_pagination-0f065369.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Nfts/AllNfts.tsx"
   },
   "resources/js/Pages/Nfts/ByCategory.tsx": {
-    "file": "assets/ByCategory-5e2b5d94.js",
+    "file": "assets/ByCategory-8dbdc613.js",
     "imports": [
       "resources/js/app.tsx",
-      "_Layout-ce40832f.js",
-      "_NftListWithPagination-ee27e2e8.js",
-      "_index.esm-566a47d6.js",
-      "_NftCard-a904dd3c.js",
-      "_motion-9634ae7b.js",
-      "_index-b4c17590.js",
-      "_col-c359b618.js",
-      "_index-4ac4fb9c.js",
-      "_pagination-327f9dc7.js"
+      "_Layout-dcf2d447.js",
+      "_NftListWithPagination-656c941b.js",
+      "_index.esm-c9b5686a.js",
+      "_NftCard-07c0ebd9.js",
+      "_motion-8bae9ae2.js",
+      "_index-fa53052e.js",
+      "_col-438b23ee.js",
+      "_index-0a5164bc.js",
+      "_pagination-0f065369.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Nfts/ByCategory.tsx"
   },
   "resources/js/Pages/Nfts/CurrentNft.tsx": {
-    "file": "assets/CurrentNft-7798ec4d.js",
+    "file": "assets/CurrentNft-81acdeed.js",
     "imports": [
       "resources/js/app.tsx",
-      "_Layout-ce40832f.js",
-      "_DefaultNftList-a911532c.js",
-      "_HeaderImageSection-f4c12ae4.js",
-      "_tableColumns-9560a6d2.js",
-      "_index-b4c17590.js",
-      "_index.esm-566a47d6.js",
-      "_index-8d992512.js",
-      "_motion-9634ae7b.js",
-      "_index-4ac4fb9c.js",
-      "_NftCard-a904dd3c.js",
-      "_col-c359b618.js",
-      "_index-7bc11f4a.js",
-      "_pagination-327f9dc7.js",
-      "_loading-c9668671.js",
-      "_use-portal-cf809706.js"
+      "_Layout-dcf2d447.js",
+      "_DefaultNftList-2270e33b.js",
+      "_HeaderImageSection-8728b557.js",
+      "_index.esm-2174d381.js",
+      "_tableColumns-cc38176b.js",
+      "_useUser-9f8f40a5.js",
+      "_index.esm-c9b5686a.js",
+      "_index-9696c69b.js",
+      "_motion-8bae9ae2.js",
+      "_index-fa53052e.js",
+      "_index-0a5164bc.js",
+      "_NftCard-07c0ebd9.js",
+      "_col-438b23ee.js",
+      "_index-2aa59de3.js",
+      "_pagination-0f065369.js",
+      "_use-portal-861ee852.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Nfts/CurrentNft.tsx"
   },
   "resources/js/Pages/Profile/Dashboard.tsx": {
-    "file": "assets/Dashboard-35494ad2.js",
+    "file": "assets/Dashboard-7155a71b.js",
     "imports": [
       "resources/js/app.tsx",
-      "_Layout-ce40832f.js",
-      "_index-b4c17590.js",
-      "_index.esm-566a47d6.js",
-      "_textarea-d6e89e4c.js",
-      "_pagination-327f9dc7.js",
-      "_useUser-da4dc8cd.js",
-      "_tableColumns-9560a6d2.js",
-      "_col-c359b618.js",
-      "_use-portal-cf809706.js",
-      "_index-7bc11f4a.js",
-      "_loading-c9668671.js"
+      "_Layout-dcf2d447.js",
+      "_index-fa53052e.js",
+      "_index.esm-c9b5686a.js",
+      "_index.esm-2174d381.js",
+      "_textarea-250dcadc.js",
+      "_pagination-0f065369.js",
+      "_useUser-9f8f40a5.js",
+      "_tableColumns-cc38176b.js",
+      "_col-438b23ee.js",
+      "_use-portal-861ee852.js",
+      "_index-2aa59de3.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/Dashboard.tsx"
   },
   "resources/js/Pages/Profile/Edit.tsx": {
-    "file": "assets/Edit-40b30910.js",
+    "file": "assets/Edit-a9f4c364.js",
     "imports": [
       "resources/js/app.tsx",
-      "_Layout-ce40832f.js",
-      "_index.esm-566a47d6.js",
-      "_index-b4c17590.js",
-      "_index-8d992512.js",
-      "_useUser-da4dc8cd.js",
-      "_textarea-d6e89e4c.js",
-      "_use-portal-cf809706.js"
+      "_Layout-dcf2d447.js",
+      "_index.esm-c9b5686a.js",
+      "_index-fa53052e.js",
+      "_index-9696c69b.js",
+      "_useUser-9f8f40a5.js",
+      "_textarea-250dcadc.js",
+      "_use-portal-861ee852.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Profile/Edit.tsx"
   },
   "resources/js/app.css": {
-    "file": "assets/app-45c38f55.css",
+    "file": "assets/app-a8851dfb.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.tsx": {
     "css": [
-      "assets/app-45c38f55.css"
+      "assets/app-a8851dfb.css"
     ],
     "dynamicImports": [
       "resources/js/Pages/Auth/ConfirmPassword.tsx",
@@ -432,7 +429,7 @@
       "resources/js/Pages/Profile/Dashboard.tsx",
       "resources/js/Pages/Profile/Edit.tsx"
     ],
-    "file": "assets/app-8ba940f7.js",
+    "file": "assets/app-ae60eb16.js",
     "isEntry": true,
     "src": "resources/js/app.tsx"
   }

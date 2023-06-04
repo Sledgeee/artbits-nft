@@ -1,0 +1,1 @@
+import{j as e}from"./app-ae60eb16.js";import{a as t}from"./index-fa53052e.js";const i=({image:r})=>e("div",{children:e(t,{showSkeleton:!0,width:"100%",objectFit:"cover",height:350,src:r,alt:"Header Image"})});export{i as H};
