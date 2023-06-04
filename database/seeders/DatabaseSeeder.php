@@ -9,7 +9,7 @@ use App\Models\Collection;
 use App\Models\CollectionNftItems;
 use App\Models\Follower;
 use App\Models\NftItem;
-use App\Models\NFtItemTag;
+use App\Models\NftItemTag;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -66,7 +66,7 @@ class DatabaseSeeder extends Seeder
         User::factory(500)->create();
         Category::insert($categories);
         NftItem::factory(10000)->create();
-        NFtItemTag::factory(30000)->create();
+        NftItemTag::factory(30000)->create();
         Collection::factory(100)->create();
         CollectionNftItems::factory(3000)->create();
         Auction::factory(2789)->create();
